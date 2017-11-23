@@ -102,3 +102,35 @@ html, body {
 .ristorante{
   display: none;
 }
+
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow:hidden;
+    border-radius: 14px;
+}
+
+th {
+    height: 30px;
+    text-align: center !important;
+}
+
+td {
+    height: 50px;
+    vertical-align: bottom;
+}
+
+th, td {
+    padding: 15px !important;
+    text-align: left;
+    font-family: helvetica;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+th {
+    background-color: #ff8c00;
+    color: white;
+}
