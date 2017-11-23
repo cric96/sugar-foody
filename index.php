@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Benvenuto in Foody</title>
-      <link rel="stylesheet" type="text/css" title="stylesheet" href="login-style.css">
+      <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/login-style.css">
       <link href="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" rel="stylesheet">
       <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
@@ -14,9 +14,9 @@
          <div class="container">
             <div class="row">
                <div class="col-md-4 login-sec">
-                  <img src="logo.png" alt="Foody" style="width:40%">
-									<h2 class="text-center">Login</h2>
-                  <form class="login-form">
+                  <img src="./img/logo.png" alt="Foody" style="width:40%">
+                  <h2 class="text-center">Login</h2>
+                  <form method="post" class="login-form">
                      <div class="form-group">
                         <label for="user" class="text-uppercase">Username</label>
                         <input type="text" class="form-control" name="user" id="user">
@@ -26,9 +26,9 @@
                         <input type="password" class="form-control" name="psw" id="psw">
                      </div>
                      <div class="form-check">
-											 	<a href="">Registrati!</a>
-                        <button type="reset" class="btn">Annulla</button>
-                        <button type="submit" class="btn btn-login">Accedi</button>
+											 	<a href="signin.php">Registrati</a>
+                        <button type="submit" class="btn btn-login float-right">Accedi</button>
+                        <button type="reset" class="btn float-right">Annulla</button>
                      </div>
                   </form>
                </div>
