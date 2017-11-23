@@ -1,6 +1,7 @@
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 html, body {
    height: 100%;
+   width: 100%;
  }
 .login-block{
   height: 100%;
@@ -9,7 +10,7 @@ html, body {
   background: -webkit-linear-gradient(to bottom, #dc143c, #ff8c00); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #dc143c, #ff8c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   float:left;
-  width:100%;
+  width: 100%;
   padding : 50px;
 }
 .banner-sec{
@@ -44,7 +45,7 @@ html, body {
 }
 .login-sec .copy-text{
   position:absolute;
-  width:80%;
+  width: 80%;
   bottom:20px;
   font-size:13px;
   text-align:center;
@@ -97,4 +98,7 @@ html, body {
 }
 .banner-text p{
   color:#fff;
+}
+.ristorante{
+  display: none;
 }

@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Benvenuto in Foody</title>
-      <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/login-style.css">
+      <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/main-style.css">
       <link href="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" rel="stylesheet">
       <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
@@ -27,8 +27,8 @@
                      </div>
                      <div class="form-check">
 											 	<a href="signin.php">Registrati</a>
-                        <button type="submit" class="btn btn-login float-right">Accedi</button>
-                        <button type="reset" class="btn float-right">Annulla</button>
+                        <button type="submit" class="btn btn-login mb-2 mr-sm-2 mb-sm-0 float-right">Accedi</button>
+                        <button type="reset" class="btn mb-2 mr-sm-2 mb-sm-0 float-right">Annulla</button>
                      </div>
                   </form>
                </div>
