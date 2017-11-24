@@ -7,6 +7,7 @@
       <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/main-style.css">
       <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+      <script src="./js/scriptHide.js"></script>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,19 +18,10 @@
       <title>Dati personali</title>
    </head>
    <body>
-      <script type="text/javascript">
-         function valueChanged()
-         {
-             if($('.checkRistorante').is(":checked"))
-                 $(".ristorante").show();
-             else
-                 $(".ristorante").hide();
-         }
-      </script>
-      <section class="login-block">
+      <section class="main-block">
          <div class="container">
             <div class="row">
-               <div class = "login-sec">
+               <div class = "main-sec">
                   <a href="index.php"><img src="./img/logo.png" alt="Foody" style="width:10%"></a>
                   <h2 class="text-center">Dati personali</h2>
                   <form method="post">
@@ -45,14 +37,14 @@
                         <label for="psw2" class="text-uppercase">Conferma Password</label>
                         <input type="password" class="form-control" name="psw2" id="psw2">
                         <!--Anzichè la check si controllerà se l'utente è un ristorante-->
-                        <label class="form-check-label" for="checkRistorante">Sono un ristorante</label>
-                        <input class="form-check-input checkRistorante" onchange="valueChanged()" type="checkbox" name="checkRistorante" id="checkRistorante">
+                        <label class="form-check-label" for="check-hide">Sono un ristorante</label>
+                        <input class="form-check-input check-hide" onchange="valueChanged()" type="checkbox" name="check-hide" id="check-hide">
                         <div class="form-check">
-                           <button type="submit" class="btn btn-login float-right">Modifica</button>
+                           <button type="submit" class="btn btn-submit float-right">Modifica</button>
                            <button type="reset" class="btn btn-default float-right">Annulla</button>
                         </div>
                      </div>
-                     <fieldset class="form-group ristorante">
+                     <fieldset class="form-group fieldset-hide">
                         <div class="col-xs-10 form-group">
                            <label for="nomeRistorante" class="text-uppercase">Nome ristorante</label>
                            <input type="text" class="form-control" name="nomeRistorante" id="nomeRistorante">

@@ -17,10 +17,10 @@
       <title>Dettaglio ordine</title>
    </head>
    <body>
-      <section class="login-block">
+      <section class="main-block">
          <div class="container">
             <div class="row">
-               <div class = "login-sec" style="overflow-x:auto;">
+               <div class = "main-sec" style="overflow-x:auto;">
                   <a href="ordini.php"><img src="./img/logo.png" alt="Foody" style="width:10%"></a>
                   <h2 class="text-center">Ordine numero</h2>
                   <!--numero ordine in php-->

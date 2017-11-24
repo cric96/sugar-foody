@@ -3,7 +3,7 @@ html, body {
    height: 100%;
    width: 100%;
  }
-.login-block{
+.main-block{
   height: 100%;
   margin: 0;
   background: #ff8c00; /* fallback for old browsers */
@@ -35,34 +35,34 @@ html, body {
 .carousel-item{
     margin-top: 10%;
 }
-.login-sec{
+.main-sec{
     padding: 50px 30px;
     position:relative;
 }
-.login-sec img {
+.main-sec img {
   display: block;
   margin: 0 auto;
 }
-.login-sec .copy-text{
+.main-sec .copy-text{
   position:absolute;
   width: 80%;
   bottom:20px;
   font-size:13px;
   text-align:center;
 }
-.login-sec .copy-text i{
+.main-sec .copy-text i{
   color:#FEB58A;
 }
-.login-sec .copy-text a{
+.main-sec .copy-text a{
   color:#E36262;
 }
-.login-sec h2{
+.main-sec h2{
   margin-bottom:30px;
   font-weight:800;
   font-size:30px;
   color: #ff8c00;
 }
-.login-sec h2:after{
+.main-sec h2:after{
   content:" ";
   width:100px;
   height:5px;
@@ -72,7 +72,7 @@ html, body {
   border-radius:3px;
   margin-left:auto;margin-right:auto
 }
-.btn-login{
+.btn-submit{
   background: #ff8c00;
   color:#fff;
   font-weight:600;
@@ -99,7 +99,7 @@ html, body {
 .banner-text p{
   color:#fff;
 }
-.ristorante{
+.fieldset-hide{
   display: none;
 }
 

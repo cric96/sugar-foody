@@ -10,10 +10,10 @@
       <script src="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
    </head>
    <body>
-      <section class="login-block">
+      <section class="main-block">
          <div class="container">
             <div class="row">
-               <div class="col-md-4 login-sec">
+               <div class="col-md-4 main-sec">
                   <img src="./img/logo.png" alt="Foody" style="width:40%">
                   <h2 class="text-center">Login</h2>
                   <form method="post" class="login-form">
@@ -27,7 +27,7 @@
                      </div>
                      <div class="form-check">
 											 	<a href="signin.php">Registrati</a>
-                        <button type="submit" class="btn btn-login mb-2 mr-sm-2 mb-sm-0 float-right">Accedi</button>
+                        <button type="submit" class="btn btn-submit mb-2 mr-sm-2 mb-sm-0 float-right">Accedi</button>
                         <button type="reset" class="btn mb-2 mr-sm-2 mb-sm-0 float-right">Annulla</button>
                      </div>
                   </form>
