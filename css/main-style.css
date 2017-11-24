@@ -1,17 +1,14 @@
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 html, body {
-   height: 100%;
-   width: 100%;
- }
+}
 .main-block{
-  height: 100%;
-  margin: 0;
   background: #ff8c00; /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #dc143c, #ff8c00); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #dc143c, #ff8c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 0;
   float:left;
+  padding : 5%;
   width: 100%;
-  padding : 50px;
 }
 .banner-sec{
   background:#fff;
@@ -34,6 +31,7 @@ html, body {
 }
 .carousel-item{
     margin-top: 10%;
+    margin-bottom: 10%;
 }
 .main-sec{
     padding: 50px 30px;
@@ -57,7 +55,7 @@ html, body {
   color:#E36262;
 }
 .main-sec h2{
-  margin-bottom:30px;
+  margin-bottom:5%;
   font-weight:800;
   font-size:30px;
   color: #ff8c00;
@@ -68,9 +66,10 @@ html, body {
   height:5px;
   background:#ff8c00;
   display:block;
-  margin-top:20px;
+  margin-top:4%;
   border-radius:3px;
-  margin-left:auto;margin-right:auto
+  margin-left:auto;
+  margin-right:auto;
 }
 .btn-submit{
   background: #ff8c00;
@@ -93,7 +92,7 @@ html, body {
   height:5px;
   background: #fff;
   display:block;
-  margin-top:20px;
+  margin-top:3%;
   border-radius:3px;
 }
 .banner-text p{
