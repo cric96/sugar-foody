@@ -21,7 +21,7 @@
       <nav>
         <h1> Benvenuto fornitore</h1>
         <ul>
-          <li> <a href="#"> Modifica </a> </li>
+          <li> <a href="dati_persona.php"> Modifica </a> </li>
           <li> <a href="#"> Contatti </a> </li>
           <li> <a href="#"> Logout </a></li>
         </ul>
