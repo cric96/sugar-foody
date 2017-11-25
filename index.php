@@ -21,7 +21,8 @@
       <section class="main-block">
          <div class="container">
             <div class="row">
-               <div class=" col-md-4 main-sec">
+               <div class="main-sec">
+                 <div class=" col-md-4 ">
                   <img src="./img/logo.png" alt="Foody" style="width:40%">
                   <h2 class="text-center">Login</h2>
                   <form method="post" class="login-form">
@@ -57,9 +58,8 @@
                   </div>
                </div>
             </div>
+          </div>
          </div>
       </section>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-   </body>
+  </body>
 </html>

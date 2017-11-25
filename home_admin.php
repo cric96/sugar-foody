@@ -31,6 +31,7 @@
         <ul>
           <li> <a href="listino_admin.php"> Area listino </a></li>
           <li> <a href="fattorini_admin.php"> Area Gestione ordini </a> </li>
+          <li> <a href="fattorini.php"> Area Gestione fattorini </a> </li>
         </ul>
       </main>
       <footer>
