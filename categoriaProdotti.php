@@ -89,6 +89,7 @@
         <a href="#">
           <span class="fa fa-bell brown"></span>
         </a>
+        <span class="badge badge-danger">2</span>
       </div>
     </div>
     <!-- /.container -->

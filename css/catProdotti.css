@@ -68,6 +68,7 @@ h2.my-4 {
 }
 .brown {
   background: rgba(224,118,56,1);
+  position: relative;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -75,4 +76,8 @@ h2.my-4 {
   padding: 1%;
   color: rgba(224,118,56,1);
   font-size: 130%;
+}
+.badge-danger {
+  position: relative;
+  transform: translate(-100%, -100%);
 }
