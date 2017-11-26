@@ -44,27 +44,16 @@
             </tbody>
           </table>
         </section>
+        <div class="adder">
+          <a href="aggiungi_prodotto.php">+</a>
+        </div>
       </main>
-      <section>
-        <h1>Aggiungi a listino</h1>
-        <form class="" action="#" method="post">
-          <fieldset>
-            <legend>Informazioni generali</legend>
-            <label>Nome<input type="text" name="username"></label>
-          </fieldset>
-          <fieldset>
-            <legend>Ingredienti</legend>
-            <select class="" name="">
-
-            </select>
-          </fieldset>
-          <label>Prezzo : </label>
-          <input type="submit" name="invio" value="aggiungi">
-        </form>
-      </section>
-      <section>
+      <div class="notification">
+        <input type="button" name="notifiche" value="notifiche">
+      </div>
+      <div class="goback">
         <a href="home_admin.php"> Torna indietro.. </a>
-      </section>
+      </div>
       <footer>
         info info info
       </footer>

@@ -4,7 +4,6 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/main-style.css">
       <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="http://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
       <script src="./js/scriptHide.js"></script>
@@ -29,16 +28,23 @@
       <main>
         <h1> Ordini</h1>
         <section>
-          <table>
-            <thead>
+          <table class="table table-striped">
+            <thead class="thead-inverse">
               <th>N° Ordine</th>
               <th> D fattorino</th>
               <th>Stato</th>
             </thead>
             <tbody>
-              <td> 1231 </td>
-              <td>??? <a href="#">+</a> </td>
-              <td>Da confermare</td>
+              <tr scope="row">
+                <td> 1231 </td>
+                <td>??? <a href="#">+</a> </td>
+                <td>Da confermare</td>
+              </tr>
+              <tr scope="row">
+                <td> 1231 </td>
+                <td>??? <a href="#">+</a> </td>
+                <td>Da confermare</td>
+              </tr>
             </tbody>
           </table>
         </section>
