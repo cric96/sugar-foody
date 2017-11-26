@@ -47,7 +47,7 @@
       <!-- Page Content -->
     <header>
       <div class="overlay">
-        <h1 class="my-4">Categorie</h1>
+        <h2 class="my-4">Categorie</h2>
       </div>
     </header>
     <div class="container content">
