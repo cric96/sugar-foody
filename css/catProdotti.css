@@ -66,6 +66,9 @@ h2.my-4 {
 .fa {
   font-size: 2em;
 }
+div.notification a:hover {
+  text-decoration: none;
+}
 .brown {
   background: rgba(224,118,56,1);
   position: relative;
