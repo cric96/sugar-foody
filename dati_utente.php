@@ -56,37 +56,37 @@
       </header>
       <div class="container content">
          <form method="post" class="form-horizontal">
-            <div class="form-group">
+            <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="user" id="user">
+                  <input type="text" class="form-control" name="user" id="user" readonly value="Mario Rossi">
                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                <label for="mail" class="control-label col-sm-2">Mail</label>
                <div class="col-sm-10">
                   <input type="text" class="form-control" name="mail" id="mail">
                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                <label for="telefono" class="control-label col-sm-2">Telefono</label>
                <div class="col-sm-10">
                   <input type="text" class="form-control" name="telefono" id="telefono">
                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                <label for="psw" class="control-label col-sm-2">Nuova password</label>
                <div class="col-sm-10">
                   <input type="password" class="form-control" name="psw" id="psw">
                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                <label for="psw2" class="control-label col-sm-2">Conferma Password</label>
                <div class="col-sm-10">
                   <input type="password" class="form-control" name="psw2" id="psw2">
                </div>
             </div>
-            <div class="form-check col-sm-10 btn-form">
+            <div class="form-check btn-form">
                <button type="submit" class="btn btn-submit float-right">Modifica</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
              </div>
