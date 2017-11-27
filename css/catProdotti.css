@@ -18,7 +18,6 @@ div.content {
       padding-top: 7%;
   }
 }
-
 .navbar-brand {
   background: white;
   -webkit-background-clip: text;
@@ -83,4 +82,7 @@ div.notification a:hover {
 .badge-danger {
   position: relative;
   transform: translate(-100%, -100%);
+}
+a.categories {
+  color: red;
 }

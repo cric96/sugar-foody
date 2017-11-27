@@ -57,33 +57,27 @@
       <div class="row">
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
-          <h3>Pasta
-          </h3>
+          <a class="categories" href="#">Pasta</a>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
-          <h3>Pizza
-          </h3>
+          <a href="#" class="categories">Pizza</a>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
-          <h3>Secondo di carne
-          </h3>
+          <a href="#" class="categories">Secondo di carne</a>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
-          <h3>Pesce
-          </h3>
+          <a href="#" class="categories">Pesce</a>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
-          <h3>Panini
-          </h3>
+          <a href="#" class="categories">Panini</a>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
-          <h3>Piadine
-          </h3>
+          <a href="#" class="categories">Piadine</a>
         </div>
       </div>
       <div class="notification">
