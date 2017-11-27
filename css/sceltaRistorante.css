@@ -37,9 +37,6 @@ div.content {
 nav.bg{
   background-color: rgba(224,118,56,1) ;
 }
-div.padded>a {
-  margin-right: 10%;
-}
 .nav-link {
   padding: 0;
   font-size: 120%;
@@ -69,11 +66,11 @@ h2.my-4 {
 .fa {
   font-size: 2em;
 }
-/*.colored {
-  background: red;
+.colored {
+  background: brown;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}*/
+}
 div.notification a:hover {
   text-decoration: none;
 }
