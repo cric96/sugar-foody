@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Profilo
+              <a class="nav-link" href="dati_utente.php">Profilo
                 <span class="sr-only">(current)</span>
               </a>
             </li>

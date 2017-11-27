@@ -19,7 +19,7 @@
    <body>
       <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
          <div class="container">
-            <a class="img-item navbar-left" href="#">
+            <a class="img-item navbar-left" href="categoriaProdotti.php">
             <img src="./img/logo.png" alt="Logo">
             </a>
             <h1 class="navbar-brand">
@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                     <a class="nav-link" href="#">Profilo
+                     <a class="nav-link" href="dati_utente.php">Profilo
                      <span class="sr-only">(current)</span>
                      </a>
                   </li>
@@ -48,42 +48,37 @@
             </div>
          </div>
       </nav>
-      <!-- Page Content -->
-      <header>
-         <div class="overlay">
-            <h2 class="my-4">Dati personali</h2>
-         </div>
-      </header>
       <div class="container content">
+          <h2 class="my-4">Dati personali</h2>
          <form method="post" class="form-horizontal">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="user" id="user" readonly value="Mario Rossi">
+                  <input type="text" class="form-control form-control-sm" name="user" id="user" readonly value="Mario Rossi">
                </div>
             </div>
             <div class="form-group row">
                <label for="mail" class="control-label col-sm-2">Mail</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="mail" id="mail">
+                  <input type="text" class="form-control form-control-sm" name="mail" id="mail">
                </div>
             </div>
             <div class="form-group row">
                <label for="telefono" class="control-label col-sm-2">Telefono</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="telefono" id="telefono">
+                  <input type="text" class="form-control form-control-sm" name="telefono" id="telefono">
                </div>
             </div>
             <div class="form-group row">
                <label for="psw" class="control-label col-sm-2">Nuova password</label>
                <div class="col-sm-10">
-                  <input type="password" class="form-control" name="psw" id="psw">
+                  <input type="password" class="form-control form-control-sm" name="psw" id="psw">
                </div>
             </div>
             <div class="form-group row">
                <label for="psw2" class="control-label col-sm-2">Conferma Password</label>
                <div class="col-sm-10">
-                  <input type="password" class="form-control" name="psw2" id="psw2">
+                  <input type="password" class="form-control form-control-sm" name="psw2" id="psw2">
                </div>
             </div>
             <div class="form-check btn-form">
