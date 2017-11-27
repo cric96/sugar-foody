@@ -1,0 +1,18 @@
+td {
+  font-size: 1.5em;
+}
+td.modify,td.delete {
+  font-size: 1em;
+
+}
+thead{
+  font-size: 1.4em;
+}
+.fa:hover{
+  text-decoration: none;
+}
+.fa{
+    background: rgba(224,118,56,1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
