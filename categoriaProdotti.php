@@ -56,33 +56,33 @@
       <!-- Team Members Row -->
       <div class="row">
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Pasta">
+          <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
           <h3>Pasta
           </h3>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Pizza">
+          <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
           <h3>Pizza
           </h3>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Carne">
+          <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
           <h3>Secondo di carne
           </h3>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Pesce">
-          <h3>Secondo di pesce
+          <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
+          <h3>Pesce
           </h3>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Fast food">
-          <h3>Fast food
+          <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
+          <h3>Panini
           </h3>
         </div>
         <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Piadine e crescioni">
-          <h3>Piadineria
+          <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
+          <h3>Piadine
           </h3>
         </div>
       </div>

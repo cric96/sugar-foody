@@ -1,0 +1,30 @@
+label, .btn-form button {
+  font-size: 14pt !important;
+  font-style: normal !important;
+}
+
+.overlay {
+  background-image: none;
+  background-color: #FFBF18;
+  height: 20%;
+}
+
+.panel-footer {
+  margin-top: 10%;
+}
+
+.btn-form button
+{
+  margin-left:5px;
+}
+.btn-submit {
+  background-color: #FFBF18;
+  border-color: #C20000;
+  color: #C20000;
+}
+
+.btn-submit:hover {
+  background-color: #C20000;
+  border-color: #FFBF18;
+  color: #FFBF18;
+}
