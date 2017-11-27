@@ -80,6 +80,12 @@
       <div class="goback">
         <a href="home_admin.php"> Torna indietro.. </a>
       </div>
+      <div class="notification">
+        <a href="#">
+          <span class="fa fa-bell brown"></span>
+        </a>
+        <span class="badge badge-danger">2</span>
+      </div>
       <footer class="panel-footer">
         <a href="#" >Informativa privacy</a>
         <a href="#" >Cookie</a>

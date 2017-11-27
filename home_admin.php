@@ -8,6 +8,8 @@
      <script src="https://use.fontawesome.com/42b65516fc.js"></script>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
      <link rel="stylesheet" href="./css/catProdotti.css">
+     <link rel="stylesheet" href="./css/admin.css">
+
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -42,14 +44,46 @@
          </div>
        </div>
      </nav>
-      <main>
-        <h1> Che cosa vuoi fare??</h1>
-        <ul>
-          <li> <a href="listino_admin.php"> Area listino </a></li>
-          <li> <a href="fattorini_admin.php"> Area Gestione ordini </a> </li>
-          <li> <a href="fattorini.php"> Area Gestione fattorini </a> </li>
+     <header>
+       <div class="overlay">
+         <h2 class="my-4">Area gestione</h2>
+       </div>
+     </header>
+      <main class="container">
+        <ul class="row">
+          <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
+            <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="img/listino.png" alt="Listino">
+            </div>
+            <div class="link-wrapper">
+              <a class="my-4" href="listino_admin.php"> Listino </a>
+            </div>
+          </li>
+          <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
+              <div class="img-wrapper">
+                <img class="img-fluid d-block mx-auto" src="img/ordini.png" alt="Pizza">
+              </div>
+              <div class="link-wrapper">
+                <a class="my-4" href="fattorini_admin.php"> Ordini </a>
+              </div>
+          </li>
+          <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
+            <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="img/fattorino.png" alt="Pizza">
+            </div>
+            <div class="link-wrapper">
+              <a class="my-4" href="fattorini.php"> Fattorini </a>
+            </div>
+          </li>
         </ul>
+
       </main>
+      <div class="notification">
+        <a href="#">
+          <span class="fa fa-bell brown"></span>
+        </a>
+        <span class="badge badge-danger">2</span>
+      </div>
       <footer class="panel-footer">
         <a href="#" >Informativa privacy</a>
         <a href="#" >Cookie</a>
