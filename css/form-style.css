@@ -39,17 +39,14 @@ label {
 
 @media only screen and (max-width: 500px) {
   .panel-footer {
-      margin-top: 10%;
+      margin-top: 20% !important;
   }
   label {
-    text-align: left;
+    text-align: center;
   }
 }
 @media only screen and (max-width: 900px) {
   .panel-footer {
-      margin-top: 8%;
-  }
-  label {
-    text-align: left;
+      margin-top: 10%;
   }
 }
