@@ -48,8 +48,8 @@
          </div>
       </nav>
       <div class="container content">
-          <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante-->
-          <h2 class="my-4">Dati personali</h2>
+         <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante-->
+         <h2 class="my-4">Dati personali</h2>
          <form method="post" class="form-horizontal">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
@@ -71,19 +71,19 @@
             </div>
             <!--Questo fieldset verrà visualizzato se e solo se l'utente è un ristorante-->
             <fieldset class="form-group fieldset-hide">
-              <div class="form-group row">
-                 <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
-                 <div class="col-sm-10">
-                    <input type="text" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante">
-                 </div>
-              </div>
-              <div class="form-group row">
-                 <label for="immagineRistorante" class="control-label col-sm-2">Immagine ristorante</label>
-                 <div class="col-sm-10">
-                    <!-- vedere se va bene come input-->
-                    <input type="file" class="form-control form-control-sm form-control-file" name="immagineRistorante" id="immagineRistorante">
-                 </div>
-              </div>
+               <div class="form-group row">
+                  <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="immagineRistorante" class="control-label col-sm-2">Immagine ristorante</label>
+                  <div class="col-sm-10">
+                     <!-- vedere se va bene come input-->
+                     <input type="file" class="form-control form-control-sm form-control-file" name="immagineRistorante" id="immagineRistorante">
+                  </div>
+               </div>
             </fieldset>
             <div class="form-group row">
                <label for="psw" class="control-label col-sm-2">Nuova password</label>
@@ -98,7 +98,7 @@
                </div>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right">Modifica</button>
+               <button type="submit" class="btn btn-submit float-right"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>

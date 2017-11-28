@@ -1,0 +1,21 @@
+nav {
+  margin-bottom: 5% !important;
+}
+label {
+  display:flex!important;
+  align: center !important;
+}
+.signin {
+  color: rgba(224,118,56,1);
+}
+
+.signin:hover {
+  color: #FFBF18;
+}
+button {
+  font-size: 14pt !important;
+}
+
+.card-footer {
+  height: 100%;
+}

@@ -1,4 +1,4 @@
-label, .btn-form button, input {
+label, button, input {
   font-size: 15pt !important;
   font-style: normal !important;
 }
@@ -19,7 +19,7 @@ label, .btn-form button, input {
 }
 .btn-submit {
   background-color: #FFBF18;
-  border-color: rgba(224,118,56,1);
+  border-color: black;
   color: black;
 }
 
@@ -50,3 +50,7 @@ label {
       margin-top: 10%;
   }
 }
+/*per mettere la scritta della check prima del check
+.custom-checkbox .custom-control-indicator {
+    position: relative;
+ }*/
