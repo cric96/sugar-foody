@@ -121,7 +121,7 @@
                </label>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right">Registrati</button>
+               <button type="submit" class="btn btn-submit float-right signin"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>

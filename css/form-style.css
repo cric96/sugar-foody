@@ -36,6 +36,13 @@ label {
   display:block;
   text-align:right;
 }
+.signin {
+  color: rgba(224,118,56,1);
+}
+
+.signin:hover {
+  color: #FFBF18;
+}
 
 @media only screen and (max-width: 500px) {
   .panel-footer {
