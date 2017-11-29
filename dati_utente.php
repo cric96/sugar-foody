@@ -75,7 +75,6 @@
             </div>
          </form>
       </main>
-      <div w3-include-html="notification.html"></div>
       <div w3-include-html="footer.html"></div>
       <script>
          w3.includeHTML();
