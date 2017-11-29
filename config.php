@@ -5,10 +5,8 @@
 </head>
 
 <body>
-
-<?php
-$cn = mysqli_connect('localhost', 'root', '', 'my_sugarfoody')or die ('Errore');
-?>
-
+		<?php
+		$cn = mysqli_connect('localhost', 'root', '', 'my_sugarfoody')or die ('Errore');
+		?>
 </body>
 </html>

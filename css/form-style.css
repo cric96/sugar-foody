@@ -6,7 +6,7 @@ label, button, input {
 .overlay {
   background-image: none;
   background-color: #FFBF18;
-  height: 20%;
+  padding-top: 10% !important;
 }
 
 .panel-footer {
