@@ -89,3 +89,17 @@ div.notification a:hover {
   position: relative;
   transform: translate(-100%, -100%);
 }
+.fa-pencil-coloured {
+  background: rgba(112,59,28,1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fa-pencil-coloured:hover {
+  text-decoration: none;
+}
+tbody>tr:nth-child(odd) {
+  background-color: rgba(224,118,56,0.86);
+}
+tbody>tr:nth-child(even) {
+  background-color: rgba(224,118,56,0.16);
+}
