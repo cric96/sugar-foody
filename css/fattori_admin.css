@@ -16,3 +16,25 @@ thead{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.overlay {
+  background-image: url(../img/gestione.jpg) !important;
+}
+
+.my-4 {
+  color : black !important;
+}
+
+.modal-header{
+  background: rgba(224,118,56,1);
+}
+
+.modal-body{
+  background: rgba(224,118,56,0.1);
+}
+
+.modal-body label{
+  font-size: 1.2em;
+}
+.modal-body p{
+  font-size: 1.5em;
+}
