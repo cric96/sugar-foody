@@ -18,8 +18,8 @@
       <title>Benvenuto in Foody</title>
    </head>
    <body>
-      <div w3-include-html="navbarNoLogin.html"></div>
-      <main class="container">
+     <nav class="navbar navbar-expand-lg navbar-light bg" w3-include-html="./include/navbarNoLogin.html"></nav>
+     <main class="container">
          <div class="row">
             <div class=" col-md-5 ">
                <div class="card">
@@ -76,7 +76,7 @@
             </div>
          </div>
       </main>
-      <div w3-include-html="footer.html"></div>
+      <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>

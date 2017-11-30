@@ -18,8 +18,8 @@
       <title>Dettaglio ordine</title>
    </head>
    <body>
-      <div w3-include-html="navbarUtente.html"></div>
-      <header>
+     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+     <header>
          <div class="overlay">
             <h2 class="my-4">Ordine numero</h2>
             <!--numero ordine in php-->
@@ -56,7 +56,7 @@
             </table>
          </section>
       </main>
-      <div w3-include-html="footer.html"></div>
+      <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>

@@ -18,7 +18,7 @@
    </head>
    <body>
       <!--bisogna scegliere il menu tramite php-->
-      <div w3-include-html="navbarUtente.html"></div>
+      <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
       <main class="container content">
          <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante-->
          <h2 class="my-4">Dati personali</h2>
@@ -75,7 +75,7 @@
             </div>
          </form>
       </main>
-      <div w3-include-html="footer.html"></div>
+      <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>

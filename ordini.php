@@ -18,7 +18,7 @@
       <title>Storico ordini</title>
    </head>
    <body>
-      <div w3-include-html="navbarUtente.html"></div>
+      <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
       <header>
          <div class="overlay">
             <h2 class="my-4">Storico ordini</h2>
@@ -56,7 +56,8 @@
             </table>
          </section>
       </main>
-      <div w3-include-html="footer.html"></div>
+      <div w3-include-html="./include/notification.html" class="notification"></div>
+      <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>

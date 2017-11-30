@@ -19,10 +19,8 @@
    </head>
    <body>
       <script src="./js/firstHide.js"></script>
-      <!--qui bisogna controllare quale navbar includere-->
       <nav class="navbar navbar-expand-lg navbar-light bg" w3-include-html="./include/navbarNoLogin.html"></nav>
       <main class="container content">
-         <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante che registra i fattorini-->
          <h2 class="my-4">Registrazione utenti</h2>
          <form method="post" class="form-horizontal">
             <div class="form-group row">
@@ -51,7 +49,6 @@
                </label>
             </div>
             <!--Questo fieldset verrà visualizzato se e solo se l'utente è un ristorante che ha che ha fatto check-->
-            <!--In caso di fattorino il check viene nascosto-->
             <fieldset class="form-group fieldset-hide">
                <div class="form-group row">
                   <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
@@ -98,8 +95,7 @@
             </div>
          </form>
       </main>
-      <!--solo se un ristorante registra un fattorino <div w3-include-html="notification.html"></div>-->
-      <div w3-include-html="footer.html"></div>
+      <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>
