@@ -15,7 +15,8 @@
   <title>Categoria Prodotti</title>
   </head>
   <body>
-    <div w3-include-html="navbarUtente.html"></div>
+    <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+
       <!-- Page Content -->
     <header>
       <div class="overlay">
