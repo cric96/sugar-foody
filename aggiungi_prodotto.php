@@ -12,48 +12,35 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
+      <link rel="stylesheet" href="./css/prodotti-style.css">
       <title>Aggiungi prodotto</title>
    </head>
    <body>
      <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-     <main>
-         <h1>Aggiungi prodotto</h1>
-         <form class="" action="index.html" method="post">
-            <fieldset>
-               <legend>Informazioni generali</legend>
-               <label>Nome prodotto <input type="text" value="nome"></label>
-            </fieldset>
-            <fieldset>
-               <legend> Seleziona gli ingredienti </legend>
-               <label> Ingredienti : <select class="" name="">
-               </select>
-               </label>
-         <form class="" action="#" method="">
-         <fieldset>
-         <legend>Nuovo ingrediente </legend>
-         <label>Nome <input type="text" value="nome_ingrediente"</label>
-         <label>Prezzo <input type="number" value="prezzo"</label>
-         </fieldset>
-         <input type="button" name="" value="aggiungi ingrediente">
-         </form>
-         <table>
-         <thead>
-         <tr>
-         <th>Ingrediente</th>
-         <th>Prezzo</th>
-         </tr>
-         </thead>
-         </table>
-         </fieldset>
-         <input type="submit" name="agggiungi prodotto" value="aggiunti prodotto">
-         <div class="goback">
-            <a href="home_admin.php"> Torna indietro.. </a>
-         </div>
-         <div w3-include-html="./include/notification.html" class="notification"></div>
-         <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
-         <script>
-            w3.includeHTML();
-         </script>
-         </form>
-      </main>
+     <div class="overlay">
+       <h2 class="my-4">Prodotti</h2>
+     </div>
+     <main class="container content">
+      <form method="post" class="form-horizontal">
+        <div class="form-group row">
+        <label for="user" class="control-label col-sm-2">Nome prodotto</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" name="prodotto" id="prodotto" readonly value="Mio prodotto">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mail" class="control-label col-sm-2">Prezzo</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control form-control-sm" name="mail" id="mail">
+          </div>
+        </div>
+        
+      </form>
+    </main>
+    <div w3-include-html="./include/notification.html" class="notification"></div>
+    <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+    <script>
+      w3.includeHTML();
+    </script>
+  </body>
 </html>
