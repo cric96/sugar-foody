@@ -27,7 +27,7 @@
       </header>
       <main class="container">
          <section>
-            <h3>
+            <h3 class="hide-acc">
                Ordine #numero<!--numero ordine in php-->
             </h3>
             <table class="table table-striped">
