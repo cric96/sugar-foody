@@ -26,7 +26,7 @@
       <!-- Introduction Row -->
       <!-- Team Members Row -->
       <ul class="row">
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
             <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
           </div>
@@ -34,7 +34,7 @@
             <a class="categories" href="#">Pasta</a>
           </div>
         </li>
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
               <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
           </div>
@@ -42,7 +42,7 @@
             <a href="#" class="categories">Pizza</a>
           </div>
         </li>
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
               <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
           </div>
@@ -50,7 +50,7 @@
               <a href="#" class="categories">Secondo di carne</a>
           </div>
         </li>
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
               <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
           </div>
@@ -58,7 +58,7 @@
               <a href="#" class="categories">Pesce</a>
           </div>
         </li>
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
               <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
           </div>
@@ -66,7 +66,7 @@
               <a href="#" class="categories">Panini</a>
           </div>
         </li>
-        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <div class="img-wrapper">
               <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
           </div>
