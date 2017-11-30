@@ -17,7 +17,7 @@
      <title>Listino admin </title>
    </head>
    <body>
-     <div w3-include-html="navbarAdmin.html"></div>
+     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav><header>
      <header>
        <div class="overlay">
          <h2 class="my-4">Listino</h2>
@@ -72,10 +72,10 @@
         <div class="adder">
           <a data-toggle="tooltip" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a>
         </div>
-
       </main>
-      <div w3-include-html="notification.html"></div>
-      <div w3-include-html="footer.html"></div>
+
+      <div w3-include-html="./include/notification.html" class="notification"></div>
+      <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
       <script>
          w3.includeHTML();
       </script>

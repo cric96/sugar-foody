@@ -15,8 +15,8 @@
       <title>Aggiungi prodotto</title>
    </head>
    <body>
-      <div w3-include-html="navbarAdmin.html"></div>
-      <main>
+     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+     <main>
          <h1>Aggiungi prodotto</h1>
          <form class="" action="index.html" method="post">
             <fieldset>
@@ -49,7 +49,8 @@
          <div class="goback">
             <a href="home_admin.php"> Torna indietro.. </a>
          </div>
-         <div w3-include-html="footer.html"></div>
+         <div w3-include-html="./include/notification.html" class="notification"></div>
+         <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
          <script>
             w3.includeHTML();
          </script>

@@ -17,7 +17,7 @@
      <title>Gestione ordine </title>
    </head>
    <body>
-    <nav w3-include-html="testVerify.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+    <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
     <main>
       <header>
         <div class="overlay">
@@ -49,6 +49,9 @@
         </table>
       </section>
     </main>
+    <div w3-include-html="./include/notification.html" class="notification"></div>
+    <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+
     <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="bannerformmodal">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">

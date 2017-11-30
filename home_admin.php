@@ -16,7 +16,8 @@
      <title>Fornitore </title>
    </head>
    <body>
-     <nav w3-include-html="testVerify.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav><header>
+     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+     <header>
        <div class="overlay">
          <h2 class="my-4">Area gestione</h2>
        </div>
@@ -50,8 +51,8 @@
         </ul>
 
       </main>
-      <div w3-include-html="notification.html"></div>
-      <div w3-include-html="footer.html"></div>
+      <div w3-include-html="./include/notification.html" class="notification"></div>
+      <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
       <script>
          w3.includeHTML();
       </script>
