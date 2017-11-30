@@ -22,37 +22,61 @@
         <h2 class="my-4">Categorie</h2>
       </div>
     </header>
-    <div class="container content">
+    <main class="container content">
       <!-- Introduction Row -->
       <!-- Team Members Row -->
-      <div class="row">
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
-          <a class="categories" href="#">Pasta</a>
-        </div>
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
-          <a href="#" class="categories">Pizza</a>
-        </div>
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
-          <a href="#" class="categories">Secondo di carne</a>
-        </div>
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
-          <a href="#" class="categories">Pesce</a>
-        </div>
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
-          <a href="#" class="categories">Panini</a>
-        </div>
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
-          <a href="#" class="categories">Piadine</a>
-        </div>
-      </div>
+      <ul class="row">
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+            <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
+          </div>
+          <div class="link-wrapper">
+            <a class="categories" href="#">Pasta</a>
+          </div>
+        </li>
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
+          </div>
+          <div class="link-wrapper">
+            <a href="#" class="categories">Pizza</a>
+          </div>
+        </li>
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
+          </div>
+          <div class="link-wrapper">
+              <a href="#" class="categories">Secondo di carne</a>
+          </div>
+        </li>
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
+          </div>
+          <div class="link-wrapper">
+              <a href="#" class="categories">Pesce</a>
+          </div>
+        </li>
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
+          </div>
+          <div class="link-wrapper">
+              <a href="#" class="categories">Panini</a>
+          </div>
+        </li>
+        <li class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+          <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
+          </div>
+          <div class="link-wrapper">
+              <a href="#" class="categories">Piadine</a>
+          </div>
+        </li>
+      </ul>
       <div w3-include-html="notification.html"></div>
-    </div>
+    </main>
     <div w3-include-html="footer.html"></div>
     <script>
        w3.includeHTML();

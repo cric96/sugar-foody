@@ -16,7 +16,7 @@
     <title>Componi ordine</title>
   </head>
   <body>
-    <div w3-include-html="navbarUtente2.html"></div>
+    <div w3-include-html="navbarUtente.html"></div>
     <header>
       <div class="overlay">
         <h2 class="my-4">Ordine</h2>
@@ -25,7 +25,7 @@
     <main class="container">
       <section>
         <table class="table">
-          <thead class="thead-inverse">
+          <thead>
             <tr>
               <th>Nome piatto</th>
               <th>Prezzo</th>
@@ -33,22 +33,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr scope="row">
+            <tr>
               <td>Piada piadosa</td>
               <td>100€</a> </td>
               <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#> <span class="hide-acc">modifica</span> </a></td>
             </tr>
-            <tr scope="row">
+            <tr>
               <td>Pizza pizzosa</td>
               <td>100€</a> </td>
               <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#> <span class="hide-acc">modifica</span> </a></td>
             </tr>
-            <tr scope="row">
+            <tr>
               <td>Pasta pastosa</td>
               <td>100€</a> </td>
               <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#><span class="hide-acc">modifica</span></a></td>
             </tr>
-            <tr scope="row">
+            <tr>
               <td>Dolce dolcioso</td>
               <td>100€</a> </td>
               <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#><span class="hide-acc">modifica</span></a></td>
