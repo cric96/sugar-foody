@@ -88,14 +88,14 @@ a.categories {
   font-size: 1.5em;
   text-decoration: none;
 }
-li{
+main li{
   list-style: none;
 }
-ul {
+main ul {
   margin-top: 4%;
 }
 
-li a {
+main li a {
   font-size: 2em;
 }
 

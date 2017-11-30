@@ -5,14 +5,14 @@
   background-position: center;
 }
 
-li{
+main li{
   list-style: none;
 }
-ul {
+main ul {
   margin-top: 2%;
 }
 
-li a {
+main li a {
   font-size: 2em;
 }
 
