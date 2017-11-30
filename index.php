@@ -19,7 +19,7 @@
       <title>Benvenuto in Foody</title>
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarNoLogin.html"></nav>
+      <nav class="navbar navbar-expand navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarNoLogin.html"></nav>
       <header>
             <div id="foodslider" class="carousel slide" data-ride="carousel">
                <ol class="carousel-indicators">
