@@ -18,7 +18,7 @@
       <title>Benvenuto in Foody</title>
    </head>
    <body>
-      <div w3-include-html="navbarNologin.html"></div>
+      <div w3-include-html="navbarNoLogin.html"></div>
       <main class="container">
          <div class="row">
             <div class=" col-md-5 ">
