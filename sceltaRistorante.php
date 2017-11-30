@@ -15,30 +15,25 @@
     <title>Scegli ristorante</title>
   </head>
   <body>
-    <div w3-include-html="navbarUtente2.html"></div>
+    <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
     <header>
       <div class="overlay">
         <h2 class="my-4">Ristoranti</h2>
       </div>
     </header>
-    <div class="container content">
+    <main class="container content">
       <!-- Introduction Row -->
       <!-- Team Members Row -->
-      <div class="row">
-        <div class="col-lg-3 col-4 col-md-4 col-sm-4 text-center mb-2">
+      <ul class="row">
+        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
           <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Ristorante">
           <h3>Nome ristorante
           </h3>
-        </div>
-      </div>
-    <div class="notification">
-      <a href="#">
-        <span class="fa fa-bell brown"></span>
-      </a>
-      <span class="badge badge-danger">2</span>
-    </div>
-  </div>
-  <div w3-include-html="footer.html"></div>
+        </li>
+      </ul>
+  </main>
+  <div w3-include-html="./include/notification.html" class="notification"></div>
+  <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
   <script>
      w3.includeHTML();
   </script>

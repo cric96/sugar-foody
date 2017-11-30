@@ -76,9 +76,9 @@
           </div>
         </li>
       </ul>
-      <div w3-include-html="notification.html"></div>
     </main>
-    <div w3-include-html="footer.html"></div>
+    <div w3-include-html="./include/notification.html" class="notification"></div>
+    <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <script>
        w3.includeHTML();
     </script>
