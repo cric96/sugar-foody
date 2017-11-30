@@ -20,7 +20,7 @@
    <body>
       <script src="./js/firstHide.js"></script>
       <!--qui bisogna controllare quale navbar includere-->
-      <nav class="navbar navbar-expand-lg navbar-light bg" w3-include-html="navbarNoLogin.html"></nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg" w3-include-html="./include/navbarNoLogin.html"></nav>
       <main class="container content">
          <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante che registra i fattorini-->
          <h2 class="my-4">Registrazione utenti</h2>
