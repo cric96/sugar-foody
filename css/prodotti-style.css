@@ -1,0 +1,63 @@
+label, button, input {
+  font-size: 15pt !important;
+  font-style: normal !important;
+}
+.btn-form button
+{
+  margin-left:5px;
+}
+.btn-submit {
+  background-color: #FFBF18;
+  border-color: black;
+  color: black;
+}
+
+.btn-submit:hover {
+  background-color: rgba(224,118,56,1);
+  border-color: #FFBF18;
+}
+
+.my-4 {
+  margin-top: 5%!important;
+}
+
+label {
+  display:block;
+  text-align:right;
+}
+.signin {
+  color: rgba(224,118,56,1);
+}
+
+.signin:hover {
+  color: #FFBF18;
+}
+
+main {
+  padding-top: 2%;
+}
+
+@media only screen and (max-width: 500px) {
+  .panel-footer {
+      margin-top: 20% !important;
+  }
+  label {
+    text-align: center;
+  }
+  .my-4 {
+    margin-top: 20%!important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .panel-footer {
+      margin-top: 10%;
+  }
+  .my-4 {
+    margin-top: 15%!important;
+  }
+}
+@media only screen and (device-width: 320px) and (orientation: portrait) {
+  .my-4 {
+    margin-top: 30%!important;
+  }
+}
