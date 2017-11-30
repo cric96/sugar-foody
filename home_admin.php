@@ -16,8 +16,7 @@
      <title>Fornitore </title>
    </head>
    <body>
-     <div w3-include-html="navbarAdmin.html"></div>
-     <header>
+     <nav w3-include-html="testVerify.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav><header>
        <div class="overlay">
          <h2 class="my-4">Area gestione</h2>
        </div>

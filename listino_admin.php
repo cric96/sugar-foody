@@ -17,7 +17,6 @@
      <title>Listino admin </title>
    </head>
    <body>
-
      <div w3-include-html="navbarAdmin.html"></div>
      <header>
        <div class="overlay">
