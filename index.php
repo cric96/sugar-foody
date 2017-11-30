@@ -19,7 +19,7 @@
       <title>Benvenuto in Foody</title>
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarNoLogin.html"></nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarIndex.html"></nav>
       <header>
             <div id="foodslider" class="carousel slide" data-ride="carousel">
                <ol class="carousel-indicators">
@@ -58,7 +58,7 @@
          w3.includeHTML();
       </script>
       <!-- The Modal -->
-      <div class="modal fade" id="myModal">
+      <div class="modal fade" id="login">
          <div class="modal-dialog">
             <div class="modal-content">
                <!-- Modal Header -->

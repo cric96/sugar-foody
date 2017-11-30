@@ -20,7 +20,7 @@
    </head>
    <body>
       <script src="./js/firstHide.js"></script>
-      <nav class="navbar navbar-expand-lg navbar-light bg" w3-include-html="./include/navbarNoLogin.html"></nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarSignin.html"></nav>
       <main class="container content">
          <h2 class="my-4">Registrazione utenti</h2>
          <form method="post" class="form-horizontal">
@@ -77,15 +77,11 @@
                   <input type="password" class="form-control form-control-sm" name="psw2" id="psw2">
                </div>
             </div>
-            <div class="form-group row">
-               <label for="terms" class="control-label col-sm-2">Termini e condizioni d'uso</label>
-               <div class="col-sm-10">
-                  <textarea readonly  id="terms" class="form-control form-control-sm" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-               </div>
-            </div>
             <div class="checkbox-wrap d-flex justify-content-end p-2 mb-2">
                <label class="custom-control custom-checkbox" for="acceptTerms">
-               <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
+               <a data-toggle="modal" data-target="#termsPopUp">
+                 <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
+               </a>
                <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms">
                <span class="custom-control-indicator"></span>
                </label>
@@ -100,5 +96,23 @@
       <script>
          w3.includeHTML();
       </script>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="termsPopUp">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Termini e condizioni d'uso</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                 <label for="terms" class="hide-acc">Termini e condizioni d'uso</label>
+                 <textarea readonly  id="terms" class="form-control form-control-sm" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+               </div>
+            </div>
+         </div>
+      </div>
    </body>
 </html>

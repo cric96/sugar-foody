@@ -23,12 +23,12 @@
       <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
       <header>
          <div class="overlay">
-            <h2 class="my-4">Storico ordini</h2>
+            <h2 class="my-4">Ordini</h2>
          </div>
       </header>
       <main class="container">
          <section>
-            <h3 class="hide-acc">Ordini</h3>
+            <h3 class="hide-acc">Storico ordini</h3>
             <table class="table table-striped">
                <thead>
                   <tr>

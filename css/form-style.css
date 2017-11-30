@@ -44,7 +44,23 @@ label {
 .signin:hover {
   color: #FFBF18;
 }
+.modal-header{
+  background: rgba(224,118,56,1);
+}
 
+.modal-body{
+  background: rgba(224,118,56,0.1);
+}
+
+.modal-body label{
+  font-size: 1.2em;
+}
+.modal-body p{
+  font-size: 1.5em;
+}
+textarea {
+  background-color: white !important;
+}
 @media only screen and (max-width: 500px) {
   .panel-footer {
       margin-top: 20% !important;
@@ -64,9 +80,9 @@ label {
     margin-top: 15%!important;
   }
 }
-@media only screen and (device-width: 320px) and (orientation: portrait) {
+@media only screen and (max-width: 320px) and (orientation: portrait) {
   .my-4 {
-    margin-top: 30%!important;
+    margin-top: 20%!important;
   }
 }
 /*per mettere la scritta della check prima del check
