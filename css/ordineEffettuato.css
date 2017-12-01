@@ -5,12 +5,16 @@ main {
 .fa-check {
   font-size: 9em;
   background: green;
-  position: relative;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 @media only screen and (max-width: 480px) {
   main {
-    padding: 18%;
+    padding: 30%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  main {
+    padding: 20%;
   }
 }
