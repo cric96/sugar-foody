@@ -17,7 +17,7 @@
      <title>Listino admin </title>
    </head>
    <body>
-     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav><header>
+     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
      <header>
        <div class="overlay">
          <h2 class="my-4">Listino</h2>
