@@ -6,7 +6,11 @@
 
 <body>
 		<?php
-		$cn = mysqli_connect('localhost', 'root', '', 'my_sugarfoody')or die ('Errore');
+		$cn = new mysqli('localhost', 'root', '', 'my_sugarfoody');
+		/* check connection */
+		if ($cn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		}
 		?>
 </body>
 </html>
