@@ -73,14 +73,14 @@
                         <label for="user" class="control-label">Username</label>
                         <div class="col-sm-10 input-group">
                            <span class="input-group-addon"><a class="fa fa-user fa-fw fa-lg" aria-hidden="true"></a></span>
-                           <input type="text" class="form-control form-control-sm rounded-0" name="user" id="user">
+                           <input type="text" class="form-control form-control-sm rounded-0" name="user" id="user" required>
                         </div>
                      </div>
                      <div class="form-group">
                         <label for="psw" class="control-label">Password</label>
                         <div class="col-sm-10 input-group">
                            <span class="input-group-addon"><a class="fa fa-key fa-fw fa-lg" aria-hidden="true"></a></span>
-                           <input type="password" class="form-control form-control-sm rounded-0" name="psw" id="psw">
+                           <input type="password" class="form-control form-control-sm rounded-0" name="psw" id="psw" required>
                         </div>
                      </div>
                      <div class="form-group">

@@ -26,19 +26,19 @@
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control form-control-sm" name="user" id="user" readonly value="Mario Rossi">
+                  <input type="text" maxlength="30" minlength="5" class="form-control form-control-sm" name="user" id="user" readonly value="Mario Rossi">
                </div>
             </div>
             <div class="form-group row">
                <label for="mail" class="control-label col-sm-2">Mail</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control form-control-sm" name="mail" id="mail">
+                  <input type="email" maxlength="40" class="form-control form-control-sm" name="mail" id="mail" required>
                </div>
             </div>
             <div class="form-group row">
                <label for="telefono" class="control-label col-sm-2">Telefono</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control form-control-sm" name="telefono" id="telefono">
+                  <input type="tel" maxlength="10" minlength="10" class="form-control form-control-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="telefono" id="telefono" required>
                </div>
             </div>
             <!--Questo fieldset verrà visualizzato se e solo se l'utente è un ristorante-->
@@ -46,7 +46,7 @@
                <div class="form-group row">
                   <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
                   <div class="col-sm-10">
-                     <input type="text" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante">
+                     <input type="text" maxlength="40" minlength="3" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante">
                   </div>
                </div>
                <div class="form-group row">
@@ -60,13 +60,13 @@
             <div class="form-group row">
                <label for="psw" class="control-label col-sm-2">Nuova password</label>
                <div class="col-sm-10">
-                  <input type="password" class="form-control form-control-sm" name="psw" id="psw">
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="psw" required>
                </div>
             </div>
             <div class="form-group row">
                <label for="psw2" class="control-label col-sm-2">Conferma Password</label>
                <div class="col-sm-10">
-                  <input type="password" class="form-control form-control-sm" name="psw2" id="psw2">
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw2" id="psw2" required>
                </div>
             </div>
             <div class="form-check btn-form">
