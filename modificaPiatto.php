@@ -17,17 +17,26 @@
   <body>
       <main>
         <form class="bubble" action="#" method="post">
-          <label>
-            Quantità:
-            <input type="number" name="quantità" value="1">
-          </label>
-          <fieldset>
-            <legend>Ingredienti:</legend>
-            <label for="ingr1">Ingrediente1</label>
-            <input id="ingr1" type="checkbox" name="Ingr1" value="">
-            <label for="ingr2">Ingrediente2</label>
-            <input id="ingr2" type="checkbox" name="Ingr2" value="">
+          <label class="etichetta">Quantità: <input class="qnt" type="number" name="quantità" value="1"></label>
+          <fieldset class="fset">
+            <legend class="ingr">Ingredienti:</legend>
+            <div class="prova">
+              <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+              <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+              <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+              <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
+              <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+              <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
+            </div>
           </fieldset>
+          <fieldset class="fset">
+            <legend class="ingr">Aggiunte:</legend>
+            <div class="prova">
+              <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+              <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+              <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+            </div>
+            </fieldset>
         </form>
       </main>
   </body>

@@ -26,7 +26,11 @@ div.content {
   padding: 0;
   font-size: 150%;
   font-weight: bolder;
-
+}
+@media only screen and (max-width: 480px) {
+  .navbar-brand{
+    display: none;
+  }
 }
 .navbar-left img {
   width: 60px;
@@ -102,4 +106,18 @@ tbody>tr:nth-child(odd) {
 }
 tbody>tr:nth-child(even) {
   background-color: rgba(224,118,56,0.16);
+}
+html,body {
+    height:100%;
+    width: 100%;
+}
+body {
+    display: table;
+}
+main {
+    height: auto;
+}
+.panel-footer {
+    display: table-row;
+    height: 1%;
 }

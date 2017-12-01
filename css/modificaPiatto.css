@@ -37,3 +37,22 @@
 	border-width: 18px;
 	margin-top: -18px;
 }
+.etichetta, .ingr {
+  font-size: 28px;
+}
+.fset {
+
+}
+.qnt {
+  font-size: 20px;
+  width: 20%;
+  text-align: center;
+}
+fieldset label {
+  font-size: 17px;
+
+}
+.prova {
+  column-count: 2;
+  column-gap: 0px;
+}
