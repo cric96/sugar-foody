@@ -10,13 +10,13 @@ thead{
 }
 @media only screen and (max-width: 400px)  {
   td {
-    font-size: 1.3em;
+    font-size: 1em;
   }
-  td.modify,td.delete, td.info {
-    font-size: 0.8em;
+  td.modify,td.delete, td.info, .adder {
+    font-size: 0.7em;
 
   }
   thead{
-    font-size: 1.2em;
+    font-size: 0.9em;
   }
 }
