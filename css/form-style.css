@@ -37,12 +37,10 @@ label {
   display:block;
   text-align:right;
 }
-.signin {
-  color: rgba(224,118,56,1);
-}
 
-.signin:hover {
-  color: #FFBF18;
+.terms-link {
+  color: rgba(224,118,56,1) !important;
+  text-decoration: underline !important;
 }
 .modal-header{
   background: rgba(224,118,56,1);

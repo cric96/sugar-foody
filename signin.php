@@ -79,7 +79,7 @@
             </div>
             <div class="checkbox-wrap d-flex justify-content-end p-2 mb-2">
                <label class="custom-control custom-checkbox" for="acceptTerms">
-               <a data-toggle="modal" data-target="#termsPopUp">
+               <a class="terms-link" data-toggle="modal" data-target="#termsPopUp">
                  <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
                </a>
                <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms" required>
@@ -87,7 +87,7 @@
                </label>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right signin" name="signinBt"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
+               <button type="submit" class="btn btn-submit float-right" name="signinBt"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
