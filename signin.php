@@ -23,7 +23,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarSignin.html"></nav>
       <main class="container content">
          <h2 class="my-4">Registrazione utenti</h2>
-         <form method="post" class="form-horizontal">
+         <form method="post" class="form-horizontal" action="signin.php">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
@@ -82,12 +82,12 @@
                <a data-toggle="modal" data-target="#termsPopUp">
                  <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
                </a>
-               <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms">
+               <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms" required>
                <span class="custom-control-indicator"></span>
                </label>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right signin"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
+               <button type="submit" class="btn btn-submit float-right signin" name="signinBt"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
