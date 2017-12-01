@@ -42,20 +42,7 @@ label {
   color: rgba(224,118,56,1) !important;
   text-decoration: underline !important;
 }
-.modal-header{
-  background: rgba(224,118,56,1);
-}
 
-.modal-body{
-  background: rgba(224,118,56,0.1);
-}
-
-.modal-body label{
-  font-size: 1.2em;
-}
-.modal-body p{
-  font-size: 1.5em;
-}
 textarea {
   background-color: white !important;
 }
