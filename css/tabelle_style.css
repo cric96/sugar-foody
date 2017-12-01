@@ -1,0 +1,22 @@
+td {
+  font-size: 1.5em;
+}
+td.modify,td.delete, td.info {
+  font-size: 1em;
+
+}
+thead{
+  font-size: 1.4em;
+}
+@media only screen and (max-width: 400px)  {
+  td {
+    font-size: 1.3em;
+  }
+  td.modify,td.delete, td.info {
+    font-size: 0.8em;
+
+  }
+  thead{
+    font-size: 1.2em;
+  }
+}

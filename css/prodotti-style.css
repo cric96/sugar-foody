@@ -86,15 +86,6 @@ label {
 main {
   padding-top: 2%;
 }
-td {
-  font-size: 1.5em;
-}
-td.modify,td.delete, td.info {
-  font-size: 1em;
-}
-thead{
-  font-size: 1.4em;
-}
 .fa:hover{
   text-decoration: none;
 }
