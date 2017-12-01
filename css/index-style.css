@@ -46,7 +46,7 @@ footer.panel-footer {
 
 @media only screen and (max-width: 400px) and (orientation: portrait) {
   div#foodslider {
-    margin-top: 16% !important;
+    margin-top: 22% !important;
   }
 }
 

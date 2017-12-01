@@ -32,7 +32,7 @@
             <table class="table table-striped">
                <thead>
                   <tr>
-                     <th>Numero ordine</th>
+                     <th>#ordine</th>
                      <th>Stato</th>
                      <th>Luogo</th>
                      <th>Data / Ora</th>
@@ -41,14 +41,14 @@
                </thead>
                <tbody>
                   <tr>
-                     <td>Numero ordine</td>
+                     <td>1234</td>
                      <td>Stato</td>
                      <td>Luogo</td>
                      <td>Data</td>
                      <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                   <tr>
-                     <td>Numero ordine</td>
+                     <td>45343</td>
                      <td>Stato</td>
                      <td>Luogo</td>
                      <td>Data</td>
@@ -74,7 +74,7 @@
                  <table class="table table-striped">
                     <thead>
                        <tr>
-                          <th>Nome prodotto</th>
+                          <th>Prodotto</th>
                           <th>Quantità</th>
                           <th>Categoria</th>
                           <th>Prezzo</th>
@@ -82,13 +82,13 @@
                     </thead>
                     <tbody>
                        <tr>
-                          <td>Nome prodotto</td>
+                          <td>Pizza</td>
                           <td>Quantità</td>
                           <td>Categoria</td>
                           <td>Prezzo</td>
                        </tr>
                        <tr>
-                          <td>Nome prodotto</td>
+                          <td>Piadina</td>
                           <td>Quantità</td>
                           <td>Categoria</td>
                           <td>Prezzo</td>
