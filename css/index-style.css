@@ -43,3 +43,15 @@ main h2 {
 footer.panel-footer {
   margin-top: 0 !important;
 }
+
+@media only screen and (max-width: 400px) and (orientation: portrait) {
+  div#foodslider {
+    margin-top: 16% !important;
+  }
+}
+
+@media only screen and (max-width: 500px) and (orientation: portrait) {
+  div#foodslider {
+    margin-top: 14% !important;
+  }
+}
