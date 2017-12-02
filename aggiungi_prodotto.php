@@ -137,13 +137,13 @@
               <label for="showing" class="hide-acc">Mostra il contenuto</label>
             </div>
             <div class="form-group hideble">
-               <label for="name" class="control-label col-sm-2">Nome</label>
+               <label for="name" required class="control-label col-sm-2">Nome</label>
                <div class="col-sm-12 input-group">
                   <input type="text" class="form-control form-control-sm rounded-0" name="name" id="name">
                </div>
             </div>
             <div class="form-group hideble">
-               <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
+               <label for="prezzo" required class="col-sm-2 control-label">Prezzo</label>
                <div class="col-sm-12 input-group">
                   <input type="number" class="form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
                </div>
