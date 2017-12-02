@@ -1,40 +1,7 @@
-td {
-  font-size: 1.5em;
-}
-td.modify,td.delete, td.info {
-  font-size: 1em;
-
-}
-thead{
-  font-size: 1.4em;
-}
-.fa:hover{
-  text-decoration: none;
-}
-.fa{
-    background: rgba(224,118,56,1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 .overlay {
   background-image: url(../img/gestione.jpg) !important;
 }
 
 .my-4 {
   color : black !important;
-}
-
-.modal-header{
-  background: rgba(224,118,56,1);
-}
-
-.modal-body{
-  background: rgba(224,118,56,0.1);
-}
-
-.modal-body label{
-  font-size: 1.2em;
-}
-.modal-body p{
-  font-size: 1.5em;
 }

@@ -7,15 +7,18 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
       <script src="https://use.fontawesome.com/42b65516fc.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
       <script src="./js/hide-accessibily.js"></script>
+      <script src="./js/modal-hide.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/popup-style.css">
+      <link rel="stylesheet" href="./css/switch-style.css">
+      <link rel="stylesheet" href="./css/fa-style.css">
       <title>Aggiungi prodotto</title>
    </head>
    <body>
@@ -23,18 +26,20 @@
      <div class="overlay">
        <h2 class="my-4">Prodotti</h2>
      </div>
+     <script>
+     </script>
      <main class="container-fluid content">
       <form method="post" class="form-horizontal">
         <div class="form-group row">
-        <label for="user" class="control-label col-sm-2">Nome prodotto</label>
+        <label for="nome-prodotto" class="control-label col-sm-2">Nome prodotto</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="prodotto" id="prodotto" readonly value="Mio prodotto">
+            <input type="text" class="form-control form-control-sm" name="nome-prodotto" id="nome-prodotto" readonly value="Mio prodotto">
           </div>
         </div>
         <div class="form-group row">
-          <label for="mail" class="control-label col-sm-2">Prezzo</label>
+          <label for="prezzo-prodotto" class="control-label col-sm-2">Prezzo</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control form-control-sm" name="mail" id="mail">
+            <input type="number" class="form-control form-control-sm" name="prezzo-prodotto" id="prezzo-prodotto">
           </div>
         </div>
         <div class="form-group row">
@@ -56,16 +61,18 @@
                   <td>10€</td>
                   <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
                   <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
+                    <div class="switch">
+                      <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" >
+                      <span class="slider"></span>
+                      <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
+                    </div>
                   </td>
                   <td>
-                    <label class="switch">
-                      <input type="checkbox">
+                    <div class="switch">
+                      <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" >
                       <span class="slider"></span>
-                    </label>
+                      <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -73,16 +80,18 @@
                   <td>2</td>
                   <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
                   <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
+                    <div class="switch">
+                      <label><input type="checkbox" name="switch" value="l2-c1" id="l2-c1" >
+                      <span class="slider"></span>
+                      <label for="l2-c1" class="hide-acc">Abilita obbligatorio</label>
+                    </div>
                   </td>
                   <td>
-                    <label class="switch">
-                      <input type="checkbox">
+                    <div class="switch">
+                      <label><input type="checkbox" name="switch" value="l2-c2" id="l2-c2" >
                       <span class="slider"></span>
-                    </label>
+                      <label for="l2-c2" class="hide-acc">Abilita aggiunta</label>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -104,48 +113,42 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label for="my_select" class="control-label col-sm-6" >Scegli ingredienti..</label>
+            <div class="form-group showable">
+              <form>
+                <fieldset>
+                  <legend>Ricerca ingredienti</legend>
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="col-sm-12" placeholder="Cerca tra gli ingredienti...">
+                  <label for="myInput" class="hide-acc">Ricerca..</label>
 
-              <input type="text" id="myInput" onkeyup="myFunction()" class="col-sm-12" placeholder="Cerca tra gli ingredienti...">
-              <select id="my_select" class="form-control col-sm-12 selectpicker" name="monthly_rental" >
+                  <label for="my_select" class="hide-acc"> Seleziona elementi</label>
+                  <select id="my_select" class="form-control col-sm-12 selectpicker" name="monthly_rental" >
 
-                  <option>Pomodoro</option>
-                  <option>Mozzarella</option>
-                  <option>Farina</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-2 input-group">
-                <label for="">Aggiunta</label>
-                <label class="switch col-sm-4">
-                  <input type="checkbox">
-                  <span class="slider"></span>
-                </label>
-              </div>
-              <div class="col-sm-2 input-group">
-                <label for="">Obbligatorio</label>
-                <label class="switch col-sm-4">
-                  <input type="checkbox">
-                  <span class="slider"></span>
-                </label>
-              </div>
+                      <option>Pomodoro</option>
+                      <option>Mozzarella</option>
+                      <option>Farina</option>
+                  </select>
+                </fieldset>
+              </form>
             </div>
             <p> Un nuovo ingrediente? Aggiungilo! </p>
-            <div class="form-group">
-               <label for="user" class="control-label col-sm-2">Nome</label>
+            <div class="switch">
+              <label><input type="checkbox" name="show" value="showing" class="observable-source" id="showing" >
+              <span class="slider"></span>
+              <label for="showing" class="hide-acc">Mostra il contenuto</label>
+            </div>
+            <div class="form-group hideble">
+               <label for="name" class="control-label col-sm-2">Nome</label>
                <div class="col-sm-12 input-group">
-                  <input type="text" class="form-control form-control-sm rounded-0" name="user" id="user">
+                  <input type="text" class="form-control form-control-sm rounded-0" name="name" id="name">
                </div>
             </div>
-
-            <div class="form-group">
-               <label for="psw" class="col-sm-2 control-label">Prezzo</label>
+            <div class="form-group hideble">
+               <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
                <div class="col-sm-12 input-group">
-                  <input type="password" class="form-control form-control-sm rounded-0" name="psw" id="psw">
+                  <input type="number" class="form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
                </div>
             </div>
-            <button type="submit" class="btn btn-submit  float-right"><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Aggiungi</button>
+            <button type="submit" class="btn btn-submit float-right hideble"> Aggiungi</button>
         </div>
       </div>
     </div>

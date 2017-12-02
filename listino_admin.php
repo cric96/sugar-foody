@@ -13,7 +13,12 @@
      <script src="https://www.w3schools.com/lib/w3.js"></script>
      <script src="./js/hide-accessibily.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
-     <link rel="stylesheet" href="css/fattori_admin.css">
+     <link rel="stylesheet" href="./css/fattori_admin.css">
+     <link rel="stylesheet" href="./css/tabelle-style.css">
+     <link rel="stylesheet" href="./css/fa-style.css">
+     <link rel="stylesheet" href="./css/overlay-style.css">
+     <link rel="stylesheet" href="./css/switch-style.css">
+     <link rel="stylesheet" href="./css/popup-basic-style.css">
      <title>Listino admin </title>
    </head>
    <body>

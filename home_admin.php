@@ -12,7 +12,9 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
      <script src="https://www.w3schools.com/lib/w3.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
-     <link rel="stylesheet" href="./css/admin.css">
+     <link rel="stylesheet" href="./css/list-with-effects.css">
+     <link rel="stylesheet" hreft="./css/overlay-style.css"
+     <link rel="stylesheet" hreft="./css/admin.css"
      <title>Fornitore </title>
    </head>
    <body>

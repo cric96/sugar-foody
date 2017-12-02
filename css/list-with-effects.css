@@ -1,20 +1,3 @@
-/**
-  NON USARE admin.css
-  utilizza:
-      -overlay-style.css
-      -list-with-effects.css
-**/
-.overlay{
-  background-image: url(../img/main-admin.jpg);
-}
-/** Finito il passaggio commenta tutto il resto **/
-.overlay {
-  background-image: url(../img/main-admin.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 main li{
   list-style: none;
 }
