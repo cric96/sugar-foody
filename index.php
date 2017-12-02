@@ -14,9 +14,10 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
       <script src="./js/hide-accessibily.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
-      <link rel="stylesheet" href="./css/popup-style.css">
-      <link rel="stylesheet" href="css/form-style.css">
-      <link rel="stylesheet" href="css/index-style.css">
+      <link rel="stylesheet" href="./css/popup-basic-style.css">
+      <link rel="stylesheet" href="./css/form-style.css">
+      <link rel="stylesheet" href="./css/index-style.css">
+      <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Benvenuto in Foody</title>
    </head>
    <body>

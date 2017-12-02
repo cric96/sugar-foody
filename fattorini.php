@@ -13,9 +13,10 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="./js/hide-accessibily.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
-      <link rel="stylesheet" href="./css/fattori_admin.css">
-      <link rel="stylesheet" href="css/tabelle-style.css">
-      <link rel="stylesheet" href="css/fattorini-style.css">
+      <link rel="stylesheet" href="./css/fa-style.css">
+      <link rel="stylesheet" href="./css/tabelle-style.css">
+      <link rel="stylesheet" href="./css/fattorini-style.css">
+      <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Fattorini</title>
    </head>
    <body>
@@ -27,7 +28,7 @@
       </header>
       <main class="container">
          <section>
-            <h3>Fattorini del ristorante </h3>
+            <h3 class="hide-acc">Fattorini del ristorante </h3>
             <!--nome ristorante in php-->
             <table class="table table-striped">
                <thead>
