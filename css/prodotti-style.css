@@ -1,3 +1,6 @@
+div.adder {
+  padding-left: 10px;
+}
 label, button, input {
   font-size: 15pt !important;
   font-style: normal !important;

@@ -96,6 +96,7 @@
                 </tr>
               </tbody>
             </table>
+
             <div class="adder">
               <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
             </div>
