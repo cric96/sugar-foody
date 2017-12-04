@@ -15,7 +15,8 @@
      <script src="./js/scriptHide.js"></script>
      <script src="./js/hide-accessibily.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
-     <link rel="stylesheet" href="css/form-style.css">
+     <link rel="stylesheet" href="./css/form-style.css">
+     <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Registrati a Foody</title>
    </head>
    <body>

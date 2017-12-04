@@ -13,22 +13,23 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="./js/hide-accessibily.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
-      <link rel="stylesheet" href="./css/fattori_admin.css">
+      <link rel="stylesheet" href="./css/fa-style.css">
+      <link rel="stylesheet" href="./css/tabelle-style.css">
+      <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/orders-style.css">
-      <link rel="stylesheet" href="css/form-style.css">
-      <link rel="stylesheet" href="css/index-style.css">
-      <title>Ordini fattorini</title>
+      <link rel="stylesheet" href="./css/overlay-style.css">
+      <title>Ordini assegnati</title>
    </head>
    <body>
       <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
       <header>
          <div class="overlay">
-            <h2 class="my-4">Ordini</h2>
+            <h2 class="my-4">Ordini assegnati</h2>
          </div>
       </header>
       <main class="container">
          <section>
-            <h3>Ordini</h3>
+            <h3 class="hide-acc">Ordini a te assegnati</h3>
             <table class="table table-striped">
                <thead>
                   <tr>
@@ -42,7 +43,15 @@
                <tbody>
                   <tr>
                      <td>Numero ordine</td>
-                     <td>Stato</td>
+                     <td>
+                       <select name="status" class="selectpicker showtick">
+                          <option value="assegnato">Assegnato</option>
+                          <option value="preso">Preso in carico</option>
+                          <option value="elaborazione">Elaborazione</option>
+                          <option value="consegna">In consegna</option>
+                          <option value="concluso">Concluso</option>
+                        </select>
+                     </td>
                      <td>Luogo</td>
                      <td>Data</td>
                      <td class="info"><a class="fa fa-info fa-2x" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
