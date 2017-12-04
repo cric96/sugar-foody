@@ -49,9 +49,9 @@
               <thead>
                 <tr>
                   <th>Nome ingrediente</th>
-                  <th>Aggiunta</th>
+                  <th>Costo unitario</th>
                   <th> Elimina </th>
-                  <th> Obligatorio </th>
+                  <th> Obbligatorio </th>
                   <th> Aggiunta </th>
                 </tr>
               </thead>
