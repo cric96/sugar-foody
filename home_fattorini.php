@@ -19,6 +19,7 @@
       <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/orders-style.css">
+      <link rel="stylesheet" href="./css/td-button-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Ordini assegnati</title>
    </head>
@@ -46,13 +47,8 @@
                   <tr>
                      <td>1234</td>
                      <td>
-                       <select name="status" class="selectpicker showtick">
-                        <option value="assegnato">Assegnato</option>
-                        <option value="preso">Preso in carico</option>
-                        <option value="elaborazione">Elaborazione</option>
-                        <option value="consegna">In consegna</option>
-                        <option value="concluso">Concluso</option>
-                      </select>
+                       <label for="status" class="hide-acc">Cambia stato</label>
+                       <input type="button" class="btn btn-secondary btn-lg custom" name="status" id="status" value="in elaborazione"/>
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>
@@ -60,7 +56,10 @@
                   </tr>
                   <tr>
                      <td>45343</td>
-                     <td>Stato</td>
+                     <td>
+                       <label for="status" class="hide-acc">Cambia stato</label>
+                       <input type="button" class="btn btn-secondary btn-lg custom" name="status" id="status" value="concluso"/>
+                     </td>
                      <td>Luogo</td>
                      <td>Data</td>
                      <td class="info"><a class="fa fa-info fa-2x" data-toggle="modal" data-target="#myModal" aria-hidden="true" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>

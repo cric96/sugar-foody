@@ -1,0 +1,10 @@
+tr td, tr th {
+    white-space: nowrap !important;
+}
+table {
+    table-layout: fixed;
+}
+
+.custom {
+  width: 55%;
+}
