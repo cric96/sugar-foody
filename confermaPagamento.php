@@ -24,7 +24,6 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
   <body>
     <script src="./js/firstHide.js"></script>
     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-    <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarSignin.html"></nav>
     <main class="container content">
        <h2 class="my-4">Pagamento ordine</h2>
        <form method="post" class="form-horizontal" action="index.php">

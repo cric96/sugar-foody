@@ -16,10 +16,92 @@
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-style.css">
+    <link rel="stylesheet" href="./css/riepilogoOrdine.css">
     <title>Riepilogo ordine</title>
   </head>
   <body>
     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+    <header>
+      <div class="overlay">
+        <h2 class="my-4">Riepilogo ordine</h2>
+      </div>
+    </header>
+     <main class="container">
+       <section>
+         <table class="table table-striped">
+           <thead thead-inverse>
+             <tr>
+               <th>Nome piatto</th>
+               <th>Prezzo</th>
+               <th>Ingredienti</th>
+               <th>Quantità</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr scope="row">
+               <td>Piada piadosa</td>
+               <td>10€</td>
+               <td>
+                 <fieldset class="fset">
+                   <legend class="ingr hide">Ingredienti</legend>
+                   <div class="prova">
+                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                   </div>
+                   </fieldset>
+               </td>
+               <td>2</td>
+             </tr>
+             <tr scope="row">
+               <td>Pizza pizzosa</td>
+               <td>5€</a> </td>
+               <td>
+                 <fieldset class="fset">
+                   <legend class="ingr hide">Ingredienti</legend>
+                   <div class="prova">
+                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                   </div>
+                   </fieldset>
+               </td>
+               <td>2</td>
+             </tr>
+             <tr scope="row">
+               <td>Pasta pastosa</td>
+               <td>1€</a> </td>
+               <td>
+                 <fieldset class="fset">
+                   <legend class="ingr hide">Ingredienti</legend>
+                   <div class="prova">
+                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                   </div>
+                   </fieldset>
+               </td>
+               <td>2</td>
+             </tr>
+             <tr scope="row">
+               <td>
+                 Totale: 32€
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </section>
+       <section>
+         <p>Scegli l'indirizzo di consegna: </p>
+         <label>Scegli l'orario di consegna:
+            <input type="time" name="" value="">
+        </label>
+       </section>
+       <label for="pagamento" class="hide">
+         Procedi al pagamento:
+       </label>
+      <input class="pagamento" id="pagamento" type="button" name="Paga" value="Paga">
+     </main>
 
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>

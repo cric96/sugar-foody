@@ -1,0 +1,16 @@
+.hide {
+  display: none;
+}
+.prova {
+  border-width: medium;
+}
+.prova>label {
+  font-size: 15px;
+}
+td {
+  margin-left: auto;
+}
+ #pagamento {
+   margin: 0 auto;
+   font-size: 120%;
+ }
