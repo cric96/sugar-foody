@@ -32,7 +32,6 @@
             <tr>
               <th>Nome piatto</th>
               <th>Prezzo</th>
-              <th>Modifica</th>
               <th>Aggiungi al carrello</th>
             </tr>
           </thead>
@@ -40,31 +39,27 @@
             <tr>
               <td>Piada piadosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil " href=#> <span class="hide-acc">modifica</span> </a></td>
               <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pizza pizzosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil " href=#> <span class="hide-acc">modifica</span> </a></td>
               <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pasta pastosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil " href=#><span class="hide-acc">modifica</span></a></td>
               <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Dolce dolcioso</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil " href=#><span class="hide-acc">modifica</span></a></td>
               <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
           </tbody>
         </table>
       </section>
-      <a class="fa fa-arrow-right float-right fa-5x goOn" href=#> <span class="hide-acc">Prosegui</span> </a>
+      <a class="fa fa-arrow-right float-right fa-5x goOn" href="riepilogoOrdine.php"> <span class="hide-acc">Prosegui</span> </a>
     </main>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
