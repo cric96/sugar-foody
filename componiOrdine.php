@@ -11,8 +11,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/fa-style.css">
     <link rel="stylesheet" href="./css/componiOrdine.css">
     <link rel="stylesheet" href="./css/catProdotti.css">
+    <link rel="stylesheet" href="/css/tabelle-style.css">
     <script src="./js/hide-accessibily.js"></script>
     <title>Componi ordine</title>
   </head>
@@ -25,38 +27,39 @@
     </header>
     <main class="container">
       <section>
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr>
               <th>Nome piatto</th>
               <th>Prezzo</th>
-              <th>Modifica</th>
+              <th>Aggiungi al carrello</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Piada piadosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#> <span class="hide-acc">modifica</span> </a></td>
+              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pizza pizzosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#> <span class="hide-acc">modifica</span> </a></td>
+              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pasta pastosa</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#><span class="hide-acc">modifica</span></a></td>
+              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Dolce dolcioso</td>
               <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-pencil fa-pencil-coloured" href=#><span class="hide-acc">modifica</span></a></td>
+              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
           </tbody>
         </table>
       </section>
+      <a class="fa fa-arrow-right float-right fa-5x goOn" href="riepilogoOrdine.php"> <span class="hide-acc">Prosegui</span> </a>
     </main>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
