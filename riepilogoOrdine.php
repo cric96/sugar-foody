@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-style.css">
     <link rel="stylesheet" href="./css/riepilogoOrdine.css">
+    <link rel="stylesheet" href="./css/google-map.css">
     <title>Riepilogo ordine</title>
   </head>
   <body>
@@ -92,7 +93,14 @@
          </table>
        </section>
        <section>
-         <p>Scegli l'indirizzo di consegna: </p>
+         <div class="google">
+           <input id="pac-input" class="controls" type="text" placeholder="Ricerca">
+           <div id="map"></div>
+           <script src="./js/script-google.js"></script>
+           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
+                async defer></script>
+         </div>
+
          <label>Scegli l'orario di consegna:
             <input type="time" name="" value="">
         </label>

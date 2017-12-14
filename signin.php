@@ -17,6 +17,7 @@
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/form-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
+     <link rel="stylesheet" href="./css/popup-basic-style.css">
       <title>Registrati a Foody</title>
    </head>
    <body>
