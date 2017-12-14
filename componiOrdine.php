@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="./css/componiOrdine.css">
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/popup-basic-style.css">
+    <link rel="stylesheet" href="./css/modificaPiatto.css">
     <script src="./js/hide-accessibily.js"></script>
     <title>Componi ordine</title>
   </head>
@@ -38,29 +40,65 @@
           <tbody>
             <tr>
               <td>Piada piadosa</td>
-              <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
+              <td>100€</td>
+              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pizza pizzosa</td>
-              <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
+              <td>100€</td>
+              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Pasta pastosa</td>
-              <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
+              <td>100€</td>
+              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <tr>
               <td>Dolce dolcioso</td>
-              <td>100€</a> </td>
-              <td class="modify"><a class="fa fa-cart-plus " href=#> <span class="hide-acc">aggiungi</span> </a></td>
+              <td>100€</td>
+              <td ><a class="fa fa-cart-plus "  data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
           </tbody>
         </table>
       </section>
       <a class="fa fa-arrow-right float-right fa-5x goOn" href="riepilogoOrdine.php"> <span class="hide-acc">Prosegui</span> </a>
     </main>
+    <div class="modal fade" id="modificaPiatto">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <!-- Modal Header -->
+             <div class="modal-header">
+                <h4 class="modal-title"> Modifica Piatto</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+             <!-- Modal body -->
+             <div class="modal-body">
+               <form class="bubble" action="#" method="post">
+                 <label class="etichetta">Quantità: <input class="qnt" type="number" name="quantità" value="1"></label>
+                 <fieldset class="fset">
+                   <legend class="ingr">Ingredienti:</legend>
+                   <div class="prova">
+                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
+                   </div>
+                 </fieldset>
+                 <fieldset class="fset">
+                   <legend class="ingr">Aggiunte:</legend>
+                   <div class="prova">
+                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
+                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
+                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                   </div>
+                   </fieldset>
+               </form>
+             </div>
+          </div>
+       </div>
+    </div>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <script>
