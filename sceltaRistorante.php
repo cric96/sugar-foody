@@ -20,7 +20,7 @@
     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
     <header>
       <div class="overlay">
-        <h2 class="my-4">Ristoranti</h2>
+        <h2 class="my-4">Scegli il ristorante da cui ordinare</h2>
       </div>
     </header>
     <main class="container content">

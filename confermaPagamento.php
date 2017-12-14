@@ -77,9 +77,11 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
                    <input type="date" name="date" class="form-control form-control-sm form-control-file" id="date">
                  </div>
                </div>
-            </fieldset>
-            <div class="form-check btn-form">
                <button type="submit" class="btn btn-submit float-right" name="signinBt"><em class="fa fa-credit-card fa-lg" aria-hidden="true"></em>Paga</button>
+               <button type="reset" class="btn btn-default float-right">Annulla</button>
+            </fieldset>
+            <div class="form-check btn-form buttons-hides">
+               <button type="submit" class="btn btn-submit float-right" name="signinBt">Concludi</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
        </form>

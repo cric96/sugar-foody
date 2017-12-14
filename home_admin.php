@@ -13,8 +13,8 @@
      <script src="https://www.w3schools.com/lib/w3.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/list-with-effects.css">
-     <link rel="stylesheet" hreft="./css/overlay-style.css"
-     <link rel="stylesheet" hreft="./css/admin.css"
+     <link rel="stylesheet" href="./css/overlay-style.css">
+     <link rel="stylesheet" href="./css/admin.css">
      <title>Fornitore </title>
    </head>
    <body>
@@ -27,25 +27,31 @@
       <main class="container">
         <ul class="row">
           <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
-            <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="img/listino.png" alt="Listino">
-            </div>
+            <a href="listino_admin.php">
+              <div class="img-wrapper">
+                <img class="img-fluid d-block mx-auto" src="img/listino.png" alt="Listino">
+              </div>
+            </a>
             <div class="link-wrapper">
               <a class="my-4" href="listino_admin.php"> Listino </a>
             </div>
           </li>
           <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
+            <a href="fattorini_admin.php">
               <div class="img-wrapper">
                 <img class="img-fluid d-block mx-auto" src="img/ordini.png" alt="Pizza">
               </div>
-              <div class="link-wrapper">
-                <a class="my-4" href="fattorini_admin.php"> Ordini </a>
-              </div>
+            </a>
+            <div class="link-wrapper">
+              <a class="my-4" href="fattorini_admin.php"> Ordini </a>
+            </div>
           </li>
           <li class="col-lg-4 col-6 col-md-4 col-sm-4 text-center mb-2">
-            <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="img/fattorino.png" alt="Pizza">
-            </div>
+            <a href="fattorini.php">
+              <div class="img-wrapper">
+                <img class="img-fluid d-block mx-auto" src="img/fattorino.png" alt="Pizza">
+              </div>
+            </a>
             <div class="link-wrapper">
               <a class="my-4" href="fattorini.php"> Fattorini </a>
             </div>
