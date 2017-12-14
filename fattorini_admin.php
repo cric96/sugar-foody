@@ -79,26 +79,28 @@
               <span class="slider"></span>
               <label for="showing" class="hide-acc">Mostra il contenuto</label>
             </div>
-            <div class="form-group hideble">
-               <label for="user" class="control-label">Username</label>
-               <div class="col-sm-10 input-group">
-                  <input type="text" required class="form-control form-control-sm rounded-0" name="user" id="user">
-               </div>
-            </div>
+            <form class="form form-horizontal" action="index.html" method="post">
+              <div class="form-group hideble">
+                 <label for="user" class="control-label">Username</label>
+                 <div class="col-sm-10 input-group">
+                    <input type="text" required class="form-control form-control-sm rounded-0" name="user" id="user">
+                 </div>
+              </div>
 
-            <div class="form-group hideble">
-               <label for="psw" class="control-label">Password</label>
-               <div class="col-sm-10 input-group">
-                  <input type="password" required class="form-control form-control-sm rounded-0" name="psw" id="psw">
-               </div>
-            </div>
-            <div class="form-group hideble">
-               <label for="mail" class="control-label">Mail</label>
-               <div class="col-sm-10 input-group">
-                  <input type="mail" required class="form-control form-control-sm rounded-0" name="mail" id="mail">
-               </div>
-            </div>
-            <button type="submit" class="btn btn-submit float-right hideble"><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Aggiungi</button>
+              <div class="form-group hideble">
+                 <label for="psw" class="control-label">Password</label>
+                 <div class="col-sm-10 input-group">
+                    <input type="password" required class="form-control form-control-sm rounded-0" name="psw" id="psw">
+                 </div>
+              </div>
+              <div class="form-group hideble">
+                 <label for="mail" class="control-label">Mail</label>
+                 <div class="col-sm-10 input-group">
+                    <input type="mail" required class="form-control form-control-sm rounded-0" name="mail" id="mail">
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-submit float-right hideble"><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Aggiungi</button>
+            </form>
         </div>
       </div>
     </div>

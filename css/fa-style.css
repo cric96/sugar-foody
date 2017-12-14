@@ -1,5 +1,6 @@
 .fa:hover{
   background: rgba(224,118,56,1);
+  text-decoration: none;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

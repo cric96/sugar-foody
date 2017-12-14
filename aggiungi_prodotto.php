@@ -137,19 +137,21 @@
               <span class="slider"></span>
               <label for="showing" class="hide-acc">Mostra il contenuto</label>
             </div>
-            <div class="form-group hideble">
-               <label for="name" required class="control-label col-sm-2">Nome</label>
-               <div class="col-sm-12 input-group">
-                  <input type="text" class="form-control form-control-sm rounded-0" name="name" id="name">
-               </div>
-            </div>
-            <div class="form-group hideble">
-               <label for="prezzo" required class="col-sm-2 control-label">Prezzo</label>
-               <div class="col-sm-12 input-group">
-                  <input type="number" class="form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
-               </div>
-            </div>
-            <button type="submit" class="btn btn-submit float-right hideble"> Aggiungi</button>
+            <form class="form form-horizontal" action="index.html" method="post">
+              <div class="form-group hideble">
+                 <label for="name" class="control-label col-sm-2">Nome</label>
+                 <div class="col-sm-12 input-group">
+                    <input type="text" required class="form-control form-control-sm rounded-0" name="name" id="name">
+                 </div>
+              </div>
+              <div class="form-group hideble">
+                 <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
+                 <div class="col-sm-12 input-group">
+                    <input type="number" required class="form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-submit float-right hideble"> Aggiungi</button>
+            </form>
         </div>
       </div>
     </div>
