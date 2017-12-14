@@ -48,7 +48,7 @@
                      <td>1234</td>
                      <td>
                        <label for="status" class="hide-acc">Cambia stato</label>
-                       <input type="button" class="btn btn-secondary btn-lg custom" name="status" id="status" value="in elaborazione"/>
+                       <a>in elaborazione</a>
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>
