@@ -94,6 +94,8 @@
                      <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
                    </div>
                    </fieldset>
+                   <input class="submit" type="submit" name="conferma" value="Conferma Modifiche">
+                   <input class="reset" type="reset" name="Annulla" value="Annulla">
                </form>
              </div>
           </div>

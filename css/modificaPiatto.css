@@ -2,7 +2,7 @@
   margin:0 auto;
   font-size:14px;
 }
-.etichetta, .ingr {
+label.etichetta, .ingr {
   font-size: 28px;
 }
 .qnt {
@@ -13,4 +13,9 @@
 .prova {
   column-count: 4;
   column-gap: 0px;
+}
+
+.submit, .reset {
+  float :right;
+  font-size: 120%;
 }
