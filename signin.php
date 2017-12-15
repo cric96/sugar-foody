@@ -17,6 +17,7 @@
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/form-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
+     <link rel="stylesheet" href="./css/popup-basic-style.css">
       <title>Registrati a Foody</title>
    </head>
    <body>
@@ -38,7 +39,7 @@
                </div>
             </div>
             <div class="form-group row">
-               <label for="telefono" class="control-label col-sm-2">Telefono</label>
+               <label for="telefono" class="control-label col-sm-2">Telefono (+39)</label>
                <div class="col-sm-10">
                   <input type="tel" maxlength="10" minlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control form-control-sm" name="telefono" id="telefono" required>
                </div>
@@ -80,7 +81,7 @@
             </div>
             <div class="checkbox-wrap d-flex justify-content-end p-2 mb-2">
                <label class="custom-control custom-checkbox" for="acceptTerms">
-               <a class="terms-link" data-toggle="modal" data-target="#termsPopUp">
+               <a class="link" data-toggle="modal" data-target="#termsPopUp">
                  <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
                </a>
                <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms" required>

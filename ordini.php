@@ -63,6 +63,7 @@
       </main>
       <div w3-include-html="./include/notification.html" class="notification"></div>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
+      <div w3-include-html="./include/notification_modal.html"></div>
       <!-- The Modal -->
       <div class="modal fade" id="myModal">
          <div class="modal-dialog">

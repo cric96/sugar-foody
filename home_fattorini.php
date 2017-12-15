@@ -21,13 +21,15 @@
       <link rel="stylesheet" href="./css/orders-style.css">
       <link rel="stylesheet" href="./css/td-button-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
+      <link rel="stylesheet" href="./css/fattori_admin.css">
+      <link rel="stylesheet" href="./css/home-fattorini-style.css">
       <title>Ordini assegnati</title>
    </head>
    <body>
       <nav w3-include-html="./include/navbarFattorino.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
       <header>
          <div class="overlay">
-            <h2 class="my-4">Ordini assegnati</h2>
+            <h2 class="my-4">I tuoi ordini</h2>
          </div>
       </header>
       <main class="container">
@@ -48,7 +50,7 @@
                      <td>1234</td>
                      <td>
                        <label for="status" class="hide-acc">Cambia stato</label>
-                       <a>in elaborazione</a>
+                       <a class="link">in elaborazione</a>
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>
@@ -58,7 +60,7 @@
                      <td>45343</td>
                      <td>
                        <label for="status" class="hide-acc">Cambia stato</label>
-                       <input type="button" class="btn btn-secondary btn-lg custom" name="status" id="status" value="concluso"/>
+                       <a class="link">evaso</a>
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>

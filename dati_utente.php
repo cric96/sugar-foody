@@ -37,7 +37,7 @@
                </div>
             </div>
             <div class="form-group row">
-               <label for="telefono" class="control-label col-sm-2">Telefono</label>
+               <label for="telefono" class="control-label col-sm-2">Telefono (+39)</label>
                <div class="col-sm-10">
                   <input type="tel" maxlength="10" minlength="10" class="form-control form-control-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="telefono" id="telefono" required>
                </div>

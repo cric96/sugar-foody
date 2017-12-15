@@ -1,0 +1,10 @@
+@media only screen and (max-width: 600px) {
+  .link {
+    font-size: 80% !important;
+  }
+}
+
+.link {
+  color: rgba(224,118,56,1) !important;
+  text-decoration: underline !important;
+}
