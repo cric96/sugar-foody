@@ -3,3 +3,8 @@
     font-size: 80% !important;
   }
 }
+
+.link {
+  color: rgba(224,118,56,1) !important;
+  text-decoration: underline !important;
+}

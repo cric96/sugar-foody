@@ -16,7 +16,6 @@
       <script src="./js/hide-accessibily.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/fa-style.css">
-      <link rel="stylesheet" href="./css/form-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/orders-style.css">
