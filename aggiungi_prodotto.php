@@ -45,7 +45,7 @@
         <div class="form-group row">
           <label for="mail" class="control-label col-sm-2">Ingredienti</label>
           <div class="col-sm-10">
-            <table class="table">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Nome ingrediente</th>

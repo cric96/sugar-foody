@@ -35,21 +35,30 @@
         <table class="table table-striped">
           <thead class="thead-inverse">
             <tr>
-              <th>N° Ordine</th>
+              <th>#ordine</th>
               <th>ID fattorino</th>
               <th>Stato</th>
+              <th>Luogo</th>
+              <th>Data / Ora</th>
+              <th>Dettagli</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td> 1231 </td>
               <td> <a data-toggle="modal" data-target="#bannerformmodal" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a> </td>
-              <td>Da confermare</td>
+              <td>Stato</td>
+              <td>Luogo</td>
+              <td>Data</td>
+              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
             </tr>
             <tr>
               <td> 1231 </td>
-              <td> <a data-toggle="modal" data-target="#bannerformmodal" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a></td>
-              <td>Da confermare</td>
+              <td> <a data-toggle="modal" data-target="#bannerformmodal" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a> </td>
+              <td>Stato</td>
+              <td>Luogo</td>
+              <td>Data</td>
+              <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
             </tr>
           </tbody>
         </table>

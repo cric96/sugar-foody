@@ -5,3 +5,17 @@
 .my-4 {
   color : black !important;
 }
+
+
+@media only screen and (max-width: 400px)  {
+  td {
+    font-size: 0.8em;
+  }
+  td.modify,td.delete, td.info, .adder {
+    font-size: 0.5em;
+
+  }
+  thead{
+    font-size: 0.7em;
+  }
+}
