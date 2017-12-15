@@ -81,7 +81,7 @@
             </div>
             <div class="checkbox-wrap d-flex justify-content-end p-2 mb-2">
                <label class="custom-control custom-checkbox" for="acceptTerms">
-               <a class="terms-link" data-toggle="modal" data-target="#termsPopUp">
+               <a class="link" data-toggle="modal" data-target="#termsPopUp">
                  <span class="custom-control-description">Accetto i termini e le condizioni d'uso </span>
                </a>
                <input type="checkbox" class="custom-control-input" name="acceptTerms" id="acceptTerms" required>
