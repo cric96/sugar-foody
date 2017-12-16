@@ -98,10 +98,10 @@
            </tbody>
          </table>
        </section>
-       <form class="" action="index.html" method="post">
+       <form action="confermaPagamento.php" method="post">
          <section>
            <div class="google">
-             <input id="pac-input" class="controls" type="text" placeholder="Ricerca">
+             <input id="pac-input" class="controls" type="text" placeholder="Ricerca" required>
              <div id="map"></div>
              <script src="./js/script-google.js"></script>
              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
@@ -109,7 +109,7 @@
            </div>
 
            <label>Scegli l'orario di consegna:
-              <input type="time" name="" value="">
+              <input type="time" name="" value="" required>
           </label>
          </section>
 

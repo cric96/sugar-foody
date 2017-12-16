@@ -34,7 +34,7 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
            <div class="checkbox-wrap d-flex justify-content-start p-2 mb-2">
               <label class="custom-control custom-radio" for="onDelivery">
               <span class="custom-control-description">Alla consegna</span>
-              <input type="radio" class="custom-control-input" onchange="valueChanged()" name="check-hide" id="onDelivery">
+              <input type="radio" class="custom-control-input" onchange="valueChanged()" checked="checked" name="check-hide" id="onDelivery">
               <span class="custom-control-indicator"></span>
               </label>
            </div>
