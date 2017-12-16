@@ -108,7 +108,7 @@
                   async defer></script>
            </div>
 
-           <label>Scegli l'orario di consegna:
+           <label class="orario">Scegli l'orario di consegna:
               <input type="time" name="" value="" required>
           </label>
          </section>

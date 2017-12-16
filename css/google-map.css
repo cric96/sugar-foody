@@ -1,3 +1,7 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(kraftstoff/Kraftstoff-Regular.otf);
+}
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 div.google {
@@ -9,7 +13,7 @@ div.google {
   height: 100%;
 }
 #description {
-  font-family: Roboto;
+  font-family: myFirstFont;
   font-size: 15px;
   font-weight: 300;
 }
@@ -34,7 +38,7 @@ div.google {
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   background-color: #fff;
-  font-family: Roboto;
+  font-family: myFirstFont;
 }
 
 #pac-container {
@@ -48,15 +52,15 @@ div.google {
 }
 
 .pac-controls label {
-  font-family: Roboto;
+  font-family: myFirstFont;
   font-size: 13px;
   font-weight: 300;
 }
 
 #pac-input {
   background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
+  font-family: myFirstFont;
+  font-size: 20px;
   font-weight: 300;
   margin-left: 12px;
   padding: 0 11px 0 13px;
@@ -67,7 +71,7 @@ div.google {
 @media only screen and (max-width: 500px) {
   #pac-input {
     background-color: #fff;
-    font-family: Roboto;
+    font-family: myFirstFont;
     font-size: 15px;
     font-weight: 300;
     margin-left: 12px;
@@ -80,7 +84,7 @@ div.google {
 @media only screen and (max-width: 800px) {
   #pac-input {
     background-color: #fff;
-    font-family: Roboto;
+    font-family: myFirstFont;
     font-size: 15px;
     font-weight: 300;
     margin-left: 12px;
