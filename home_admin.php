@@ -15,6 +15,7 @@
      <link rel="stylesheet" href="./css/list-with-effects.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
      <link rel="stylesheet" href="./css/admin.css">
+     <link rel="stylesheet" href="/css/fa-style.css">
      <title>Fornitore </title>
    </head>
    <body>
@@ -59,10 +60,10 @@
         </ul>
 
       </main>
-      <div w3-include-html="./include/notification.html" class="notification"></div>
       <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
       <script>
          w3.includeHTML();
       </script>
+      <?php include('./include/notification_modal.php') ?>
    </body>
 </html>

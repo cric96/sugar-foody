@@ -17,7 +17,7 @@
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
-      <link rel="stylesheet" href="./css/popup-style.css">
+      <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/switch-style.css">
       <link rel="stylesheet" href="./css/fa-style.css">
       <link rel="stylesheet" href="/css/form-style.css">
@@ -110,7 +110,6 @@
         </div>
       </form>
     </main>
-    <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
 
     <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="bannerformmodal">
@@ -162,5 +161,6 @@
     <script>
       w3.includeHTML();
     </script>
+    <?php include('./include/notification_modal.php') ?>
   </body>
 </html>
