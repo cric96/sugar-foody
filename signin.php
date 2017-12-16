@@ -25,7 +25,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg fixed-top" w3-include-html="./include/navbarSignin.html"></nav>
       <main class="container content">
          <h2 class="my-4">Registrazione utenti</h2>
-         <form method="post" class="form-horizontal" action="signin.php">
+         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="signin.php">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
@@ -131,7 +131,34 @@
      $mail=$_POST["mail"];
      if(isset($_POST["check-hide"])) {
        $ristorante=$_POST["nomeRistorante"];
-       $immagineRistorante=$_POST["immagineRistorante"];
+       // per prima cosa verifico che il file sia stato effettivamente caricato
+      if (!isset($_FILES['immagineRistorante']) || !is_uploaded_file($_FILES['immagineRistorante']['tmp_name'])) {
+        ?><script type="text/javascript">
+         alert("Errore caricamento immagine.");
+        </script><?php
+        exit;
+      }
+
+      //percorso della cartella dove mettere i file caricati dagli utenti
+      $uploaddir = '/img/';
+
+      //Recupero il percorso temporaneo del file
+      $userfile_tmp = $_FILES['immagineRistorante']['tmp_name'];
+
+      //recupero il nome originale del file caricato
+      $userfile_name = $_FILES['immagineRistorante']['name'];
+
+      //copio il file dalla sua posizione temporanea alla mia cartella upload
+      if (move_uploaded_file($userfile_tmp, getcwd() . $uploaddir . $userfile_name)) {
+        //Se l'operazione è andata a buon fine...
+      }else{
+        //Se l'operazione è fallta...
+        ?><script type="text/javascript">
+         alert("Errore caricamento immagine.");
+        </script><?php
+        exit;
+      }
+      $immagineRistorante = '.' . $uploaddir . $userfile_name;
        //ristorante
        $sql="INSERT INTO `ristorante` (nomeRistorante, immagine) VALUES ('$ristorante', '$immagineRistorante');";
        $sql.="INSERT INTO `utente` (telefono, password, email, username, admin, nomeRistorante)
