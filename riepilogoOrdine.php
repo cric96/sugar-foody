@@ -116,8 +116,6 @@
         <input class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga">
        </form>
      </main>
-
-    <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <?php include('./include/notification_modal.php') ?>
     <script>
