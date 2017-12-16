@@ -1,3 +1,9 @@
+<div class="notification">
+  <a href="#" data-toggle="modal" data-target="#notifications">
+     <span class="fa fa-bell brown"></span>
+  </a>
+  <span class="badge badge-danger">2</span>
+</div>
 <!-- The Modal -->
 <div class="modal fade" id="notifications">
    <div class="modal-dialog">
