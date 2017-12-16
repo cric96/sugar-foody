@@ -19,6 +19,8 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/form-style.css">
     <link rel="stylesheet" href="./css/overlay-style.css">
+    <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/popup-basic-style.css">
     <title>Pagamento</title>
   </head>
   <body>
@@ -88,6 +90,7 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
     </main>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+    <?php include('./include/notification_modal.php') ?>
     <script>
        w3.includeHTML();
     </script>

@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
+    <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/popup-basic-style.css">
   <title>Categoria Prodotti</title>
   </head>
   <body>
@@ -79,6 +81,7 @@
     </main>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+    <?php include('./include/notification_modal.php') ?>
     <script>
        w3.includeHTML();
     </script>

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/componiOrdine.css">
     <link rel="stylesheet" href="./css/sceltaRistorante.css">
+    <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/popup-basic-style.css">
     <title>Scegli ristorante</title>
   </head>
   <body>
@@ -36,6 +38,7 @@
   </main>
   <div w3-include-html="./include/notification.html" class="notification"></div>
   <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+  <?php include('./include/notification_modal.php') ?>
   <script>
      w3.includeHTML();
   </script>

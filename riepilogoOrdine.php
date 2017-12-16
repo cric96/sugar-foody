@@ -15,7 +15,7 @@
     <script src="./js/modal-hide.js"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/tabelle-style.css">
-    <link rel="stylesheet" href="./css/popup-style.css">
+    <link rel="stylesheet" href="./css/popup-basic-style.css">
     <link rel="stylesheet" href="./css/riepilogoOrdine.css">
     <link rel="stylesheet" href="./css/google-map.css">
     <title>Riepilogo ordine</title>
@@ -46,9 +46,11 @@
                  <fieldset class="fset">
                    <legend class="ingr hide">Ingredienti</legend>
                    <div class="prova">
-                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                     <ul>
+                       <li class="ingredienti">Ingrediente1</li>
+                       <li class="ingredienti">Ingrediente2</li>
+                       <li class="ingredienti">Ingrediente3</li>
+                     </ul>
                    </div>
                    </fieldset>
                </td>
@@ -61,9 +63,11 @@
                  <fieldset class="fset">
                    <legend class="ingr hide">Ingredienti</legend>
                    <div class="prova">
-                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                     <ul>
+                       <li class="ingredienti">Ingrediente1</li>
+                       <li class="ingredienti">Ingrediente2</li>
+                       <li class="ingredienti">Ingrediente3</li>
+                     </ul>
                    </div>
                    </fieldset>
                </td>
@@ -76,9 +80,11 @@
                  <fieldset class="fset">
                    <legend class="ingr hide">Ingredienti</legend>
                    <div class="prova">
-                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
+                     <ul>
+                       <li class="ingredienti">Ingrediente1</li>
+                       <li class="ingredienti">Ingrediente2</li>
+                       <li class="ingredienti">Ingrediente3</li>
+                     </ul>
                    </div>
                    </fieldset>
                </td>
@@ -92,27 +98,28 @@
            </tbody>
          </table>
        </section>
-       <section>
-         <div class="google">
-           <input id="pac-input" class="controls" type="text" placeholder="Ricerca">
-           <div id="map"></div>
-           <script src="./js/script-google.js"></script>
-           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
-                async defer></script>
-         </div>
+       <form class="" action="index.html" method="post">
+         <section>
+           <div class="google">
+             <input id="pac-input" class="controls" type="text" placeholder="Ricerca">
+             <div id="map"></div>
+             <script src="./js/script-google.js"></script>
+             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
+                  async defer></script>
+           </div>
 
-         <label>Scegli l'orario di consegna:
-            <input type="time" name="" value="">
-        </label>
-       </section>
-       <label for="pagamento" class="hide">
-         Procedi al pagamento:
-       </label>
-      <input class="pagamento" id="pagamento" type="button" name="Paga" value="Paga">
+           <label>Scegli l'orario di consegna:
+              <input type="time" name="" value="">
+          </label>
+         </section>
+
+        <input class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga">
+       </form>
      </main>
 
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
+    <?php include('./include/notification_modal.php') ?>
     <script>
        w3.includeHTML();
     </script>
