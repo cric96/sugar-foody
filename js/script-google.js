@@ -52,7 +52,8 @@
           radius: 5000
         });
         if(!circle.getBounds().contains(place.geometry.location)) {
-          alert("Posto in area di non competenza");
+          document.getElementById("pac-input").value = '';
+          alert("Posto in area di non competenza ");
           return;
         }
         var icon = {
