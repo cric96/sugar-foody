@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/fattorini-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
+      <link rel="stylesheet" href="./css/popup-basic-style.css">
       <title>Fattorini</title>
    </head>
    <body>
@@ -59,14 +60,16 @@
             </table>
             <div class="adder">
               <!-- aggiungi il giusto file -->
-              <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">Aggiungi fattorino</span></a>
+              <a href="dati_utente.php" class="fa fa-plus-square"><span class="hide-acc">Aggiungi fattorino</span></a>
             </div>
          </section>
       </main>
       <div w3-include-html="./include/notification.html" class="notification"></div>
+
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <script>
          w3.includeHTML();
       </script>
+      <?php include('./include/notification_modal.php') ?>
    </body>
 </html>

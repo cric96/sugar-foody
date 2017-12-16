@@ -13,6 +13,7 @@
       <script src="https://www.w3schools.com/lib/w3.js"></script>
       <script src="./js/hide-accessibily.js"></script>
       <script src="./js/modal-hide.js"></script>
+
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -102,7 +103,7 @@
               <div class="adder">
                 <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
               </div>
-              <input type="submit" class="btn btn-submit float-right" name="submit" value="Conferma">
+              <input type="submit" class="btn btn-submit float-right"name="submit" value="Conferma">
             </div>
           </form>
 
@@ -123,16 +124,13 @@
               <form>
                 <fieldset>
                   <legend>Ricerca ingredienti</legend>
-                  <input type="search" id="myInput" onkeyup="myFunction()" class="col-sm-12" placeholder="Cerca tra gli ingredienti...">
-                  <label for="myInput" class="hide-acc">Ricerca..</label>
-
-                  <label for="my_select" class="hide-acc"> Seleziona elementi</label>
-                  <select id="my_select" class="form-control col-sm-12 selectpicker" name="monthly_rental" >
-
+                  <label for="searching"><span class="hide-acc">Cerca</span></label>
+                  <input id="searching" type="search" class="col-sm-12 form-control" list="selectIngredienti" name="ingrediente">
+                  <datalist id="selectIngredienti" >
                       <option>Pomodoro</option>
                       <option>Mozzarella</option>
                       <option>Farina</option>
-                  </select>
+                  </datalist>
                 </fieldset>
               </form>
             </div>

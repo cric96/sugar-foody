@@ -50,7 +50,7 @@
               <td>Stato</td>
               <td>Luogo</td>
               <td>Data</td>
-              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
             </tr>
             <tr>
               <td> 1231 </td>
@@ -58,7 +58,7 @@
               <td>Stato</td>
               <td>Luogo</td>
               <td>Data</td>
-              <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+              <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
             </tr>
           </tbody>
         </table>
@@ -66,7 +66,8 @@
     </main>
     <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
-
+    <?php include('./include/notification_modal.php') ?>
+    <?php include('./include/dettagli_ordine.php') ?>
     <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="bannerformmodal">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
