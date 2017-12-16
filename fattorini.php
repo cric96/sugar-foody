@@ -57,6 +57,10 @@
                   </tr>
                </tbody>
             </table>
+            <div class="adder">
+              <!-- aggiungi il giusto file -->
+              <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">Aggiungi fattorino</span></a>
+            </div>
          </section>
       </main>
       <div w3-include-html="./include/notification.html" class="notification"></div>
