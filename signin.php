@@ -117,4 +117,44 @@
          </div>
       </div>
    </body>
+   <?php
+   if(isset($_POST["signinBt"])) {
+     if($_POST["psw"] !== $_POST["psw2"]) {
+       ?><script type="text/javascript">
+        alert("Passoword differenti.");
+       </script><?php
+     } else {
+       require_once ('config.php');
+     $user=$_POST["user"];
+     $psw=$_POST["psw"];
+     $telefono=$_POST["telefono"];
+     $mail=$_POST["mail"];
+     if(isset($_POST["check-hide"])) {
+       $ristorante=$_POST["nomeRistorante"];
+       $immagineRistorante=$_POST["immagineRistorante"];
+       //ristorante
+       $sql="INSERT INTO `ristorante` (nomeRistorante, immagine) VALUES ('$ristorante', '$immagineRistorante');";
+       $sql.="INSERT INTO `utente` (telefono, password, email, username, admin, nomeRistorante)
+       VALUES ('$telefono', '$psw', '$mail', '$user', 1, '$ristorante');";
+     } else {
+       $sql="INSERT INTO `utente` (telefono, password, email, username)
+       VALUES ('$telefono', '$psw', '$mail', '$user');";
+     }
+     if($cn->multi_query($sql) === TRUE)
+     {
+       ?><script type="text/javascript">
+        location.href = "index.php";
+        alert("Inserimento dei dati avvenuto correttamente.");
+       </script><?php
+     }
+     else
+     {
+       ?><script type="text/javascript">
+        alert("Errore nell'inserimento");
+       </script><?php
+     }
+     $cn->close();
+   }
+   }
+   ?>
 </html>
