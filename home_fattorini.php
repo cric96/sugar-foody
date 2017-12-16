@@ -54,7 +54,7 @@
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>
-                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                   <tr>
                      <td>45343</td>
@@ -64,7 +64,7 @@
                      </td>
                      <td>Luogo</td>
                      <td>Data</td>
-                     <td class="info"><a class="fa fa-info fa-2x" data-toggle="modal" data-target="#myModal" aria-hidden="true" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+                     <td class="info"><a class="fa fa-info fa-2x" data-toggle="modal" data-target="#dettagli_ordine" aria-hidden="true" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                </tbody>
             </table>
@@ -72,47 +72,7 @@
       </main>
       <div w3-include-html="./include/notification.html" class="notification"></div>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
-      <!-- The Modal -->
-      <div class="modal fade" id="myModal">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <!-- Modal Header -->
-               <div class="modal-header">
-                  <h4 class="modal-title">Ordine # <!--numero ordine in php--></h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               <!-- Modal body -->
-               <div class="modal-body">
-                 <table class="table table-striped">
-                    <thead>
-                       <tr>
-                          <th>Prodotto</th>
-                          <th>Quantità</th>
-                          <th>Categoria</th>
-                          <th>Prezzo</th>
-                       </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                          <td>Pizza</td>
-                          <td>Quantità</td>
-                          <td>Categoria</td>
-                          <td>Prezzo</td>
-                       </tr>
-                       <tr>
-                          <td>Piadina</td>
-                          <td>Quantità</td>
-                          <td>Categoria</td>
-                          <td>Prezzo</td>
-                       </tr>
-                    </tbody>
-                 </table>
-               </div>
-               <!-- Modal footer <div class="modal-footer">
-                  </div> -->
-            </div>
-         </div>
-      </div>
+      <?php include('./include/dettagli_ordine.php') ?>
       <script>
          w3.includeHTML();
       </script>
