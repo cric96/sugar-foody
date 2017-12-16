@@ -72,6 +72,7 @@
       </main>
       <div w3-include-html="./include/notification.html" class="notification"></div>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
+      <?php include('./include/notification_modal.php') ?>
       <?php include('./include/dettagli_ordine.php') ?>
       <script>
          w3.includeHTML();

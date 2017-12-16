@@ -14,3 +14,19 @@ td {
    margin: 0 auto;
    font-size: 120%;
  }
+ .ingredienti {
+   font-size: 60%;
+ }
+label.orario {
+  text-align: left;
+}
+.btn-submit {
+  background-color: #FFBF18;
+  border-color: black;
+  color: black;
+}
+
+.btn-submit:hover {
+  background-color: rgba(224,118,56,1);
+  border-color: #FFBF18;
+}
