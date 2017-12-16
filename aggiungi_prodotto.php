@@ -19,6 +19,7 @@
       <link rel="stylesheet" href="./css/popup-style.css">
       <link rel="stylesheet" href="./css/switch-style.css">
       <link rel="stylesheet" href="./css/fa-style.css">
+      <link rel="stylesheet" href="/css/form-style.css">
       <title>Aggiungi prodotto</title>
    </head>
    <body>
@@ -43,64 +44,68 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="mail" class="control-label col-sm-2">Ingredienti</label>
-          <div class="col-sm-10">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Nome ingrediente</th>
-                  <th>Costo unitario</th>
-                  <th> Elimina </th>
-                  <th> Obbligatorio </th>
-                  <th> Aggiunta </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Base piadina</td>
-                  <td>10€</td>
-                  <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
-                  <td>
-                    <div class="switch">
-                      <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" >
-                      <span class="slider"></span>
-                      <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="switch">
-                      <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" >
-                      <span class="slider"></span>
-                      <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Pomodor</td>
-                  <td>2</td>
-                  <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
-                  <td>
-                    <div class="switch">
-                      <label><input type="checkbox" name="switch" value="l2-c1" id="l2-c1" >
-                      <span class="slider"></span>
-                      <label for="l2-c1" class="hide-acc">Abilita obbligatorio</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="switch">
-                      <label><input type="checkbox" name="switch" value="l2-c2" id="l2-c2" >
-                      <span class="slider"></span>
-                      <label for="l2-c2" class="hide-acc">Abilita aggiunta</label>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <form class="" action="index.html" method="post">
+            <label for="mail" class="control-label col-sm-2">Ingredienti</label>
+            <div class="col-sm-10">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Nome ingrediente</th>
+                    <th>Costo unitario</th>
+                    <th> Elimina </th>
+                    <th> Obbligatorio </th>
+                    <th> Aggiunta </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Base piadina</td>
+                    <td>10€</td>
+                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
+                    <td>
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" >
+                        <span class="slider"></span>
+                        <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" >
+                        <span class="slider"></span>
+                        <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pomodor</td>
+                    <td>2</td>
+                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
+                    <td>
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l2-c1" id="l2-c1" >
+                        <span class="slider"></span>
+                        <label for="l2-c1" class="hide-acc">Abilita obbligatorio</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l2-c2" id="l2-c2" >
+                        <span class="slider"></span>
+                        <label for="l2-c2" class="hide-acc">Abilita aggiunta</label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <div class="adder">
-              <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
+              <div class="adder">
+                <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
+              </div>
+              <input type="submit" class="btn btn-submit float-right" name="submit" value="Conferma">
             </div>
-          </div>
+          </form>
+
         </div>
       </form>
     </main>
@@ -118,7 +123,7 @@
               <form>
                 <fieldset>
                   <legend>Ricerca ingredienti</legend>
-                  <input type="text" id="myInput" onkeyup="myFunction()" class="col-sm-12" placeholder="Cerca tra gli ingredienti...">
+                  <input type="search" id="myInput" onkeyup="myFunction()" class="col-sm-12" placeholder="Cerca tra gli ingredienti...">
                   <label for="myInput" class="hide-acc">Ricerca..</label>
 
                   <label for="my_select" class="hide-acc"> Seleziona elementi</label>

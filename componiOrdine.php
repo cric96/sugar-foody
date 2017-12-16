@@ -74,7 +74,7 @@
              <!-- Modal body -->
              <div class="modal-body">
                <form class="bubble" action="#" method="post">
-                 <label class="etichetta">Quantità: <input class="qnt" type="number" name="quantità" value="1"></label>
+                 <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
                    <legend class="ingr">Ingredienti:</legend>
                    <div class="prova">
