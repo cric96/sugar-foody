@@ -23,7 +23,6 @@
       <div class="fa fa-check"></div>
       <h1>Complimenti, il tuo ordine è stato effettuato!</h1>
     </main>
-    <div w3-include-html="./include/notification.html" class="notification"></div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <?php include('./include/notification_modal.php') ?>
     <script>
