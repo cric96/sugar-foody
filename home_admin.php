@@ -15,7 +15,7 @@
      <link rel="stylesheet" href="./css/list-with-effects.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
      <link rel="stylesheet" href="./css/admin.css">
-     <link rel="stylesheet" href="/css/fa-style.css">
+     <link rel="stylesheet" href="./css/fa-style.css">
      <title>Fornitore </title>
    </head>
    <body>
