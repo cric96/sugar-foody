@@ -114,7 +114,6 @@ if(isset($_POST['user'], $_POST['psw'])) {
    $password = $_POST['psw']; // Recupero la password criptata.
    if(login($username, $password, $cn) == true) {
       // Login eseguito
-      //### controllare cos'è
       if ($stmt = $cn->prepare("SELECT admin, nomeRistorante FROM utente WHERE username = ? LIMIT 1")) {
          $stmt->bind_param('s', $username); // esegue il bind del parametro '$username'.
          $stmt->execute(); // esegue la query appena creata.
