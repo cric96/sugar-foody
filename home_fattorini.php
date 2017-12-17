@@ -1,3 +1,25 @@
+<?php
+// Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
+include("./secureLogin/secureLogin.php");
+sec_session_start();
+include("config.php");
+if(login_check_fattorino($cn) != true) {
+  if(login_check_user($cn)) {
+    ?><script type="text/javascript">
+   location.href = "sceltaRistorante.php";
+   </script><?php
+  } else if (login_check_admin($cn)) {
+    ?><script type="text/javascript">
+   location.href = "home_admin.php";
+   </script><?php
+ } else {
+  ?><script type="text/javascript">
+ location.href = "index.php";
+ </script><?php
+}
+$cn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
    <head>
@@ -35,6 +57,13 @@
       <main class="container">
          <section>
             <h3 class="hide-acc">Storico ordini</h3>
+            <?php
+            $username = $_SESSION['username'];
+            $query_sql="SELECT numeroOrdine, data, stato, luogo FROM ordine WHERE fattorino = '$username' ";
+      			$result = $cn->query($query_sql);
+      			if($result !== false){
+              if ($result->num_rows > 0) {
+            ?>
             <table class="table table-striped">
                <thead>
                   <tr>
@@ -46,33 +75,38 @@
                   </tr>
                </thead>
                <tbody>
+                 <?php
+           				while($row = $result->fetch_assoc()) {
+           				?>
                   <tr>
-                     <td>1234</td>
-                     <td>
-                       <label for="status" class="hide-acc">Cambia stato</label>
-                       <a class="link">in elaborazione</a>
-                     </td>
-                     <td>Luogo</td>
-                     <td>Data</td>
-                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+                    <td><?php echo $row["numeroOrdine"]; ?></td>
+                    <td>
+                      <label for="status" class="hide-acc">Cambia stato</label>
+                      <a class="link">in elaborazione</a>
+                    </td>
+                    <td><?php echo $row["luogo"]; ?></td>
+                    <td><?php echo $row["data"]; ?></td>
+                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
-                  <tr>
-                     <td>45343</td>
-                     <td>
-                       <label for="status" class="hide-acc">Cambia stato</label>
-                       <a class="link">evaso</a>
-                     </td>
-                     <td>Luogo</td>
-                     <td>Data</td>
-                     <td class="info"><a class="fa fa-info fa-2x" data-toggle="modal" data-target="#dettagli_ordine" aria-hidden="true" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
-                  </tr>
+                  <?php include('./include/dettagli_ordine.php?O='.$row["numeroOrdine"]);
+      					}
+      				}
+      			 ?>
                </tbody>
             </table>
+            <?php
+        			}
+        			else{
+        		?>
+        			<p>Errore nell'interrogazione</p>
+        		<?php
+        			}
+        			$cn->close();
+                 ?>
          </section>
       </main>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <?php include('./include/notification_modal.php') ?>
-      <?php include('./include/dettagli_ordine.php') ?>
       <script>
          w3.includeHTML();
       </script>

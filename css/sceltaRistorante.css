@@ -3,3 +3,6 @@
     font-size: 250% !important;
   }
 }
+.overlay {
+  background-image: url(../img/ristorante.jpg) !important;
+}

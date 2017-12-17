@@ -105,4 +105,16 @@ function login_check($mysqli) {
      return false;
    }
 }
+
+function login_check_user($mysqli) {
+  return (login_check($mysqli) && !isset($_SESSION["admin"]) && !isset($_SESSION["nomeRistorante"]));
+}
+
+function login_check_fattorino($mysqli) {
+  return (login_check($mysqli) && !isset($_SESSION["admin"]) && isset($_SESSION["nomeRistorante"]));
+}
+
+function login_check_admin($mysqli) {
+  return (login_check($mysqli) && isset($_SESSION["admin"]) && isset($_SESSION["nomeRistorante"]));
+}
 ?>

@@ -14,10 +14,16 @@
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/componiOrdine.css">
     <link rel="stylesheet" href="./css/sceltaRistorante.css">
-    <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <title>Scegli ristorante</title>
   </head>
+  <?php
+    require_once("./config.php");
+    $query_sql = "SELECT * FROM ristorante";
+    $res = $cn->query($query_sql);
+    if($res !== false) {
+   ?>
   <body>
     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
     <header>
@@ -29,10 +35,29 @@
       <!-- Introduction Row -->
       <!-- Team Members Row -->
       <ul class="row">
+        <?php
+            if($res->num_rows > 0) {
+              while($row = $res->fetch_assoc()) {
+        ?>
         <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Ristorante">
-          <h3>Nome ristorante
-          </h3>
+<!-- Passo il nome del ristorante tramite get così che nell'altra pagina (ctegoriaProdotti) aggiornerò
+i valori della sessione ed effettuerò la query che mi caricherà solo le categorie di prodotti che ha
+questo determinato ristorante-->
+          <a href="./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>">
+            <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src=<?php echo $row["immagine"]; ?> alt="ristorante">
+            </div>
+          </a>
+          <div class="link-wrapper">
+            <a class="categories" href="./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>"> <?php echo $row["nomeRistorante"]; ?></a>
+          <?php
+              }
+            }
+          } else {
+            echo "Errore nell'interrogazione";
+          }
+        ?>
+          </div>
         </li>
       </ul>
   </main>
