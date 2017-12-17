@@ -1,17 +1,21 @@
 <?php
-/*session_start();
-if(!isset($_SESSION['idu']) || empty($_POST['idu'])) {
-   header("location: index.php"); // Redirect alla prima pagina
-}*/
 // Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
-include("./secureLogin/secureLogin.php")
+include("./secureLogin/secureLogin.php");
 sec_session_start();
-if(login_check($mysqli) == true) {
-
-   // Inserisci qui il contenuto delle tue pagine!
-
-} else {
-   echo 'You are not authorized to access this page, please login. <br/>';
+include("config.php");
+if(login_check_user($cn) != true) {
+  if(login_check_fattorino($cn)) {
+    ?><script type="text/javascript">
+   location.href = "home_fattorini.php";
+   </script><?php
+  } else if (login_check_admin($cn)) {
+    ?><script type="text/javascript">
+   location.href = "home_admin.php";
+   </script><?php
+  }
+  ?><script type="text/javascript">
+ location.href = "index.php";
+ </script><?php
 }
 ?>
 <!DOCTYPE html>
