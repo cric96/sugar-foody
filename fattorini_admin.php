@@ -13,6 +13,7 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
      <script src="./js/hide-accessibily.js"></script>
      <script src="./js/modal-hide.js"></script>
+     <script src="./js/datalist-click.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
      <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -76,11 +77,12 @@
           <div class="modal-body">
             <div class="form-group showable">
               <label for="my_select" class="control-label">Scegli il fattorino..</label>
-              <select id="my_select" class="form-control col-sm-10 selectpicker" name="monthly_rental" >
+              <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
+              <datalist id="set" >
                   <option>Maurizio costanzo</option>
-                  <option>Peppa pig</option>
-                  <option>Huppy</option>
-              </select>
+                  <option>Pinco pallino</option>
+                  <option>Pullo</option>
+              </datalist>
             </div>
             <p> Un nuovo fattorino? Aggiungilo! </p>
             <div class="switch">

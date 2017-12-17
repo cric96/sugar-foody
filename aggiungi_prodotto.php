@@ -13,14 +13,13 @@
       <script src="https://www.w3schools.com/lib/w3.js"></script>
       <script src="./js/hide-accessibily.js"></script>
       <script src="./js/modal-hide.js"></script>
-
+      <script src="./js/datalist-click.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/switch-style.css">
       <link rel="stylesheet" href="./css/fa-style.css">
-      <link rel="stylesheet" href="/css/form-style.css">
       <title>Aggiungi prodotto</title>
    </head>
    <body>
@@ -124,8 +123,8 @@
                 <fieldset>
                   <legend>Ricerca ingredienti</legend>
                   <label for="searching"><span class="hide-acc">Cerca</span></label>
-                  <input id="searching" type="search" class="col-sm-12 form-control" list="selectIngredienti" name="ingrediente">
-                  <datalist id="selectIngredienti" >
+                  <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
+                  <datalist id="set" >
                       <option>Pomodoro</option>
                       <option>Mozzarella</option>
                       <option>Farina</option>
