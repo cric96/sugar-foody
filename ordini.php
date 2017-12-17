@@ -1,3 +1,19 @@
+<?php
+/*session_start();
+if(!isset($_SESSION['idu']) || empty($_POST['idu'])) {
+   header("location: index.php"); // Redirect alla prima pagina
+}*/
+// Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
+include("./secureLogin/secureLogin.php")
+sec_session_start();
+if(login_check($mysqli) == true) {
+
+   // Inserisci qui il contenuto delle tue pagine!
+
+} else {
+   echo 'You are not authorized to access this page, please login. <br/>';
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
    <head>

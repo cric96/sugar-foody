@@ -14,6 +14,8 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
      <script src="./js/scriptHide.js"></script>
      <script src="./js/hide-accessibily.js"></script>
+     <script src="./js/sha512.js"></script>
+     <script src="./js/form.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/form-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
@@ -68,9 +70,9 @@
                </div>
             </fieldset>
             <div class="form-group row">
-               <label for="psw" class="control-label col-sm-2">Password</label>
+               <label for="password" class="control-label col-sm-2">Password</label>
                <div class="col-sm-10">
-                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="psw" required>
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="password" required>
                </div>
             </div>
             <div class="form-group row">
@@ -89,7 +91,7 @@
                </label>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right" name="signinBt"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
+               <button type="submit" class="btn btn-submit float-right" name="signinBt" onclick="formhash(this.form, this.form.password);"><em class="fa fa-user-plus fa-lg" aria-hidden="true"></em>Registrati</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
@@ -126,7 +128,11 @@
      } else {
        require_once ('config.php');
      $user=$_POST["user"];
-     $psw=$_POST["psw"];
+
+     $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+     // Crea una password usando la chiave appena creata.
+     $psw = hash('sha512', $_POST["psw"].$random_salt);
+
      $telefono=$_POST["telefono"];
      $mail=$_POST["mail"];
      if(isset($_POST["check-hide"])) {
@@ -161,11 +167,11 @@
       $immagineRistorante = '.' . $uploaddir . $userfile_name;
        //ristorante
        $sql="INSERT INTO `ristorante` (nomeRistorante, immagine) VALUES ('$ristorante', '$immagineRistorante');";
-       $sql.="INSERT INTO `utente` (telefono, password, email, username, admin, nomeRistorante)
-       VALUES ('$telefono', '$psw', '$mail', '$user', 1, '$ristorante');";
+       $sql.="INSERT INTO `utente` (telefono, password, email, username, admin, nomeRistorante, salt)
+       VALUES ('$telefono', '$psw', '$mail', '$user', 1, '$ristorante', '$random_salt');";
      } else {
-       $sql="INSERT INTO `utente` (telefono, password, email, username)
-       VALUES ('$telefono', '$psw', '$mail', '$user');";
+       $sql="INSERT INTO `utente` (telefono, password, email, username, salt)
+       VALUES ('$telefono', '$psw', '$mail', '$user', '$random_salt');";
      }
      if($cn->multi_query($sql) === TRUE)
      {

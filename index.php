@@ -1,3 +1,8 @@
+<?php
+  include './secureLogin/secureLogin.php';
+  sec_session_start(); // usiamo la nostra funzione per avviare una sessione php sicura
+  include 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="it">
    <head>
@@ -13,6 +18,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
       <script src="./js/hide-accessibily.js"></script>
+      <script type="text/javascript" src="./js/sha512.js"></script>
+      <script type="text/javascript" src="./js/form.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/form-style.css">
@@ -70,7 +77,7 @@
                </div>
                <!-- Modal body -->
                <div class="modal-body">
-                  <form method="post" class="form form-horizontal">
+                  <form method="post" class="form form-horizontal" action="index.php">
                      <div class="form-group">
                         <label for="user" class="control-label">Username</label>
                         <div class="col-sm-10 input-group">
@@ -79,10 +86,10 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <label for="psw" class="control-label">Password</label>
+                        <label for="password" class="control-label">Password</label>
                         <div class="col-sm-10 input-group">
                            <span class="input-group-addon"><a class="fa fa-key fa-fw fa-lg" aria-hidden="true"></a></span>
-                           <input type="password" class="form-control form-control-sm rounded-0" name="psw" id="psw" required>
+                           <input type="password" class="form-control form-control-sm rounded-0" name="psw" id="password" required>
                         </div>
                      </div>
                      <div class="form-group">
@@ -91,15 +98,34 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description small">Ricordami</span>
                         </label>
-                        <button type="submit" class="btn btn-submit  float-right"><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Accedi</button>
+                        <button type="submit" class="btn btn-submit  float-right" onclick="formhash(this.form, this.form.password);" ><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Accedi</button>
                         <button type="reset" class="btn mb-2 mr-sm-2 mb-sm-0 float-right">Annulla</button>
                      </div>
                   </form>
                </div>
-               <!-- Modal footer <div class="modal-footer">
-                  </div> -->
             </div>
          </div>
       </div>
    </body>
 </html>
+<?php
+if(isset($_POST['user'], $_POST['psw'])) {
+   $username = $_POST['user'];
+   $password = $_POST['psw']; // Recupero la password criptata.
+   if(login($username, $password, $cn) == true) {
+      // Login eseguito
+      //### controllare cos'è
+       ?><script type="text/javascript">
+      location.href = "sceltaRistorante.php";
+      </script><?php
+   } else {
+      // Login fallito
+      ?><script type="text/javascript">
+        alert("Login non effettuato.");
+        </script><?php
+   }
+ } else {
+   // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
+   echo 'Invalid Request';
+ }
+?>
