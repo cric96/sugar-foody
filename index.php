@@ -120,9 +120,11 @@ if(isset($_POST['user'], $_POST['psw'])) {
          $stmt->store_result();
          $stmt->bind_result($admin, $nomeRistorante); // recupera il risultato della query e lo memorizza nelle relative variabili.
          $stmt->fetch();
+
          if($admin == null) {
            if($nomeRistorante != null) {
              //fattorino
+             $_SESSION['nomeRistorante'] = $nomeRistorante;
              ?><script type="text/javascript">
             location.href = "home_fattorini.php";
             </script><?php
@@ -134,6 +136,8 @@ if(isset($_POST['user'], $_POST['psw'])) {
            }
          } else {
            //fornitore
+           $_SESSION['admin'] = $admin;
+           $_SESSION['nomeRistorante'] = $nomeRistorante;
            ?><script type="text/javascript">
           location.href ="home_admin.php";
           </script><?php
