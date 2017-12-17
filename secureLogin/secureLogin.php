@@ -69,7 +69,7 @@ function checkbrute($username, $mysqli) {
       }
    }
 }
-
+//bisogna controllare tipo di utente
 function login_check($mysqli) {
    // Verifica che tutte le variabili di sessione siano impostate correttamente
    if(isset($_SESSION['username'], $_SESSION['login_string'])) {
