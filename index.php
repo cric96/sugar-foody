@@ -115,9 +115,32 @@ if(isset($_POST['user'], $_POST['psw'])) {
    if(login($username, $password, $cn) == true) {
       // Login eseguito
       //### controllare cos'è
-       ?><script type="text/javascript">
-      location.href = "sceltaRistorante.php";
-      </script><?php
+      if ($stmt = $cn->prepare("SELECT admin, nomeRistorante FROM utente WHERE username = ? LIMIT 1")) {
+         $stmt->bind_param('s', $username); // esegue il bind del parametro '$username'.
+         $stmt->execute(); // esegue la query appena creata.
+         $stmt->store_result();
+         $stmt->bind_result($admin, $nomeRistorante); // recupera il risultato della query e lo memorizza nelle relative variabili.
+         $stmt->fetch();
+         if($admin == null) {
+           if($nomeRistorante != null) {
+             //fattorino
+             ?><script type="text/javascript">
+            location.href = "home_fattorini.php";
+            </script><?php
+           } else {
+             //utente
+             ?><script type="text/javascript">
+            location.href = "sceltaRistorante.php";
+            </script><?php
+           }
+         } else {
+           //fornitore
+           ?><script type="text/javascript">
+          location.href ="home_admin.php";
+          </script><?php
+         }
+
+    }
    } else {
       // Login fallito
       ?><script type="text/javascript">
@@ -126,6 +149,5 @@ if(isset($_POST['user'], $_POST['psw'])) {
    }
  } else {
    // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
-   echo 'Invalid Request';
  }
 ?>
