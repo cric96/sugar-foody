@@ -1,21 +1,12 @@
 .hide {
   display: none;
 }
-.prova {
-  border-width: medium;
-}
-.prova>label {
-  font-size: 15px;
-}
-td {
-  margin-left: auto;
-}
- #pagamento {
+#pagamento {
    margin: 0 auto;
    font-size: 120%;
  }
- .ingredienti {
-   font-size: 60%;
+.ingredienti {
+   font-size: 50%;
  }
 label.orario {
   text-align: left;
@@ -29,4 +20,15 @@ label.orario {
 .btn-submit:hover {
   background-color: rgba(224,118,56,1);
   border-color: #FFBF18;
+}
+.overlay {
+  background-image: url(../img/riepilogoOrdine.jpg) !important;
+}
+h2.my-4 {
+  color: black !important;
+}
+ul.prova {
+  list-style-type: none; /* nessun elemento come marcatore */
+  padding-left: 0;       /* padding nullo */
+  margin-left: 0;        /* margine nullo */
 }

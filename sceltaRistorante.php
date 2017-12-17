@@ -30,9 +30,12 @@
       <!-- Team Members Row -->
       <ul class="row">
         <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="Ristorante">
-          <h3>Nome ristorante
-          </h3>
+          <div class="img-wrapper">
+            <img class="img-fluid d-block mx-auto" src="./img/nomeRistorante.png" alt="ristorante">
+          </div>
+          <div class="link-wrapper">
+            <a class="categories" href="#">Nome Ristorante</a>
+          </div>
         </li>
       </ul>
   </main>
