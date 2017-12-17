@@ -153,4 +153,5 @@ if(isset($_POST['user'], $_POST['psw'])) {
  } else {
    // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
  }
+ $cn->close();
 ?>
