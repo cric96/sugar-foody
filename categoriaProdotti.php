@@ -19,21 +19,16 @@
   <?php
     require_once("./config.php");
     $nomeRistorante = $_GET["nome"];
-    // TODO aggiungere valore alla sessione
-    $query = "SELECT DISTINCT nome, immagine FROM categoria, prodotto, listino
+    $_SESSION['nomeRistorante'] = $nomeRistorante;
+    $query = "SELECT DISTINCT categoria.nome, immagine FROM categoria, prodotto, listino
         WHERE prodotto.nomeCategoria=categoria.nome
         AND listino.idProdotto=prodotto.id
-        AND listino.nomeRistorante=".$nomeRistorante;
+        AND listino.nomeRistorante='".$nomeRistorante."'";
     $res = $cn->query($query);
     if ($res !== false) {
-      
-    } else {
-      echo "Errore nell'interrogazione";
-    }
    ?>
   <body>
     <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-
       <!-- Page Content -->
     <header>
       <div class="overlay">
@@ -44,56 +39,29 @@
       <!-- Introduction Row -->
       <!-- Team Members Row -->
       <ul class="row">
+        <?php
+        if($res->num_rows > 0) {
+          while($row = $res->fetch_assoc()) {
+         ?>
         <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-            <img class="img-fluid d-block mx-auto" src="./img/pasta.png" alt="Pasta">
-          </div>
+          <a href="./componiOrdine.php?categoria=<?php echo $row["nome"];?>">
+            <div class="img-wrapper">
+              <img class="img-fluid d-block mx-auto" src=<?php echo $row["immagine"];?> alt=<?php echo $row["nome"];?>>
+            </div>
+          </a>
           <div class="link-wrapper">
-            <a class="categories" href="#">Pasta</a>
-          </div>
-        </li>
-        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="./img/pizza.png" alt="Pizza">
-          </div>
-          <div class="link-wrapper">
-            <a href="#" class="categories">Pizza</a>
-          </div>
-        </li>
-        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="./img/carne.png" alt="Carne">
-          </div>
-          <div class="link-wrapper">
-              <a href="#" class="categories">Secondo di carne</a>
-          </div>
-        </li>
-        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="./img/pesce.png" alt="Pesce">
-          </div>
-          <div class="link-wrapper">
-              <a href="#" class="categories">Pesce</a>
-          </div>
-        </li>
-        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="./img/panini.png" alt="Fast food">
-          </div>
-          <div class="link-wrapper">
-              <a href="#" class="categories">Panini</a>
-          </div>
-        </li>
-        <li class="col-lg-3 col-5 col-md-4 col-sm-4 text-center mb-2">
-          <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src="./img/piadina.png" alt="Piadine e crescioni">
-          </div>
-          <div class="link-wrapper">
-              <a href="#" class="categories">Piadine</a>
+            <a class="categories" href="./componiOrdine.php?categoria=<?php echo $row["nome"];?>"><?php echo $row["nome"];?></a>
           </div>
         </li>
       </ul>
     </main>
+    <?php
+          }
+        }
+      } else {
+        echo "Errore nell'interrogazione";
+      }
+     ?>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <?php include('./include/notification_modal.php') ?>
     <script>
