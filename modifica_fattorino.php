@@ -2,7 +2,7 @@
 // Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
 include("./secureLogin/secureLogin.php");
 sec_session_start();
-include("config.php");
+require_once("./config.php");
 if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
  ?><script type="text/javascript">
  location.href = "index.php";

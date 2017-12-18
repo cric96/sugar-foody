@@ -2,7 +2,7 @@
 // Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
 include("./secureLogin/secureLogin.php");
 sec_session_start();
-include("config.php");
+require_once("./config.php");
 if(login_check_user() != true || !isset($_GET['categoria']) || empty($_GET['categoria'])) {
   if(login_check_fattorino()) {
     ?><script type="text/javascript">
@@ -113,7 +113,14 @@ $cn->close();
                <form class="bubble" action="#" method="post">
                  <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
-                   <legend class="ingr">Ingredienti:</legend>
+                   <?php
+                    if( $_POST["id"] ) {
+                      $id = $_POST['id'];
+                       echo "Prodotto ". $id;
+                    }
+
+                    ?>
+                   <legend class="ingr">Ingredienti: </legend>
                    <div class="prova">
                      <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
                      <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
