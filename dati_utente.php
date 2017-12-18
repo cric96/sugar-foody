@@ -24,6 +24,8 @@ if(login_check($cn) != true) {
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
+      <script src="./js/sha512.js"></script>
+      <script src="./js/form.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/form-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
@@ -48,12 +50,32 @@ if(login_check($cn) != true) {
          $stmt->bind_result($mail, $telefono); // recupera il risultato della query e lo memorizza nelle relative variabili.
          $stmt->fetch();
        }
-       $stmt->close;
+       $stmt->close();
       ?>
       <main class="container content">
          <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante-->
-         <h2 class="my-4">Dati personali</h2>
-         <form method="post" class="form-horizontal">
+
+         <?php if(login_check_admin($cn)) {
+           $ristorante = $_SESSION["nomeRistorante"];
+           $query_sql="SELECT immagine FROM ristorante WHERE nomeRistorante = '$ristorante' ";
+           $result = $cn->query($query_sql);
+           if($result !== false) {
+             if ($result->num_rows > 0) {
+               $row = $result->fetch_assoc();
+               $immagine = $row["immagine"]
+               ?>
+               <img width="10%" style="float:right; margin: 2%" src=<?php echo $immagine;?> alt=<?php echo $ristorante;?>>
+               <h2 class="my-4">Ristorante</h2>
+             <?php
+             }
+           }
+         } else {
+           ?>
+           <h2 class="my-4">Dati personali</h2>
+           <?php
+         }
+        ?>
+         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="dati_utente.php">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
@@ -78,7 +100,7 @@ if(login_check($cn) != true) {
                <div class="form-group row">
                   <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
                   <div class="col-sm-10">
-                     <input type="text" maxlength="40" minlength="3" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante" value="<?php echo $_SESSION["nomeRistorante"] ?>" readonly>
+                     <input type="text" maxlength="40" minlength="3" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante" value="<?php echo $ristorante ?>" readonly>
                   </div>
                </div>
                <div class="form-group row">
@@ -91,19 +113,19 @@ if(login_check($cn) != true) {
             </fieldset>
           <?php } ?>
             <div class="form-group row">
-               <label for="psw" class="control-label col-sm-2">Nuova password</label>
+               <label for="password" class="control-label col-sm-2">Nuova password</label>
                <div class="col-sm-10">
-                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="psw" required>
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="password">
                </div>
             </div>
             <div class="form-group row">
                <label for="psw2" class="control-label col-sm-2">Conferma Password</label>
                <div class="col-sm-10">
-                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw2" id="psw2" required>
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw2" id="psw2">
                </div>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
+               <button type="submit" class="btn btn-submit float-right" name="changeBt" onclick="formhash(this.form, this.form.password);"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
@@ -113,4 +135,83 @@ if(login_check($cn) != true) {
          w3.includeHTML();
       </script>
    </body>
+   <?php
+   if(isset($_POST["changeBt"])) {
+     if($_POST["psw"] !== $_POST["psw2"]) {
+       ?><script type="text/javascript">
+        alert("Passoword differenti.");
+       </script><?php
+     } else {
+       require_once ('config.php');
+       $username=$_SESSION["username"];
+       $telefono=$_POST["telefono"];
+       $mail=$_POST["mail"];
+       if(login_check_admin($cn) && isset($_FILES['immagineRistorante'])) {
+         // per prima cosa verifico che il file sia stato effettivamente caricato
+         if(is_uploaded_file($_FILES['immagineRistorante']['tmp_name'])) {
+         $uploaddir = '/img/';
+         $userfile_tmp = $_FILES['immagineRistorante']['tmp_name'];
+         $userfile_name = $_FILES['immagineRistorante']['name'];
+         if($immagine !== '.' . $uploaddir . $userfile_name) {
+           if (move_uploaded_file($userfile_tmp, getcwd() . $uploaddir . $userfile_name)) {
+             //Se l'operazione è andata a buon fine...
+           }else{
+           //Se l'operazione è fallta...
+           ?><script type="text/javascript">
+            alert("Errore caricamento immagine.");
+           </script><?php
+           exit;
+         }
+
+         $immagine = '.' . $uploaddir . $userfile_name;
+          //immagine da aggiornare
+          $sql="UPDATE RISTORANTE SET immagine='$immagine' WHERE nomeRistorante='$ristorante';";
+        }
+      }
+     } else {
+       $sql='';
+     }
+     //controllo se ha inserito la nuova password
+     if($_POST["psw"] != "") {
+       $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+       // Crea una password usando la chiave appena creata.
+       $psw = hash('sha512', $_POST["psw"].$random_salt);
+       $sql.="UPDATE UTENTE
+       SET telefono='$telefono',
+       email='$mail',
+       password='$psw',
+       salt='$random_salt'
+       WHERE username = '$username'";
+    } else {
+       $sql.="UPDATE UTENTE
+       SET telefono='$telefono',
+       email='$mail'
+       WHERE username = '$username'";
+     }
+     if($cn->multi_query($sql) === TRUE)
+     {
+       ?><script type="text/javascript">
+       <?php if(login_check_admin($cn)) {
+         ?>location.href = "home_admin.php";
+         <?php
+       } else if(login_check_user($cn)) {
+         ?>location.href = "home_admin.php";
+         <?php
+       } else {
+         ?> location.href = "sceltaRistorante.php";
+         <?php
+       }?>
+        alert("Modifica dei dati avvenuto correttamente.");
+       </script><?php
+     }
+     else
+     {
+       ?><script type="text/javascript">
+        alert("Errore nella modifica dei dati");
+       </script><?php
+     }
+     $cn->close();
+   }
+   }
+   ?>
 </html>
