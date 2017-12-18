@@ -3,10 +3,10 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 include("config.php");
-if(login_check($cn) != true) { //NNNONNNNN FUNZIONA DA ADMIN
- /*?><script type="text/javascript">
+if(login_check($cn) != true) {
+ ?><script type="text/javascript">
  location.href = "index.php";
- </script><?php*/
+ </script><?php
  $cn->close();
 }
 ?>
@@ -73,12 +73,12 @@ if(login_check($cn) != true) { //NNNONNNNN FUNZIONA DA ADMIN
                </div>
             </div>
             <!--Questo fieldset verrà visualizzato se e solo se l'utente è un ristorante, carica immagine e si può far modificare o no?-->
-            <?php if(login_check_admin($cn) && !isset($_GET['F']) && !empty($_GET['F'])) {?>
+            <?php if(login_check_admin($cn)) { ?>
             <fieldset class="form-group fieldset-hide">
                <div class="form-group row">
                   <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
                   <div class="col-sm-10">
-                     <input type="text" maxlength="40" minlength="3" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante" value="<?php echo $_SESSION["nomeRistorante"] ?>">
+                     <input type="text" maxlength="40" minlength="3" class="form-control form-control-sm" name="nomeRistorante" id="nomeRistorante" value="<?php echo $_SESSION["nomeRistorante"] ?>" readonly>
                   </div>
                </div>
                <div class="form-group row">

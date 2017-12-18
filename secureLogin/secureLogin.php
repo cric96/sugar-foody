@@ -72,7 +72,7 @@ function login_check($mysqli) {
 }
 
 function login_check_user($mysqli) {
-  return login_check($mysqli) && $_SESSION["type"] === 'A';
+  return login_check($mysqli) && $_SESSION["type"] === 'U';
 }
 
 function login_check_fattorino($mysqli) {
@@ -80,6 +80,6 @@ function login_check_fattorino($mysqli) {
 }
 
 function login_check_admin($mysqli) {
-  return login_check($mysqli) && $_SESSION["type"] === 'U';
+  return login_check($mysqli) && $_SESSION["type"] === 'A';
 }
 ?>
