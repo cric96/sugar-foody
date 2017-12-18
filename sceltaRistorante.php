@@ -45,7 +45,7 @@ i valori della sessione ed effettuerò la query che mi caricherà solo le catego
 questo determinato ristorante-->
           <a href="./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>">
             <div class="img-wrapper">
-              <img class="img-fluid d-block mx-auto" src=<?php echo $row["immagine"]; ?> alt="ristorante">
+              <img class="img-fluid d-block mx-auto" src=<?php echo $row["immagine"]; ?> alt=<?php echo "Ristorante ".$row["nomeRistorante"];?>>
             </div>
           </a>
           <div class="link-wrapper">
