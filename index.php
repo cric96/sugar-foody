@@ -124,18 +124,21 @@ if(isset($_POST['user'], $_POST['psw'])) {
          if($admin == null) {
            if($nomeRistorante != null) {
              //fattorino
+             $_SESSION['type'] = 'F';
              $_SESSION['nomeRistorante'] = $nomeRistorante;
              ?><script type="text/javascript">
             location.href = "home_fattorini.php";
             </script><?php
            } else {
              //utente
+             $_SESSION['type'] = 'U';
              ?><script type="text/javascript">
             location.href = "sceltaRistorante.php";
             </script><?php
            }
          } else {
            //fornitore
+           $_SESSION['type'] = 'A';
            $_SESSION['admin'] = $admin;
            $_SESSION['nomeRistorante'] = $nomeRistorante;
            ?><script type="text/javascript">

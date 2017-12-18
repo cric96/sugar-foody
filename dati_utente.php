@@ -4,10 +4,9 @@ include("./secureLogin/secureLogin.php");
 sec_session_start();
 include("config.php");
 if(login_check($cn) != true) { //NNNONNNNN FUNZIONA DA ADMIN
- ?><script type="text/javascript">
-alert("non mi freghi");
+ /*?><script type="text/javascript">
  location.href = "index.php";
- </script><?php
+ </script><?php*/
  $cn->close();
 }
 ?>
