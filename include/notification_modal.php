@@ -6,25 +6,16 @@
   crossorigin="anonymous"></script>
 <?php
   require_once("./config.php");
-  $notifications=array();
-  //$username = $_SESSION["username"]
+  include("./class/notificationSet.php");
+  $notificationSet = new NotificationSet($cn);
   $username = "default";
-
-  $res = $cn->query("SELECT * FROM notifica WHERE username='".$username."'");
-  if($res !== FALSE) {
-    if ($res->num_rows>0) {
-      $i = 0;
-      while($row_data = $res->fetch_assoc()) {
-        $notifications[$i] = $row_data;
-        $i++;
-      }
-    }
-  } else {
-    ?><script type="text/javascript">
-    alert("Problemi con le notifiche contattare un tecnico");
-    </script><?php
+  $notifications=$notificationSet->getNotification($username);
+  if($notifications === FALSE) {
+      ?><script type="text/javascript">
+      alert("Problemi con le notifiche contattare un tecnico");
+      </script><?php
+      $notifications=array();
   }
-
 ?>
 <div class="notification" id="notification">
   <a>
@@ -48,8 +39,8 @@
                foreach ($notifications as $notification) {
                  ?>
                    <tr>
-                      <td><?php echo $notification["numeroOrdine"]?></td>
-                      <td><?php echo $notification["stato"]?></td>
+                      <td><?php echo $notification->getOrder()?></td>
+                      <td><?php echo $notification->getStatus()?></td>
                    </tr>
                <?php
              }
