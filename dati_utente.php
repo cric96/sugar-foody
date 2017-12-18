@@ -112,6 +112,12 @@ if(login_check() != true) {
                </div>
             </fieldset>
           <?php } ?>
+          <div class="form-group row">
+             <label for="oldpsw" class="control-label col-sm-2">Vecchia Password</label>
+             <div class="col-sm-10">
+                <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="oldpsw" id="oldpsw">
+             </div>
+          </div>
             <div class="form-group row">
                <label for="password" class="control-label col-sm-2">Nuova password</label>
                <div class="col-sm-10">
@@ -146,6 +152,16 @@ if(login_check() != true) {
        $username=$_SESSION["username"];
        $telefono=$_POST["telefono"];
        $mail=$_POST["mail"];
+       $resCheck = $cn->query("SELECT * FROM utente where email = '$mail' and username!= '$username'");
+       if($resCheck !== false) {
+         if ($resCheck->num_rows > 0) {
+           ?> <script type="text/javascript">
+            location.href = "dati_utente.php";
+            alert("Mail già presente");
+           </script>
+           <?php
+         }
+       }
        if(login_check_admin() && isset($_FILES['immagineRistorante'])) {
          // per prima cosa verifico che il file sia stato effettivamente caricato
          if(is_uploaded_file($_FILES['immagineRistorante']['tmp_name'])) {
@@ -173,6 +189,13 @@ if(login_check() != true) {
      }
      //controllo se ha inserito la nuova password
      if($_POST["psw"] != "") {
+       //controllo se la vecchia password è corretta
+       if(login($username, $_POST["oldpsw"], $cn) != true) {
+         ?><script type="text/javascript">
+          alert("Errore vecchia password non corretta.");
+          location.href = "dati_utente.php";
+         </script><?php
+       }
        $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
        // Crea una password usando la chiave appena creata.
        $psw = hash('sha512', $_POST["psw"].$random_salt);

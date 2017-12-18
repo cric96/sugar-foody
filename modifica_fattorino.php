@@ -95,6 +95,16 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
        require_once ('config.php');
        $telefono=$_POST["telefono"];
        $mail=$_POST["mail"];
+       $resCheck = $cn->query("SELECT * FROM utente where email = '$mail' and username!= '$fattorino'");
+       if($resCheck !== false) {
+         if ($resCheck->num_rows > 0) {
+           ?> <script type="text/javascript">
+            location.href = "modifica_fattorino.php?F='<?php echo $fattorino; ?>'";
+            alert("Mail già presente");
+           </script>
+           <?php
+         }
+       }
        $sql="UPDATE UTENTE
        SET telefono='$telefono',
        email='$mail'
