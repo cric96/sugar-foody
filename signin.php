@@ -137,6 +137,16 @@
      $mail=$_POST["mail"];
      if(isset($_POST["check-hide"])) {
        $ristorante=$_POST["nomeRistorante"];
+       $resCheck = $cn->query("SELECT * FROM ristorante where nomeRistorante = '$ristorante'");
+       if($resCheck !== false) {
+         if ($resCheck->num_rows > 0) {
+           ?> <script type="text/javascript">
+            location.href = "signin.php";
+            alert("Ristorante già presente");
+           </script>
+           <?php
+         }
+       }
        // per prima cosa verifico che il file sia stato effettivamente caricato
       if (!isset($_FILES['immagineRistorante']) || !is_uploaded_file($_FILES['immagineRistorante']['tmp_name'])) {
         ?><script type="text/javascript">
@@ -172,22 +182,42 @@
      } else {
        $sql="INSERT INTO `utente` (telefono, password, email, username, salt)
        VALUES ('$telefono', '$psw', '$mail', '$user', '$random_salt');";
+     };
+     $resCheck = $cn->query("SELECT * FROM utente where username = '$user'");
+     if($resCheck !== false) {
+       if ($resCheck->num_rows > 0) {
+         ?> <script type="text/javascript">
+          location.href = "signin.php";
+          alert("Username già presente");
+         </script>
+         <?php
+       }
      }
-     if($cn->multi_query($sql) === TRUE)
-     {
-       ?><script type="text/javascript">
-        location.href = "index.php";
-        alert("Inserimento dei dati avvenuto correttamente.");
-       </script><?php
+     $resCheck = $cn->query("SELECT * FROM utente where email = '$mail'");
+     if($resCheck !== false) {
+       if ($resCheck->num_rows > 0) {
+         ?> <script type="text/javascript">
+          location.href = "signin.php";
+          alert("Mail già presente");
+         </script>
+         <?php
+       }
      }
-     else
-     {
-       ?><script type="text/javascript">
-        alert("Errore nell'inserimento");
-       </script><?php
+       if($cn->multi_query($sql) === TRUE)
+       {
+         ?><script type="text/javascript">
+          location.href = "index.php";
+          alert("Inserimento dei dati avvenuto correttamente.");
+         </script><?php
+       }
+       else
+       {
+         ?><script type="text/javascript">
+          alert("Errore nell'inserimento");
+         </script><?php
+       }
+       $cn->close();
      }
-     $cn->close();
-   }
    }
    ?>
 </html>
