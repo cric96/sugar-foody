@@ -3,7 +3,7 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 include("config.php");
-if(login_check($cn) != true) {
+if(login_check() != true) {
  ?><script type="text/javascript">
  location.href = "index.php";
  </script><?php
@@ -33,13 +33,13 @@ if(login_check($cn) != true) {
    </head>
    <body>
       <!--bisogna scegliere il menu tramite php-->
-      <?php if(login_check_user($cn)) {
+      <?php if(login_check_user()) {
         ?><nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
         <?php
-      } else if (login_check_fattorino($cn)) {
+      } else if (login_check_fattorino()) {
         ?><nav w3-include-html="./include/navbarFattorino.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
         <?php
-      } else if (login_check_admin($cn)) {
+      } else if (login_check_admin()) {
         ?><nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
         <?php
       }
@@ -55,7 +55,7 @@ if(login_check($cn) != true) {
       <main class="container content">
          <!--Il contenuto visualizzato potrà essere cambiato in caso di ristorante-->
 
-         <?php if(login_check_admin($cn)) {
+         <?php if(login_check_admin()) {
            $ristorante = $_SESSION["nomeRistorante"];
            $query_sql="SELECT immagine FROM ristorante WHERE nomeRistorante = '$ristorante' ";
            $result = $cn->query($query_sql);
@@ -95,7 +95,7 @@ if(login_check($cn) != true) {
                </div>
             </div>
             <!--Questo fieldset verrà visualizzato se e solo se l'utente è un ristorante, carica immagine e si può far modificare o no?-->
-            <?php if(login_check_admin($cn)) { ?>
+            <?php if(login_check_admin()) { ?>
             <fieldset class="form-group fieldset-hide">
                <div class="form-group row">
                   <label for="nomeRistorante" class="control-label col-sm-2">Nome ristorante</label>
@@ -146,7 +146,7 @@ if(login_check($cn) != true) {
        $username=$_SESSION["username"];
        $telefono=$_POST["telefono"];
        $mail=$_POST["mail"];
-       if(login_check_admin($cn) && isset($_FILES['immagineRistorante'])) {
+       if(login_check_admin() && isset($_FILES['immagineRistorante'])) {
          // per prima cosa verifico che il file sia stato effettivamente caricato
          if(is_uploaded_file($_FILES['immagineRistorante']['tmp_name'])) {
          $uploaddir = '/img/';
@@ -191,10 +191,10 @@ if(login_check($cn) != true) {
      if($cn->multi_query($sql) === TRUE)
      {
        ?><script type="text/javascript">
-       <?php if(login_check_admin($cn)) {
+       <?php if(login_check_admin()) {
          ?>location.href = "home_admin.php";
          <?php
-       } else if(login_check_user($cn)) {
+       } else if(login_check_user()) {
          ?>location.href = "home_admin.php";
          <?php
        } else {

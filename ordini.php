@@ -3,12 +3,12 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 include("config.php");
-if(login_check_user($cn) != true) {
-  if(login_check_fattorino($cn)) {
+if(login_check_user() != true) {
+  if(login_check_fattorino()) {
     ?><script type="text/javascript">
    location.href = "home_fattorini.php";
    </script><?php
-  } else if (login_check_admin($cn)) {
+  } else if (login_check_admin()) {
     ?><script type="text/javascript">
    location.href = "home_admin.php";
    </script><?php

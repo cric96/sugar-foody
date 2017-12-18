@@ -67,19 +67,19 @@ function checkbrute($username, $mysqli) {
       }
    }
 }
-function login_check($mysqli) {
+function login_check() {
    return isset($_SESSION['username'], $_SESSION['type']);
 }
 
-function login_check_user($mysqli) {
-  return login_check($mysqli) && $_SESSION["type"] === 'U';
+function login_check_user() {
+  return login_check() && $_SESSION["type"] === 'U';
 }
 
-function login_check_fattorino($mysqli) {
-  return login_check($mysqli) && $_SESSION["type"] === 'F';
+function login_check_fattorino() {
+  return login_check() && $_SESSION["type"] === 'F';
 }
 
-function login_check_admin($mysqli) {
-  return login_check($mysqli) && $_SESSION["type"] === 'A';
+function login_check_admin() {
+  return login_check() && $_SESSION["type"] === 'A';
 }
 ?>

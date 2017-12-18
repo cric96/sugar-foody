@@ -3,7 +3,7 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 include("config.php");
-if(login_check_admin($cn) != true || !isset($_GET['F']) || empty($_GET['F'])) {
+if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
  ?><script type="text/javascript">
  location.href = "index.php";
  </script><?php
