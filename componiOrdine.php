@@ -105,13 +105,11 @@ $cn->close();
           <div class="modal-content">
              <!-- Modal Header -->
              <div class="modal-header">
-                <h4 class="modal-title"> Modifica Piatto</h4>
+                <h4 class="modal-title" id="productId"> Modifica Piatto n°</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
              </div>
              <!-- Modal body -->
              <div class="modal-body">
-               <!-- l'accapo body -->
-               Id prodotto: <p id="productId">id</p>
                <form class="bubble" action="#" method="post">
                  <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
@@ -141,9 +139,9 @@ $cn->close();
        </div>
     </div>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
-    <?php include('./include/notification_modal.php') ?>
     <script>
        w3.includeHTML();
     </script>
+    <?php include('./include/notification_modal.php') ?>
   </body>
 </html>

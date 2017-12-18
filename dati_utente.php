@@ -218,10 +218,10 @@ if(login_check() != true) {
          ?>location.href = "home_admin.php";
          <?php
        } else if(login_check_user()) {
-         ?>location.href = "home_admin.php";
+         ?>location.href = "sceltaRistorante.php";
          <?php
        } else {
-         ?> location.href = "sceltaRistorante.php";
+         ?> location.href = "home_fattorini.php";
          <?php
        }?>
         alert("Modifica dei dati avvenuto correttamente.");
