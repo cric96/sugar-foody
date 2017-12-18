@@ -53,15 +53,15 @@
             <a class="categories" href="./componiOrdine.php?categoria=<?php echo $row["nome"];?>"><?php echo $row["nome"];?></a>
           </div>
         </li>
+        <?php
+              }
+            }
+          } else {
+            echo "Errore nell'interrogazione";
+          }
+         ?>
       </ul>
     </main>
-    <?php
-          }
-        }
-      } else {
-        echo "Errore nell'interrogazione";
-      }
-     ?>
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <?php include('./include/notification_modal.php') ?>
     <script>
