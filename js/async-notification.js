@@ -6,10 +6,25 @@ $(document).ready(function() {
     $("#window").fadeIn(1000);
     open = true;
   })
-  $(".close").click(function() {
+  $("#exit").click(function() {
+    open = false;
     $("#window").fadeOut(1000,function() {
-      open = false;
+
+      $.ajax({
+        url: "/sugar-foody/ajax/reset-notification.php",
+        type: "POST",
+        dataType: "json",
+        data: {"reset": true},
+        success: function(data){
+            console.log(data);
+        },
+        error: function(error){
+             console.log("Error:");
+             console.log(error);
+        }
+      });
     });
+
   })
 
 })
@@ -25,9 +40,23 @@ function refresh()
         $("#window").fadeIn(1000);
         open = true;
       })
-      $(".close").click(function() {
+      $("#exit").click(function() {
         $("#window").fadeOut(1000,function() {
           open = false;
+          $.ajax({
+            url: "/sugar-foody/ajax/reset-notification.php",
+            type: "POST",
+            dataType: "json",
+            data: {"reset": true},
+            success: function(data){
+                console.log(data);
+            },
+            error: function(error){
+                 console.log("Error:");
+                 console.log(error);
+            }
+          });
+
         });
       })
     });
@@ -38,4 +67,4 @@ setInterval(function(){
 
   refresh();;
 
-}, 5000);
+}, 1000);

@@ -9,32 +9,32 @@
   $notifications=array();
   //$username = $_SESSION["username"]
   $username = "default";
-  if(isset($_POST["reset"])) {
-    //RESET THE NOTIFICATION
-  } else {
-      $res = $cn->query("SELECT * FROM notifica WHERE username='".$username."'");
-      if($res !== FALSE) {
-        if ($res->num_rows>0) {
-          $i = 0;
-          while($row_data = $res->fetch_assoc()) {
-            $notifications[$i] = $row_data;
-            $i++;
-          }
-        }
-      } else {
-        ?><script type="text/javascript">
-        alert("Problemi con le notifiche contattare un tecnico");
-        </script><?php
+
+  $res = $cn->query("SELECT * FROM notifica WHERE username='".$username."'");
+  if($res !== FALSE) {
+    if ($res->num_rows>0) {
+      $i = 0;
+      while($row_data = $res->fetch_assoc()) {
+        $notifications[$i] = $row_data;
+        $i++;
       }
+    }
+  } else {
+    ?><script type="text/javascript">
+    alert("Problemi con le notifiche contattare un tecnico");
+    </script><?php
   }
+
 ?>
 <div class="notification" id="notification">
   <a>
      <span class="fa fa-bell brown"></span>
   </a>
-  <span class="badge badge-danger"><?php echo count($notifications) ?></span>
+  <?php if(count($notifications) != 0) {?>
+    <span class="badge badge-danger"><?php echo count($notifications) ?></span>
+  <?php } ?>
   <dialog id="window">
-    <a title="Close" class="close">X</a>
+    <a title="Close" id="exit">X</a>
     <div class="scrolling">
       <table class="table">
          <thead>
@@ -60,16 +60,15 @@
 
   </dialog>
 </div>
-<!-- The Modal -->
+<!-- The Modal
 <div class="modal fade" id="notifications">
    <div class="modal-dialog">
       <div class="modal-content">
-         <!-- Modal Header -->
+
          <div class="modal-header">
             <h4 class="modal-title">Notifiche</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
-         <!-- Modal body -->
          <div class="modal-body">
            <table class="table table-striped">
               <thead>
@@ -81,6 +80,7 @@
               <div>
 
                 <tbody>
+
                   <?php
                     foreach ($notifications as $notification) {
                       ?>
@@ -97,4 +97,5 @@
          </div>
       </div>
    </div>
+   -->
 </div>

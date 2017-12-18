@@ -30,9 +30,9 @@
 }
 
 
-.close {
+#exit {
 	background: #606061;
-	color: #FFFFFF;
+	color: #FFFFFF ! important;
 	line-height: 25px;
 	position: absolute;
 	right: -12px;
@@ -49,4 +49,45 @@
 	box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #00d9ff; }
+#exit:hover {
+  background: rgba(112, 59, 28,1);
+
+}
+
+
+@media only screen and (max-width: 500px) {
+  #window {
+    margin-left: auto;
+    border-radius: 10px;
+    width: 250px;
+    height: 100px;
+    font-size: 0.8em;
+    border: none;
+    background: -moz-linear-gradient(rgba(224,118,56,1),white );
+  	background: -webkit-linear-gradient(rgba(224,118,56,1),white );
+  	background: -o-linear-gradient(rgba(224,118,56,1),white );
+  }
+  .scrolling {
+    width: 150px;
+    height: 50px;
+    overflow: auto;
+  }
+}
+@media only screen and (max-height: 400px) {
+  #window {
+    margin-left: auto;
+    border-radius: 10px;
+    width: 250px;
+    height: 100px;
+    font-size: 0.8em;
+    border: none;
+    background: -moz-linear-gradient(rgba(224,118,56,1),white );
+  	background: -webkit-linear-gradient(rgba(224,118,56,1),white );
+  	background: -o-linear-gradient(rgba(224,118,56,1),white );
+  }
+  .scrolling {
+    width: 200px;
+    height: 50px;
+    overflow: auto;
+  }
+}
