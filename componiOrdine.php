@@ -1,3 +1,28 @@
+<?php
+// Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
+include("./secureLogin/secureLogin.php");
+sec_session_start();
+include("config.php");
+if(login_check_user() != true || !isset($_GET['categoria']) || empty($_GET['categoria'])) {
+  if(login_check_fattorino()) {
+    ?><script type="text/javascript">
+   location.href = "home_fattorini.php";
+   </script><?php
+  } else if (login_check_admin()) {
+    ?><script type="text/javascript">
+   location.href = "home_admin.php";
+   </script><?php
+ } else {
+  ?><script type="text/javascript">
+ location.href = "index.php";
+ </script><?php
+}
+$cn->close();
+} else {
+  $categoria = $_GET["categoria"];
+  $_SESSION['categoria'] = $categoria;
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
   <head>
@@ -29,6 +54,16 @@
     </header>
     <main class="container">
       <section>
+        <?php
+        $ristorante = $_SESSION['nomeRistorante'];
+        $query_sql="SELECT p.nome, l.prezzo FROM listino l, prodotto p
+        WHERE l.idProdotto = p.id
+        and l.nomeRistorante = '$ristorante'
+        and p.nomeCategoria = '$categoria' ";
+        $result = $cn->query($query_sql);
+        if($result !== false){
+          if ($result->num_rows > 0) {
+        ?>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -38,28 +73,29 @@
             </tr>
           </thead>
           <tbody>
+            <?php
+             while($row = $result->fetch_assoc()) {
+                 ?>
             <tr>
-              <td>Piada piadosa</td>
-              <td>100€</td>
+              <td><?php echo $row["nome"]; ?></td>
+              <td><?php echo $row["prezzo"]; ?></td>
               <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
-            <tr>
-              <td>Pizza pizzosa</td>
-              <td>100€</td>
-              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
-            </tr>
-            <tr>
-              <td>Pasta pastosa</td>
-              <td>100€</td>
-              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
-            </tr>
-            <tr>
-              <td>Dolce dolcioso</td>
-              <td>100€</td>
-              <td ><a class="fa fa-cart-plus "  data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
-            </tr>
+            <?php
+          }
+          ?>
           </tbody>
         </table>
+
+      <?php  } }
+      else{
+    ?>
+      <p>Errore nell'interrogazione</p>
+    <?php
+      }
+      $cn->close();
+         ?>
+
       </section>
       <a class="fa fa-arrow-right float-right fa-5x goOn" href="riepilogoOrdine.php"> <span class="hide-acc">Prosegui</span> </a>
     </main>
