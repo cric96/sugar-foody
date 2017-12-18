@@ -1,8 +1,9 @@
 $(document).on("click", ".modal-piatto", function () {
-     var productId = $(this).data('id');
-     $("#productId").text("Modifica Piatto n° " + productId);
+     var id = $(this).data('id');
+     var name = $(this).data('name');
+     $("#productName").text("Modifica " + name);
+     $("#productId").text(id);
+
     //$.post("componiOrdine.php", { id: productId });
-    $.post('componiOrdine.php', 'id=' + productId, function (response) {
-   alert(response);
-});
+    $.post('componiOrdine.php', 'id=' + id)
 });

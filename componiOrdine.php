@@ -80,7 +80,7 @@ $cn->close();
             <tr>
               <td><?php echo $row["nome"]; ?></td>
               <td><?php echo $row["prezzo"]; ?></td>
-              <td ><a class="fa fa-cart-plus modal-piatto" data-toggle="modal" data-target="#modificaPiatto" data-id=<?php echo $row["id"]; ?>> <span class="hide-acc">aggiungi</span> </a></td>
+              <td ><a class="fa fa-cart-plus modal-piatto" data-toggle="modal" data-target="#modificaPiatto" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['nome']; ?>"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <?php
           }
@@ -105,11 +105,12 @@ $cn->close();
           <div class="modal-content">
              <!-- Modal Header -->
              <div class="modal-header">
-                <h4 class="modal-title" id="productId"> Modifica Piatto n°</h4>
+                <h4 class="modal-title" id="productName"> Modifica </h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
              </div>
              <!-- Modal body -->
              <div class="modal-body">
+               <p id="productId" class="hide-acc"> Id</p>
                <form class="bubble" action="#" method="post">
                  <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
