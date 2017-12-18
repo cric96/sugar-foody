@@ -22,7 +22,7 @@
      <span class="fa fa-bell brown"></span>
   </a>
   <?php if(count($notifications) != 0) {?>
-    <span class="badge badge-danger"><?php echo count($notifications) ?></span>
+    <span id="number-notification" class="badge badge-danger"><?php echo count($notifications) ?></span>
   <?php } ?>
   <dialog id="window">
     <a title="Close" id="exit">X</a>
