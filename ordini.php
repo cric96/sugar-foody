@@ -95,7 +95,7 @@ $cn->close();
     			<p>Errore nell'interrogazione</p>
     		<?php
     			}
-    			$cn->close();
+    		//	$cn->close();
              ?>
          </section>
       </main>
