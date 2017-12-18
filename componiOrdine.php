@@ -39,10 +39,11 @@ $cn->close();
     <link rel="stylesheet" href="./css/fa-style.css">
     <link rel="stylesheet" href="./css/componiOrdine.css">
     <link rel="stylesheet" href="./css/catProdotti.css">
-    <link rel="stylesheet" href="/css/tabelle-style.css">
+    <link rel="stylesheet" href="./css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <link rel="stylesheet" href="./css/modificaPiatto.css">
     <script src="./js/hide-accessibily.js"></script>
+    <script src="./js/addToChart.js"></script>
     <title>Componi ordine</title>
   </head>
   <body>
@@ -56,7 +57,7 @@ $cn->close();
       <section>
         <?php
         $ristorante = $_SESSION['nomeRistorante'];
-        $query_sql="SELECT p.nome, l.prezzo FROM listino l, prodotto p
+        $query_sql="SELECT p.id, p.nome, l.prezzo FROM listino l, prodotto p
         WHERE l.idProdotto = p.id
         and l.nomeRistorante = '$ristorante'
         and p.nomeCategoria = '$categoria' ";
@@ -79,7 +80,7 @@ $cn->close();
             <tr>
               <td><?php echo $row["nome"]; ?></td>
               <td><?php echo $row["prezzo"]; ?></td>
-              <td ><a class="fa fa-cart-plus " data-toggle="modal" data-target="#modificaPiatto"> <span class="hide-acc">aggiungi</span> </a></td>
+              <td ><a class="fa fa-cart-plus modal-piatto" data-toggle="modal" data-target="#modificaPiatto" data-id=<?php echo $row["id"]; ?>> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <?php
           }
@@ -109,6 +110,8 @@ $cn->close();
              </div>
              <!-- Modal body -->
              <div class="modal-body">
+               <!-- l'accapo body -->
+               Id prodotto: <p id="productId">id</p>
                <form class="bubble" action="#" method="post">
                  <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
