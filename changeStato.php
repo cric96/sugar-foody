@@ -30,27 +30,53 @@ else if(!isset($_GET['id']) || empty($_GET['id']) || !isset($_GET['stato']) || e
   else {
   $id = $_GET['id'];
   $stato = $_GET['stato'];
-  $query="SELECT *
-  FROM ordine
-  WHERE numeroOrdine= $id";
+  $query="SELECT o.*, s.valore
+  FROM ordine o, stato s
+  WHERE numeroOrdine= $id
+  AND o.stato = s.nome";
   $result = $cn->query($query);
   if($result !== false){
     if ($result->num_rows == 1) {
       $row = $result->fetch_assoc();
       if($row['fattorino'] === $_SESSION['username']) {
-        //ok
-        $sql="UPDATE ORDINE
-        SET stato='$stato'
-        WHERE numeroOrdine = $id";
-        echo $sql;
-        if($cn->query($sql) === TRUE) {
-          ?><script type="text/javascript">
-         alert("modifica di stato avvenuta correttamente");
-         </script><?php
+        //controlla se stato da assegnare ha valore parti allo di stato attuale + 1
+        $check = "SELECT valore
+        from Stato
+        WHERE nome='$stato'";
+        $resultC = $cn->query($check);
+        if($resultC !== false){
+          if ($resultC->num_rows == 1) {
+            $rowC = $resultC->fetch_assoc();
+            $valAssegnato = $rowC['valore'];
+            if($row['valore'] == $rowC['valore'] - 1) {
+            //ok
+            $sql="UPDATE ORDINE
+            SET stato='$stato'
+            WHERE numeroOrdine = $id";
+            if($cn->query($sql) === TRUE) {
+              $check = "SELECT max(valore) as maxStato from Stato";
+              $resultC = $cn->query($check);
+              if($resultC !== false){
+                if ($resultC->num_rows == 1) {
+                  $rowC = $resultC->fetch_assoc();
+                  include("./class/notificationSet.php");
+                  if($rowC['maxStato'] == $valAssegnato) {
+                    //notifica anche per admin perchè ho lo stato finale
+                    (new NotificationSet($cn)) -> insertNotification($row['amministratore'],$id,$stato);
+                  }
+                  (new NotificationSet($cn)) -> insertNotification($row['utente'],$id,$stato);
+                    ?><script type="text/javascript">
+                   alert("modifica di stato avvenuta correttamente");
+                   </script><?php
+                 }
+               }
+            }
+          }
         }
+        }
+      }
       }
     }
   }
-}
-returnHome();
+  returnHome();
 ?>
