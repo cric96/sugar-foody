@@ -19,3 +19,7 @@ label.etichetta, .ingr {
   float :right;
   font-size: 120%;
 }
+
+.reset {
+  margin-right: 2%;
+}

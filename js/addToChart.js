@@ -5,7 +5,7 @@ $(document).on("click", ".modal-piatto", function () {
      $.ajax({
        url: "/" + window.location.pathname.split('/')[1] + "/ajax/fetch-ingredienti.php",
        type: "POST",
-       dataType: "json",
+       dataType: "html",
        data: {"rowid": id},
        success: function(data){
            $('.fetched-data').html(data);//Show fetched data from database
