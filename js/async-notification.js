@@ -16,9 +16,10 @@ function addAction() {
   //quando esco effettuo la cancellazione delle notifiche -> si può pensare di associare un altro pulsante
   $("#exit").click(function() {
     $("#window").fadeOut(1000,function() {
+
       open = false;
       $.ajax({
-        url: "/sugar-foody/ajax/reset-notification.php",
+        url: "/" + window.location.pathname.split('/')[1] + "/ajax/reset-notification.php",
         type: "POST",
         dataType: "json",
         data: {"reset": true},

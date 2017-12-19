@@ -1,8 +1,9 @@
 
 <?php
   header('Content-type: application/json');
-  $username = "default";
-
+  include("../secureLogin/secureLogin.php");
+  sec_session_start();
+  $username = $_SESSION["username"];
   if(isset($_POST["reset"])) {
       require_once("../config.php");
       include("../class/notificationSet.php");
