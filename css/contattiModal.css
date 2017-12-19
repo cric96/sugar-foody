@@ -1,0 +1,21 @@
+
+.smaller>img {
+  width: 100px;
+  height: 100px;
+}
+.memberName {
+  font-weight:bolder;
+  font-size: 110%;
+}
+h5 {
+  font-weight:bolder;
+}
+@media only screen and (min-width: 500px) {
+  figcaption {
+    position: relative;
+    top: -20px;
+    display: inline-block;
+    width: 200px;
+    font-size: 80%;
+  }
+}
