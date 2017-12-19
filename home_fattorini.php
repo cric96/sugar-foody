@@ -59,7 +59,11 @@ $cn->close();
             <h3 class="hide-acc">Storico ordini</h3>
             <?php
             $username = $_SESSION['username'];
-            $query_sql="SELECT numeroOrdine, data, stato, luogo FROM ordine WHERE fattorino = '$username' ";
+            $query_sql="SELECT numeroOrdine, data, o.stato, valore, luogo
+            FROM ordine o, stato s
+            WHERE s.nome = o.stato
+            AND fattorino = '$username'
+            order by s.valore";
       			$result = $cn->query($query_sql);
       			if($result !== false){
               if ($result->num_rows > 0) {
@@ -77,12 +81,42 @@ $cn->close();
                <tbody>
                  <?php
            				while($row = $result->fetch_assoc()) {
+                    $queryStato="SELECT max(valore) as maxStato
+                    FROM stato";
+                    $resultS = $cn->query($queryStato);
+                    if($resultS !== false){
+                      if ($resultS->num_rows > 0) {
+                        $rowS = $resultS->fetch_assoc();
+                        $maxStato = $rowS["maxStato"];
+                      }
+                    }
+                    if($row["valore"] === $maxStato) {
+                      $max = true;
+                      $stato = $row["stato"];
+                    } else {
+                      $max = false;
+                    $valoreStato = $row["valore"]+1;
+                    $queryStato="SELECT nome
+                    FROM stato
+                    WHERE valore = $valoreStato";
+                    $resultS = $cn->query($queryStato);
+                    if($resultS !== false){
+                      if ($resultS->num_rows > 0) {
+                        $rowS = $resultS->fetch_assoc();
+                        $stato = $rowS["nome"];
+                      }
+                    }
+                  }
            				?>
                   <tr>
                     <td><?php echo $row["numeroOrdine"]; ?></td>
                     <td>
                       <label for="status" class="hide-acc">Cambia stato</label>
-                      <a class="link">in elaborazione</a>
+                      <?php if($max) { ?>
+                      <a>CONCLUSO</a>
+                      <?php } else { ?>
+                      <a class="link" href="changeStato.php?id=<?php echo $row['numeroOrdine'] ?>&stato=<?php echo $stato; ?>"><?php echo $stato; ?></a>
+                      <?php } ?>
                     </td>
                     <td><?php echo $row["luogo"]; ?></td>
                     <td><?php echo $row["data"]; ?></td>
@@ -101,7 +135,7 @@ $cn->close();
         			<p>Errore nell'interrogazione</p>
         		<?php
         			}
-        			$cn->close();
+        			//$cn->close();
                  ?>
          </section>
       </main>

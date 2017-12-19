@@ -3,7 +3,7 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 require_once("./config.php");
-if(login_check_user() != true || !isset($_GET['categoria']) || empty($_GET['categoria'])) {
+if(login_check_user() != true) {
   if(login_check_fattorino()) {
     ?><script type="text/javascript">
    location.href = "home_fattorini.php";
@@ -19,8 +19,14 @@ if(login_check_user() != true || !isset($_GET['categoria']) || empty($_GET['cate
 }
 $cn->close();
 } else {
+  if( !isset($_GET['categoria']) || empty($_GET['categoria'])) {
+    ?><script type="text/javascript">
+   location.href = "sceltaRistorante.php";
+   </script><?php
+ } else {
   $categoria = $_GET["categoria"];
   $_SESSION['categoria'] = $categoria;
+ }
 }
 ?>
 <!DOCTYPE html>
