@@ -47,7 +47,7 @@ $cn->close();
     if($res !== false) {
    ?>
   <body>
-    <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+    <?php include("./include/navbarUtente.php"); ?>
     <header>
       <div class="overlay">
         <h2 class="my-4">Scegli il ristorante da cui ordinare</h2>

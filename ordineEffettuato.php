@@ -18,7 +18,7 @@
     <title>Ordine completato!</title>
   </head>
   <body>
-    <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+    <?php include("./include/navbarUtente.php"); ?>
     <main class="container content">
       <div class="fa fa-check"></div>
       <h1>Complimenti, il tuo ordine è stato effettuato!</h1>

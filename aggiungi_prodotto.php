@@ -23,7 +23,7 @@
       <title>Aggiungi prodotto</title>
    </head>
    <body>
-     <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+     <?php include("./include/navbarAdmin.php"); ?>
      <div class="overlay">
        <h2 class="my-4">Prodotti</h2>
      </div>

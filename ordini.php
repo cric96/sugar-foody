@@ -45,7 +45,7 @@ $cn->close();
       <title>Ordini</title>
    </head>
    <body>
-      <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+      <?php include("./include/navbarUtente.php"); ?>
       <header>
          <div class="overlay">
             <h2 class="my-4">Ordini</h2>

@@ -34,7 +34,7 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
       <title>Dati utente</title>
    </head>
    <body>
-      <nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+     <?php include("./include/navbarAdmin.php"); ?>
 
       <?php
       if ($stmt = $cn->prepare("SELECT email, telefono FROM utente WHERE username = ? LIMIT 1")) {

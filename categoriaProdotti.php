@@ -50,7 +50,7 @@ $cn->close();
     if ($res !== false) {
    ?>
   <body>
-    <nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
+    <?php include("./include/navbarUtente.php"); ?>
       <!-- Page Content -->
     <header>
       <div class="overlay">

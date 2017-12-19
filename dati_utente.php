@@ -34,14 +34,11 @@ if(login_check() != true) {
    <body>
       <!--bisogna scegliere il menu tramite php-->
       <?php if(login_check_user()) {
-        ?><nav w3-include-html="./include/navbarUtente.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-        <?php
+        include("./include/navbarUtente.php");
       } else if (login_check_fattorino()) {
-        ?><nav w3-include-html="./include/navbarFattorino.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-        <?php
+        include("./include/navbarFattorino.php");
       } else if (login_check_admin()) {
-        ?><nav w3-include-html="./include/navbarAdmin.html" class="navbar navbar-expand-lg navbar-light bg fixed-top"></nav>
-        <?php
+        include("./include/navbarAdmin.php");
       }
       if ($stmt = $cn->prepare("SELECT email, telefono FROM utente WHERE username = ? LIMIT 1")) {
          $stmt->bind_param('s', $_SESSION["username"]); // esegue il bind del parametro '$username'.
