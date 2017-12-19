@@ -17,7 +17,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contatti</a>
+          <a class="nav-link" data-toggle="modal" data-target="#contatti">Contatti</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logOut.php">Log out</a>
@@ -26,3 +26,4 @@
     </div>
   </div>
 </nav>
+<?php include("./contattiModal.php");?>
