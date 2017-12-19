@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include("./secureLogin/adminPage.php"); ?>
 <html lang="it">
    <head>
       <meta charset="UTF-8">
