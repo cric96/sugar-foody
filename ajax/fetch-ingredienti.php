@@ -2,8 +2,24 @@
 header('Content-type: application/html');
 include("../secureLogin/secureLogin.php");
 sec_session_start();
+require_once("../config.php");
+if(login_check_user() != true) {
+  if(login_check_fattorino()) {
+    ?><script type="text/javascript">
+   location.href = "home_fattorini.php";
+   </script><?php
+  } else if (login_check_admin()) {
+    ?><script type="text/javascript">
+   location.href = "home_admin.php";
+   </script><?php
+ } else {
+  ?><script type="text/javascript">
+ location.href = "index.php";
+ </script><?php
+}
+$cn->close();
+}
 if(isset($_POST['rowid'])) {
-  require_once("../config.php");
    $id = $_POST['rowid'];
   $query_sql = "SELECT *
   FROM COMPOSIZIONE
