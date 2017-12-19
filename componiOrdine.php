@@ -85,7 +85,7 @@ $cn->close();
                  ?>
             <tr>
               <td><?php echo $row["nome"]; ?></td>
-              <td><?php echo $row["prezzo"]; ?></td>
+              <td><?php echo "€ ".$row["prezzo"]/100; ?></td>
               <td ><a class="fa fa-cart-plus modal-piatto" data-toggle="modal" data-target="#modificaPiatto" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['nome']; ?>"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <?php

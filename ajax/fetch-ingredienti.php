@@ -41,7 +41,7 @@ if(isset($_POST['rowid'])) {
 
         } else if($row['aggiunta'] == 0 && $row['obbligatorio'] == 0) {
           //ingrediente generico
-          ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="<?php echo $ingr ?>" value="" checked></label><?php
+          ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="ingr[]" value="<?php echo $ingr ?>" checked></label><?php
         }
       }
     }
@@ -59,7 +59,7 @@ if(isset($_POST['rowid'])) {
           while($row = $result->fetch_assoc()) {
             if($row['aggiunta'] == 1) {
               $ingr = $row['nomeIngrediente'];
-              ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="<?php echo $ingr ?>" value=""></label><?php
+              ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="agg[]" value="<?php echo $ingr ?>"></label><?php
             }
           }
         }
