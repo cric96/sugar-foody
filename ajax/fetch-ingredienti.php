@@ -3,7 +3,7 @@ header('Content-type: application/html');
 include("../secureLogin/secureLogin.php");
 sec_session_start();
 if(isset($_POST['rowid'])) {
-    require_once("../config.php");
+  require_once("../config.php");
    $id = $_POST['rowid'];
   $query_sql = "SELECT *
   FROM COMPOSIZIONE
@@ -11,7 +11,7 @@ if(isset($_POST['rowid'])) {
   $result = $cn->query($query_sql);
   if($result !== false){
     if ($result->num_rows > 0) {
-      ?><form class="bubble" action="#" method="post">
+      ?><form class="bubble" action="./include/addIngrediente.php?id=<?php echo $id?>" method="post">
         <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
         <fieldset class="fset">
           <legend class="ingr">Ingredienti: </legend>
@@ -62,4 +62,5 @@ function addExtraSpaces ($startSpaces) {
     echo str_repeat('&nbsp;', 13 - $startSpaces);
   }
 }
+
 ?>
