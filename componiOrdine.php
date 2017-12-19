@@ -49,7 +49,7 @@ $cn->close();
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <link rel="stylesheet" href="./css/modificaPiatto.css">
     <script src="./js/hide-accessibily.js"></script>
-    <script src="./js/addToChart.js"></script>
+    <script type="text/javascript" src="./js/addToChart.js"></script>
     <title>Componi ordine</title>
   </head>
   <body>
@@ -116,17 +116,10 @@ $cn->close();
              </div>
              <!-- Modal body -->
              <div class="modal-body">
-               <p id="productId" class="hide-acc"> Id</p>
+               <div class="fetched-data"></div>
                <form class="bubble" action="#" method="post">
                  <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
                  <fieldset class="fset">
-                   <?php
-                    if( $_POST["id"] ) {
-                      $id = $_POST['id'];
-                       echo "Prodotto ". $id;
-                    }
-
-                    ?>
                    <legend class="ingr">Ingredienti: </legend>
                    <div class="prova">
                      <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
