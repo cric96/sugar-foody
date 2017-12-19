@@ -1,6 +1,9 @@
 <?php
   include("notification.php");
   //Quando puoi aggiungi controlli aggiuntivi: verificare che l'username esiste ecc
+  /*
+    Rappresenta tutte le notifiche del sistama -> astrazione del db
+  */
   class NotificationSet {
     private $con;
     private $stmInsert;
@@ -21,7 +24,7 @@
       $this->stmDelete->bind_param("s",$this->username);
       $this->stmInsert->bind_param("sss",$this->username,$this->idOrder,$this->status);
     }
-
+    //serve per inserire una determinata notifica destinata ad un certo utente
     public function insertNotification($username,$idOrder,$status) {
       $this->username = $username;
       $this->idOrder = $idOrder;
@@ -32,7 +35,7 @@
       }
       return true;
     }
-
+    //cancella tutte le notifiche di un determinato utente
     public function deleteNotifications($username) {
       $this->username = $username;
       $this->stmDelete->execute();
@@ -41,7 +44,7 @@
       }
       return true;
     }
-
+    //restituisce tutte le notifiche di un utente
     public function getNotification($username) {
       $this->username = $username;
       $this->stmSelect->execute();

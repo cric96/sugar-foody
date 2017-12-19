@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php
+  include("./secureLogin/secureLogin.php");
+  sec_session_start();
+  include("config.php");
+  if(!login_check()) {
+
+    ?><script type="text/javascript">
+    location.href = "index.php";
+    </script><?php
+    $cn->close();
+  }
+?>
 <html lang="it">
    <head>
      <meta charset="UTF-8">
