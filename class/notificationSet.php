@@ -40,20 +40,10 @@
     //restituisce tutte le notifiche di un utente
     public function getNotification($username) {
       $this->username = $username;
-      $this->stmSelect->execute();
-      $query = $this->stmSelect->get_result();
-      if($query === FALSE) {
-        return false;
-      }
-      $res = array();
-      $index = 0;
-      if ($query->num_rows>0) {
-        while($row_data = $query->fetch_assoc()) {
-          $res[$index] = new Notification($row_data["stato"],$row_data["numeroOrdine"]);
-          $index = $index + 1;
-        }
-      }
-      return $res;
+      return parent::executeSelectQuery($this->stmSelect);
+    }
+    protected function createElement($row) {
+      return new Notification($row["stato"],$row["numeroOrdine"]);
     }
   }
 ?>

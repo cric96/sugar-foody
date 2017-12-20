@@ -1,5 +1,6 @@
 <?php
-  class DBSet {
+  //classe root di tutte le astrazioni del db
+  abstract class DBSet {
     protected $con;
     /*
       NB! tutte le query dovranno seguire la politica definita sotto!
@@ -20,5 +21,26 @@
         return $stm->affected_rows;
       }
     }
+    //TEMPLATE METHOD
+    protected final function executeSelectQuery($stm) {
+      if(!$stm->execute()){
+        return false;
+      }
+      $query = $stm->get_result();
+      if($query === FALSE) {
+        return false;
+      }
+      $res = array();
+      $index = 0;
+      if ($query->num_rows>0) {
+        while($row_data = $query->fetch_assoc()) {
+          $res[$index] = $this->createElement($row_data);
+          $index = $index + 1;
+        }
+      }
+      return $res;
+    }
+    //Crea un elemento da restituire data una riga della query
+    protected abstract function createElement($row);
   }
 ?>

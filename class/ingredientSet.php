@@ -1,7 +1,7 @@
 <?php
   include("ingredient.php");
   include_once("DBSet.php");
-  //int val to traduce bool into tiny int
+  //Astrazione della raffigurazione degli ingredienti del db
   class IngredientSet extends DBSet{
 
     private $stmInsert;
@@ -25,56 +25,42 @@
                                         SET `aggiunta`=?,`obbligatorio`=?
                                         WHERE idProdotto = ? AND nomeIngrediente = ?");
     }
-    //serve per inserire una determinata notifica destinata ad un certo utente
+    //inserisci un ingrediente nel db
     public function insertIngredient($name,$price) {
       $this->stmInsert->bind_param("si",$name,$price);
       return parent::executeBasicQuery($this->stmInsert);
     }
+    //associa un prodotto ad un ingrediente
     public function insertIngredientInProduct($name,$idProdotto,$aggiunta,$obbligatorio) {
 
       $this->stmInsertComp->bind_param("siii",$name,$idProdotto,intval($aggiunta),intval($obbligatorio));
       return parent::executeBasicQuery($this->stmInsertComp);
     }
+    //resistuisce un determinato ingrediente
     public function getIngredient($name) {
       $this->stmSelect->bind_param("s",$name);
-      return $this->executeSelectQuery($this->stmSelect);
+      return parent::executeSelectQuery($this->stmSelect);
     }
-
+    //restituisce tutti gli ingredienti
     public function getAllIngredients() {
-      return $this->executeSelectQuery($this->selectAll);
+      return parent::executeSelectQuery($this->selectAll);
     }
-
+    //restituisce gli ingredienti associati ad un prodotto
     public function getIngredientsOfProduct($idProdotto) {
       $this->stmSelectComp->bind_param("i",$idProdotto);
-      return $this->executeSelectQuery($this->stmSelectComp);
+      return parent::executeSelectQuery($this->stmSelectComp);
     }
-
+    //aggiorna gli ingredienti di un prodotto
     public function updateIngredient($idProdotto,$name,$aggiunta,$obbligatorio) {
       $this->stmUpdate->bind_param("iiis",intval($aggiunta),intval($obbligatorio),$idProdotto,$name);
       return parent::executeBasicQuery($this->stmUpdate);
     }
-
-    private function executeSelectQuery($stm) {
-      if(!$stm->execute()){
-        return false;
+    protected function createElement($row) {
+      if(isset($row["aggiunta"])) {
+        return new Ingredient($row["nome"],$row["prezzo"],$row["aggiunta"],$row["obbligatorio"]);
+      } else {
+        return Ingredient::createBaseIngredient($row["nome"],$row["prezzo"]);
       }
-      $query = $stm->get_result();
-      if($query === FALSE) {
-        return false;
-      }
-      $res = array();
-      $index = 0;
-      if ($query->num_rows>0) {
-        while($row_data = $query->fetch_assoc()) {
-          if(isset($row_data["aggiunta"])) {
-            $res[$index] = new Ingredient($row_data["nome"],$row_data["prezzo"],$row_data["aggiunta"],$row_data["obbligatorio"]);
-          } else {
-            $res[$index] = Ingredient::createBaseIngredient($row_data["nome"],$row_data["prezzo"]);
-            $index = $index + 1;
-          }
-        }
-      }
-      return $res;
     }
   }
  ?>
