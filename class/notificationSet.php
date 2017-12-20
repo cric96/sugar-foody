@@ -1,6 +1,6 @@
 <?php
-  include("notification.php");
-  include("DBSet.php");
+  include_once("notification.php");
+  include_once("DBSet.php");
   //Quando puoi aggiungi controlli aggiuntivi: verificare che l'username esiste ecc
   /*
     Rappresenta tutte le notifiche del sistama -> astrazione del db

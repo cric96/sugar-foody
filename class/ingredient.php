@@ -20,7 +20,7 @@
     }
 
     public function getPrice() {
-      return $this->basePrice;
+      return $this->basePrice / 100.0;
     }
 
     public function obbligatorio() {

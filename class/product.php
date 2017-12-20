@@ -32,5 +32,15 @@
     public function getIngredients() {
       return $this->ingredients;
     }
+
+    public function getPrice() {
+      $prezzo = 0;
+      foreach($this->ingredients as $ingredient) {
+        if(!$ingredient->aggiunta()) {
+          $prezzo += $ingredient->getPrice();
+        }
+      }
+      return $prezzo;
+    }
   }
 ?>

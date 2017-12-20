@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php include("./secureLogin/adminPage.php"); ?>
+<?php include("./secureLogin/adminPage.php");
+  include_once("./class/productSet.php");
+  if(isset($_GET["prodotto"])) {
+    (new ProductSet($cn))->deleteProductInListino($_GET["prodotto"],$_SESSION["nomeRistorante"]);
+  }
+?>
 <html lang="it">
    <head>
      <meta charset="UTF-8">
@@ -41,37 +46,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr scope="row">
-                <td>Piada piadosa</td>
-                <td>100€</a> </td>
-                <td class="modify"><a class="fa fa-cogs" href=#> <span class="hide-acc">modifica</span> </a></td>
-                <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-              </tr>
-              <tr scope="row">
-                <td>Pizza pizzosa</td>
-                <td>100€</a> </td>
-                <td class="modify"><a class="fa fa-cogs" href=#> <span class="hide-acc">modifica</span> </a></td>
-                <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
-              </tr>
-              <tr scope="row">
-                <td>Pasta pastosa</td>
-                <td>100€</a> </td>
-                <td class="modify"><a class="fa fa-cogs" href=#><span class="hide-acc">modifica</span></a></td>
-                <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-              </tr>
-              <tr scope="row">
-                <td>Dolce dolcioso</td>
-                <td>100€</a> </td>
-                <td class="modify"><a class="fa fa-cogs" href=#><span class="hide-acc">modifica</span></a></td>
-                <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-              </tr>
+              <?php
+                $prodotti = (new ProductSet($cn))->getListino($_SESSION["nomeRistorante"]);
+                foreach($prodotti as $prodotto) {
+                  ?>
+                  <tr scope="row">
+                    <td><?php echo $prodotto->getName();?> </td>
+                    <td><?php echo $prodotto->getPrice();?> €</td>
+                    <td class="modify"><a class="fa fa-cogs" href=aggiungi_prodotto.php?prodotto="<?php echo $prodotto->getId()?>"> <span class="hide-acc">modifica</span> </a></td>
+                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=listino_admin.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc"> modifica</span> </a></td>
+                  </tr>
+                <?php
+                }
+              ?>
 
-              <tr scope="row">
-                <td>Bibita zuccherosa</td>
-                <td>100€</a> </td>
-                <td class="modify"><a class="fa fa-cogs" href=#><span class="hide-acc">modifica</span></a></td>
-                <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-              </tr>
             </tbody>
           </table>
         </section>

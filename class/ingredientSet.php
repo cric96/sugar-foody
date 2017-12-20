@@ -1,5 +1,5 @@
 <?php
-  include("ingredient.php");
+  include_once("ingredient.php");
   include_once("DBSet.php");
   //Astrazione della raffigurazione degli ingredienti del db
   class IngredientSet extends DBSet{

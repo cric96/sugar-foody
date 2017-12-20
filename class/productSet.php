@@ -1,25 +1,27 @@
 <?php
-  include("product.php");
-  include("ingredientSet.php");
+  include_once("product.php");
+  include_once("ingredientSet.php");
 
-  include_once("DBSet.php");
+  require_once("DBSet.php");
   //astrazione dei prodotti presenti nel db
   class ProductSet extends DBSet{
     private $stmInsert;
     private $stmSelect;
     private $selectAll;
     private $stmUpdate;
-    private $createListino
+    private $deleteListino;
+    private $createListino;
     public function __construct($con) {
       parent::__construct($con);
-      $this->stmInsert = $this->con->prepare("INSERT INTO PRODOTTO (`id`, `nome`,descrizione,nomeCategoria) VALUES (?,?,?");
+      $this->stmInsert = $this->con->prepare("INSERT INTO PRODOTTO (`nome`,`descrizione`,`nomeCategoria`) VALUES (?,?,?)");
       $this->stmSelect = $this->con->prepare("SELECT * FROM `PRODOTTO` WHERE id =?");
       $this->selectAll = $this->con->prepare("SELECT P.*
                                               FROM `PRODOTTO` AS P, `LISTINO` as L
                                               WHERE L.nomeRistorante = ?
                                               AND L.idProdotto = P.id ");
-      $this->stmUpdate = $this->con->prepare("UPDATE `prodotto` SET `nome`= ?,`descrizione`=?,`nomeCategoria`=? WHERE id = ?");
-      $this->createListino = $this->con->prepare("INSERT INTO LISTINO (`nomeRistorante,idProdotto,prezzo`) VALUES(?,?,?)")
+      $this->stmUpdate = $this->con->prepare("UPDATE `PRODOTTO` SET `nome`= ?,`descrizione`=?,`nomeCategoria`=? WHERE id=?");
+      $this->createListino = $this->con->prepare("INSERT INTO LISTINO (`nomeRistorante`,`idProdotto`,`prezzo`) VALUES(?,?,?)");
+      $this->deleteListino = $this->con->prepare("DELETE FROM LISTINO WHERE idProdotto = ? and nomeRistorante=? ");
     }
     //inserisce un prodotto
     public function insertProduct($name,$desc,$cat) {
@@ -50,13 +52,19 @@
     }
     //aggiorna le informazioni di un prodotto
     public function updateProduct($id,$name,$descrizione,$category) {
-      $this->stmUpdate->bind_param("isss",$id,$name,$descrizione,$category);
+      $this->stmUpdate->bind_param("sssi",$name,$descrizione,$category,$id);
       return parent::executeBasicQuery($this->stmUpdate);
     }
     //restituisce un prodotto
     public function getProduct($id) {
       $this->stmSelect->bind_param("i",$id);
       return parent::executeSelectQuery($this->stmSelect);
+    }
+
+    public function deleteProductInListino($id,$nomeRistorante) {
+      echo $id . " " .$nomeRistorante;
+      $this->deleteListino->bind_param("is",$id,$nomeRistorante);
+      return parent::executeBasicQuery($this->deleteListino);
     }
     //restituisce il listion di un ristornte
     public function getListino($ristorante) {
@@ -65,7 +73,11 @@
     }
 
     public function createListino($ids,$ristorante) {
-
+      foreach($ids as $id) {
+        $price = ($this->getProduct($id)[0])->getPrice();
+        $this->createListino->bind_param("sii",$ristorante,$id,$price);
+        parent::executeBasicQuery($this->createListino);
+      }
     }
 
     protected function createElement($row) {

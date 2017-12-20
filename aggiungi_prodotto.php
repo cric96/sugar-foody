@@ -35,13 +35,13 @@
         <div class="form-group row">
         <label for="nome-prodotto" class="control-label col-sm-2">Nome prodotto</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="nome-prodotto" id="nome-prodotto" readonly value="Mio prodotto">
+            <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" readonly value="Mio prodotto">
           </div>
         </div>
         <div class="form-group row">
           <label for="prezzo-prodotto" class="control-label col-sm-2">Prezzo</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control form-control-sm" name="prezzo-prodotto" id="prezzo-prodotto">
+            <input type="number" required class="form-control form-control-sm" name="prezzo-prodotto" id="prezzo-prodotto">
           </div>
         </div>
         <div class="form-group row">
@@ -126,9 +126,15 @@
                   <label for="searching"><span class="hide-acc">Cerca</span></label>
                   <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
                   <datalist id="set" >
-                      <option>Pomodoro</option>
-                      <option>Mozzarella</option>
-                      <option>Farina</option>
+                      <?php
+                        include_once("./class/ingredientSet.php");
+                        $ingredients = (new IngredientSet($cn))->getAllIngredients();
+                        foreach($ingredients as $ingredient) {
+                          ?>
+                          <option><?php echo $ingredient->getName(); ?></option> <?php
+                        }
+                      ?>
+
                   </datalist>
                 </fieldset>
               </form>
