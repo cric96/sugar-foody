@@ -49,7 +49,7 @@ $cn->close();
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <link rel="stylesheet" href="./css/modificaPiatto.css">
     <script src="./js/hide-accessibily.js"></script>
-    <script src="./js/addToChart.js"></script>
+    <script type="text/javascript" src="./js/addToChart.js"></script>
     <title>Componi ordine</title>
   </head>
   <body>
@@ -85,7 +85,7 @@ $cn->close();
                  ?>
             <tr>
               <td><?php echo $row["nome"]; ?></td>
-              <td><?php echo $row["prezzo"]; ?></td>
+              <td><?php echo "€ ".$row["prezzo"]/100; ?></td>
               <td ><a class="fa fa-cart-plus modal-piatto" data-toggle="modal" data-target="#modificaPiatto" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['nome']; ?>"> <span class="hide-acc">aggiungi</span> </a></td>
             </tr>
             <?php
@@ -116,38 +116,7 @@ $cn->close();
              </div>
              <!-- Modal body -->
              <div class="modal-body">
-               <p id="productId" class="hide-acc"> Id</p>
-               <form class="bubble" action="#" method="post">
-                 <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
-                 <fieldset class="fset">
-                   <?php
-                    if( $_POST["id"] ) {
-                      $id = $_POST['id'];
-                       echo "Prodotto ". $id;
-                    }
-
-                    ?>
-                   <legend class="ingr">Ingredienti: </legend>
-                   <div class="prova">
-                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente4 <input type="checkbox" name="Ingr2" value=""></label>
-                   </div>
-                 </fieldset>
-                 <fieldset class="fset">
-                   <legend class="ingr">Aggiunte:</legend>
-                   <div class="prova">
-                     <label>Ingrediente1 <input type="checkbox" name="Ingr1" value=""></label>
-                     <label>Ingrediente2 <input type="checkbox" name="Ingr2" value=""></label>
-                     <label>Ingrediente3 <input type="checkbox" name="Ingr1" value=""></label>
-                   </div>
-                   </fieldset>
-                   <input class="submit" type="submit" name="conferma" value="Conferma Modifiche">
-                   <input class="reset" type="reset" name="Annulla" value="Annulla">
-               </form>
+               <div class="fetched-data"></div>
              </div>
           </div>
        </div>

@@ -28,6 +28,7 @@ if(login_check() != true) {
       <script src="./js/form.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/form-style.css">
+      <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Dati utente</title>
    </head>
