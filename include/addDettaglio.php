@@ -66,7 +66,6 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
       $prezzo=$rowA["prezzo"];
       //se ci sono ingredienti
       if (isset($_POST['ingr'])) {
-        // vedere se in ingredienti ho tutti o ci sono state rimozioni
         $query = "SELECT nomeIngrediente
         FROM composizione
         where idProdotto=$idProdotto
@@ -84,6 +83,24 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
             }
           }
         }
+      } else {
+        //non c'è il post di ingredienti equivale a dire che o il prodotto non ha ingredienti
+        //che si possono rimuovere, o si sono rimossi tutti gli ingredienti rimovibili
+        $query = "SELECT nomeIngrediente
+        FROM composizione
+        where idProdotto=$idProdotto
+        and aggiunta=0
+        and obbligatorio=0";
+        $result = $cn->query($query);
+        if($result !== false){
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                  $ingrediente = $row["nomeIngrediente"];
+                  $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                        VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
+                }
+            }
+          }
       }
       //se ci sono aggiunte
       if (isset($_POST['agg'])) {
