@@ -1,3 +1,25 @@
+<?php
+// Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
+include("./secureLogin/secureLogin.php");
+sec_session_start();
+require_once("./config.php");
+if(login_check_user() != true) {
+  if(login_check_fattorino()) {
+    ?><script type="text/javascript">
+   location.href = "home_fattorini.php";
+   </script><?php
+  } else if (login_check_admin()) {
+    ?><script type="text/javascript">
+   location.href = "home_admin.php";
+   </script><?php
+ } else {
+  ?><script type="text/javascript">
+ location.href = "index.php";
+ </script><?php
+}
+$cn->close();
+}
+?>
 <!DOCTYPE html>
 <!--Faccio inserire direttamente l'indirizzo, il metodo di pagamento e i dati della carta
 perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->

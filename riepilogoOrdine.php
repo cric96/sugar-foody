@@ -1,3 +1,5 @@
+<!--TODO passare in qualche modo il totale dell'ordine a conferma pagamento, anche se
+  //il pagamento avverrà per finta-->
 <?php
 // Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
 include("./secureLogin/secureLogin.php");
@@ -18,7 +20,7 @@ if(login_check_user() != true) {
  </script><?php
 }
 $cn->close();
-} 
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -42,6 +44,41 @@ $cn->close();
   <link rel="stylesheet" href="./css/google-map.css">
   <title>Riepilogo ordine</title>
 </head>
+<?php
+  require_once("./config.php");
+  $utente = $_SESSION["username"];
+  $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita,P.nome
+            FROM composizione C, dettaglio De, prodotto P
+            WHERE C.idProdotto IN(
+                        SELECT D.idProdotto
+                        FROM ordine O,dettaglio D
+                        WHERE O.utente ='$utente'
+                        AND O.stato ='carrello'
+                        AND O.numeroOrdine = D.numeroOrdine)
+            AND P.id = C.idProdotto
+            AND De.idProdotto = C.idProdotto
+            AND C.nomeIngrediente NOT IN(
+                        SELECT M.nomeIngrediente
+                        FROM modifica M
+                        WHERE M.idProdotto = C.idProdotto
+                        AND M.numeroOrdine IN(
+                              SELECT numeroOrdine
+                              FROM ordine O
+                              WHERE O.utente ='$utente'
+                              AND O.stato = 'carrello')
+                        AND M.rimozione = 1)
+            AND C.nomeIngrediente NOT IN(
+                        SELECT Co.nomeIngrediente
+                        FROM composizione Co
+                        WHERE Co.idProdotto = C.idProdotto
+                        AND Co.aggiunta = 1
+                        AND Co.nomeIngrediente NOT IN(
+                              SELECT nomeIngrediente
+                              FROM modifica M
+                              WHERE M.idProdotto = Co.idProdotto))
+            ORDER BY C.idProdotto";
+  $res = $cn->query($query);
+ ?>
 <body>
   <?php include("./include/navbarUtente.php"); ?>
   <header>
@@ -56,58 +93,53 @@ $cn->close();
            <tr>
              <th>Nome piatto</th>
              <th>Prezzo</th>
-             <th>Ingredienti</th>
              <th>Quantità</th>
+             <th>Ingredienti</th>
            </tr>
          </thead>
          <tbody>
-           <tr scope="row">
-             <td>Piada piadosa</td>
-             <td>10€</td>
-           <td>
-             <div>
-               <ul class="prova">
-                 <li class="ingredienti">Ingrediente1</li>
-                 <li class="ingredienti">Ingrediente2</li>
-                 <li class="ingredienti">Ingrediente3</li>
-               </ul>
-             </div>
-         </td>
-             <td>2</td>
-           </tr>
-           <tr scope="row">
-             <td>Pizza pizzosa</td>
-             <td>5€</a> </td>
-             <td>
-               <div>
-                 <ul class="prova">
-                   <li class="ingredienti">Ingrediente1</li>
-                   <li class="ingredienti">Ingrediente2</li>
-                   <li class="ingredienti">Ingrediente3</li>
-                 </ul>
-               </div>
+           <?php
+           if ($res !== false) {
+             if($res->num_rows > 0) {
+               /*Non vede row come faccio a prendere idProdotto della prima riga senza toglierla??*/
+               $first = 1;
+               $tot = 0;
+               while($row = $res->fetch_assoc()) {
+                 if($first) {
+                   $idProd = $row["idProdotto"];
+                   $first = 0;
+                 }
+            ?>
+             <tr scope="row">
+               <td><?php echo $row["nome"]; ?></td>
+               <td><?php echo "€".$row["prezzo"]/100; ?></td>
+               <td><?php echo $row["quantita"]; ?></td>
+               <?php $tot += $row["quantita"] ?>
+               <td>
+                 <div>
+                   <ul class="prova">
+                     <?php while($row["idProdotto"] === $idProd && $row = $res->fetch_assoc()){?>
+                     <li class="ingredienti"><?php echo $row["nomeIngrediente"]; ?></li>
+                    <?php
+                        }
+                        if($row = $res->fetch_assoc()) {
+                            $idProd = $row["idProdotto"];
+                        }
+                     ?>
+                   </ul>
+                 </div>
              </td>
-             <td>2</td>
-           </tr>
-           <tr scope="row">
-             <td>Pasta pastosa</td>
-             <td>1€</a> </td>
-             <td>
-               <div>
-                 <ul class="prova">
-                   <li class="ingredienti">Ingrediente1</li>
-                   <li class="ingredienti">Ingrediente2</li>
-                   <li class="ingredienti">Ingrediente3</li>
-                 </ul>
-               </div>
-             </td>
-             <td>2</td>
-           </tr>
-           <tr scope="row">
-             <td>
-               Totale: 32€
-             </td>
-           </tr>
+              <?php } ?>
+             <tr scope="row">
+               <td>
+                 <?php echo "Totale:  ".$tot."€"; ?>
+               </td>
+             </tr>
+           <?php } else {
+             echo "non ci sono elementi";
+           } } else {
+             echo "errore nella query";
+           }?>
          </tbody>
        </table>
      </section>
