@@ -1,15 +1,22 @@
 <?php
-  include_once("product.php")
+  include_once("product.php");
   class Ordine {
     private $products;
     private $id;
     private $user;
-    private $utente;
+    private $admin;
     private $fattorino;
-
-    public function __construct($id,$products){
+    private $status;
+    private $place;
+    private $date;
+    public function __construct($id,$user,$admin,$status,$place,$date,$products){
       $this->products = $products;
-      $this->id = $id
+      $this->id = $id;
+      $this->user = $user;
+      $this->admin = $admin;
+      $this->status = $status;
+      $this->place = $place;
+      $this->date = $date;
     }
 
     public function getProducts() {
@@ -31,23 +38,35 @@
     public function getFattorino() {
       return $this->fattorino;
     }
+
+    public function getStatus() {
+      return $this->status;
+    }
+
+    public function getLocation() {
+      return $this->place;
+    }
+
+    public function getDate() {
+      return $this->date;
+    }
   }
 
   class AdminPolicy {
-    static const see = array(2,3,4,5);
-    static const modify = array(2);
-    static const notification = array(2,4,5);
+    const see = array(2,3,4,5);
+    const modify = array(2);
+    const notification = array(2,4,5);
   }
 
   class UtentePolicy {
-    static const see = array(1,2,3,4,5);
-    static const modify = array(1);
-    static const notification = array(2,4,5);
+    const see = array(1,2,3,4,5);
+    const modify = array(1);
+    const notification = array(2,4,5);
   }
 
   class FattorinoPolicy {
-    static const see = array(3,4,5);
-    static const modify = array(3,4);
-    static const notification = array(3);
+    const see = array(3,4,5);
+    const modify = array(3,4);
+    const notification = array(3);
   }
 ?>

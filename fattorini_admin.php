@@ -32,7 +32,7 @@
           <h2 class="my-4">Ordini</h2>
         </div>
       </header>
-      <section class="container">,
+      <section class="container">
         <h2 class="hide-acc"> Gestione ordini</h2>
         <table class="table table-striped">
           <thead class="thead-inverse">
@@ -45,23 +45,26 @@
               <th>Dettagli</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td> 1231 </td>
-              <td> <a data-toggle="modal" data-target="#bannerformmodal" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a> </td>
-              <td>Stato</td>
-              <td>Luogo</td>
-              <td>Data</td>
-              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php?id=1><span class="hide-acc">Dettagli</span></a></td>
-            </tr>
-            <tr>
-              <td> 1231 </td>
-              <td> <a data-toggle="modal" data-target="#bannerformmodal" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a> </td>
-              <td>Stato</td>
-              <td>Luogo</td>
-              <td>Data</td>
-              <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
-            </tr>
+          <tbody id="refreshable">
+          <?php
+            include_once("./class/ordineSet.php");
+            $ordini = (new OrdineSet($cn))->getOrdersAdmin($_SESSION["username"]);
+          ?>
+            <?php
+              foreach($ordini as $ordine) {
+                ?>
+                <tr>
+                  <td><?php echo $ordine->getId();?></td>
+                  <td> <a value=<?php echo $ordine->getId()?> data-toggle="modal" data-target="#bannerformmodal" class="fattorino fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a> </td>
+                  <td><?php echo $ordine->getStatus();?></td>
+                  <td><?php echo $ordine->getLocation();?></td>
+                  <td><?php echo $ordine->getDate();?></td>
+                  <td> <a value=<?php echo $ordine->getId()?> class="dettagli fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" ><span class="hide-acc">Dettagli</span></a></td>
+                
+                </tr>
+              <?php
+              }
+            ?>
           </tbody>
         </table>
       </section>
