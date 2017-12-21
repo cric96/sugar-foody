@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<?php include("./secureLogin/adminPage.php"); ?>
+<?php include("./secureLogin/adminPage.php");
+
+  include_once("./class/ordineSet.php");
+  if(isset($_GET["found-value"])) {
+    echo "enter";
+    (new OrdineSet($cn))->confirmOrder($_GET["order"],$_GET["found-value"]);
+  }
+?>
 <html lang="it">
    <head>
      <meta charset="UTF-8">
@@ -14,6 +21,7 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
      <script src="./js/hide-accessibily.js"></script>
      <script src="./js/modal-hide.js"></script>
+     <script type="text/javascript" src="./js/url-getter.js"> </script>
      <script src="./js/datalist-click.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
@@ -47,20 +55,21 @@
           </thead>
           <tbody id="refreshable">
           <?php
-            include_once("./class/ordineSet.php");
             $ordini = (new OrdineSet($cn))->getOrdersAdmin($_SESSION["username"]);
           ?>
             <?php
               foreach($ordini as $ordine) {
+                //TODO FINISCI QUA
                 ?>
                 <tr>
                   <td><?php echo $ordine->getId();?></td>
-                  <td> <a value=<?php echo $ordine->getId()?> data-toggle="modal" data-target="#bannerformmodal" class="fattorino fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a> </td>
+
+                  <td> <a value=<?php echo $ordine->getId()?> data-toggle="modal" data-target="#bannerformmodal" class="source fattorino fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a> </td>
                   <td><?php echo $ordine->getStatus();?></td>
                   <td><?php echo $ordine->getLocation();?></td>
                   <td><?php echo $ordine->getDate();?></td>
                   <td> <a value=<?php echo $ordine->getId()?> class="dettagli fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" ><span class="hide-acc">Dettagli</span></a></td>
-                
+
                 </tr>
               <?php
               }
