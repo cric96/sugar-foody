@@ -26,7 +26,27 @@ $cn->close();
  } else {
   $categoria = $_GET["categoria"];
   $_SESSION['categoria'] = $categoria;
- }
+  $username = $_SESSION["username"];
+  $queryCarrello = "SELECT o.idOrdine, u.nomeRistorante
+  from ORDINE o, UTENTE u
+  where o.utente = '$username'
+  and o.stato = 'carrello'
+  and o.amministratore = u.username";
+  $result = $cn->query($queryCarrello);
+  if($result !== false){
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $_SESSION['ordine'] = $row['idOrdine'];
+      if($_SESSION['nomeRistorante'] !== $row['nomeRistorante']) {
+        ?><script>
+        alert("il tuo ordine in sospeso è presso il ristorante <?php echo $row['nomeRistorante'] ?>, per cui devi continuare ad ordinare presso di lui.");
+        location.href("./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>");
+      </script><?php
+      }
+      $_SESSION['nomeRistorante'] = $row['nomeRistorante'];
+    }
+  }
+}
 }
 ?>
 <!DOCTYPE html>

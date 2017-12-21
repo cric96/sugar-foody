@@ -27,7 +27,7 @@ if(isset($_POST['rowid'])) {
   $result = $cn->query($query_sql);
   if($result !== false){
     if ($result->num_rows > 0) {
-      ?><form class="bubble" action="./include/addIngrediente.php?id=<?php echo $id?>" method="post">
+      ?><form class="bubble" action="./include/addDettaglio.php?id=<?php echo $id?>" method="post">
         <label class="etichetta">Quantità: <input class="qnt" type="number" min="1" max="10" name="quantità" value="1"></label>
         <fieldset class="fset">
           <legend class="ingr">Ingredienti: </legend>
@@ -37,7 +37,7 @@ if(isset($_POST['rowid'])) {
         $ingr = $row['nomeIngrediente'];
         if($row['obbligatorio'] == 1) {
           //obbligatorio
-          ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="<?php echo $ingr ?>" value="" disabled readonly checked></label><?php
+          ?><label><?php addExtraSpaces(strlen($ingr)); echo $ingr; ?> <input type="checkbox" name="ingr[]" value="<?php echo $ingr ?>" disabled readonly checked></label><?php
 
         } else if($row['aggiunta'] == 0 && $row['obbligatorio'] == 0) {
           //ingrediente generico
