@@ -33,15 +33,25 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
         $rowA = $resultA->fetch_assoc();
         $admin = $rowA["username"];
         $user = $_SESSION['username'];
-        $insert="INSERT INTO `ORDINE` (`data`, `utente`, `stato`, `amministratore`)
-        VALUES (now(), '$user', 'carrello', '$admin')";
+        $insert="INSERT INTO ORDINE (utente, stato, amministratore)
+        VALUES ('$user', 'carrello', '$admin')";
         $res = $cn->query($insert);
         if($res === TRUE) {
           $_SESSION["ordine"] = $cn->insert_id;
+          insertDetails($cn);
         }
       }
     }
-  }
+  } else {
+    insertDetails($cn);
+  }?>
+  <script type="text/javascript">
+    alert("errore nel sistema, contatta un tecnico.");
+    location.href = "../componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
+  </script>
+  <?php
+}
+  function insertDetails($cn) {
   $idOrdine = $_SESSION["ordine"];
   $idProdotto = $_GET["id"];
   $qnt = intval($_POST["quantità"]);
@@ -57,7 +67,6 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
       //se ci sono ingredienti
       if (isset($_POST['ingr'])) {
         // vedere se in ingredienti ho tutti o ci sono state rimozioni
-        //modificare prezzo ?
         $query = "SELECT nomeIngrediente
         FROM composizione
         where idProdotto=$idProdotto
@@ -69,20 +78,12 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
             while($row = $result->fetch_assoc()) {
                 if (!in_array($row["nomeIngrediente"], $_POST['ingr'])) {
                   $ingrediente = $row["nomeIngrediente"];
-                  $queryA = "SELECT prezzo FROM ingrediente where nome='$ingrediente'";
-                  $resultA = $cn->query($queryA);
-                  if($resultA !== false){
-                    if ($resultA->num_rows > 0) {
-                      $rowA = $resultA->fetch_assoc();
-                      $prezzo -= $rowA["prezzo"];
-                      $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, aggiunta, rimozione)
-                        VALUES ($idProdotto, $idOrdine,'$ingrediente',0,1);";
-                    }
-                  }
+                  $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                        VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
                 }
-              }
             }
           }
+        }
       }
       //se ci sono aggiunte
       if (isset($_POST['agg'])) {
@@ -94,14 +95,14 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
             if ($resultA->num_rows > 0) {
               $rowA = $resultA->fetch_assoc();
               $prezzo += $rowA["prezzo"];
-              $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, aggiunta, rimozione)
-                VALUES ($idProdotto, $idOrdine,'$ingrediente',1,0);";
+              $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, aggiunta)
+                VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
             }
           }
         }
       }
-      $sql .= "INSERT INTO `DETTAGLIO`(`idProdotto`, `numeroOrdine`, `prezzo`, `quantita`)
-      VALUES ($idProdotto, $idOrdine, $prezzo, $qnt);";
+      $sql = "INSERT INTO DETTAGLIO(idProdotto, numeroOrdine, prezzo, quantita)
+      VALUES ($idProdotto, $idOrdine, $prezzo, $qnt);" . $sql;
       if($cn->multi_query($sql) !== TRUE)
       {
         //CAMBIA alert
@@ -109,10 +110,9 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
         alert("dettaglio non aggiunto <?php echo mysqli_error($cn) ?> ");
         </script><?php
       }
-    }
   }
 }
-?>
-<script type="text/javascript">
+?><script type="text/javascript">
   location.href = "../componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
-</script>
+</script><?php
+} ?>
