@@ -1,5 +1,15 @@
 <!DOCTYPE html>
-<?php include("./secureLogin/adminPage.php"); ?>
+<?php include("./secureLogin/adminPage.php");
+  include_once("./class/productSet.php");
+  $nome = "";
+  $ingredienti = "";
+  $prezzo = 0;
+  if(isset($_GET["prodotto"])) {
+    
+  } else {
+
+  }
+?>
 <html lang="it">
    <head>
       <meta charset="UTF-8">

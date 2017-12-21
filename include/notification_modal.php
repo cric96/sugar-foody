@@ -39,6 +39,7 @@
                foreach ($notifications as $notification) {
                  ?>
                    <tr>
+                      
                       <td><?php echo $notification->getOrder()?></td>
                       <td><?php echo $notification->getStatus()?></td>
                    </tr>

@@ -33,36 +33,40 @@
             <h3 class="hide-acc">Fattorini del ristorante </h3>
             <!--nome ristorante in php-->
             <table class="table table-striped">
+              <?php
+              ?>
                <thead>
                   <tr>
                      <th>Username</th>
                      <th>Mail</th>
                      <th>Telefono</th>
-                     <th>Modifica</th>
                      <th>Elimina</th>
                   </tr>
                </thead>
-               <tbody>
-                  <tr>
-                     <td>Username</td>
-                     <td>Mail</td>
-                     <td>Telefono</td>
-                     <td class="modify"><a class="fa fa-cogs" href=#><span class="hide-acc">modifica</span></a></td>
-                     <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-                  </tr>
-                  <tr>
-                     <td>Username</td>
-                     <td>Mail</td>
-                     <td>Telefono</td>
-                     <td class="modify"><a class="fa fa-cogs" href=#><span class="hide-acc">modifica</span></a></td>
-                     <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#> <span class="hide-acc"> modifica</span> </a></td>
-                  </tr>
+               <tbody id="refreshable">
+                 <?php
+                  include_once("./class/userSet.php");
+                  $db = new UserSet($cn);
+                  if(isset($_GET["username"])) {
+                    $db->removeUser($_GET["username"]);
+                  }
+                  $fattorini = $db->getFattorini($_SESSION["nomeRistorante"]);
+                 ?>
+                 <?php
+                    foreach ($fattorini as $fattorino) {
+                      ?>
+                      <tr>
+                        <td><?php echo $fattorino->getUsername(); ?></td>
+                        <td><?php echo $fattorino->getEmail(); ?></td>
+                        <td><?php echo $fattorino->getTelefono(); ?></td>
+                        <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=?username=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
+
                </tbody>
             </table>
-            <div class="adder">
-              <!-- aggiungi il giusto file -->
-              <a href="dati_utente.php" class="fa fa-plus-square"><span class="hide-acc">Aggiungi fattorino</span></a>
-            </div>
          </section>
       </main>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>

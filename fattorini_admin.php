@@ -52,7 +52,7 @@
               <td>Stato</td>
               <td>Luogo</td>
               <td>Data</td>
-              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php><span class="hide-acc">Dettagli</span></a></td>
+              <td class="info"><a class="fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" href=dettagli_ordine.php?id=1><span class="hide-acc">Dettagli</span></a></td>
             </tr>
             <tr>
               <td> 1231 </td>
@@ -66,6 +66,7 @@
         </table>
       </section>
     </main>
+
     <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
     <?php include('./include/notification_modal.php') ?>
     <?php include('./include/dettagli_ordine.php') ?>
@@ -80,9 +81,18 @@
               <label for="my_select" class="control-label">Scegli il fattorino..</label>
               <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
               <datalist id="set" >
-                  <option>Maurizio costanzo</option>
-                  <option>Pinco pallino</option>
-                  <option>Pullo</option>
+                <?php
+                include_once("./class/userSet.php");
+                 $fattorini = (new UserSet($cn))->getFattorini($_SESSION["nomeRistorante"]);
+
+                ?>
+                <?php
+                   foreach ($fattorini as $fattorino) {
+                     ?>
+                      <option><?php echo $fattorino->getUsername(); ?></option>
+                     <?php
+                   }
+                  ?>
               </datalist>
             </div>
             <p> Un nuovo fattorino? Aggiungilo! </p>

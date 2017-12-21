@@ -1,4 +1,5 @@
 <!-- The Modal -->
+
 <div class="modal fade" id="dettagli_ordine">
    <div class="modal-dialog">
       <div class="modal-content">

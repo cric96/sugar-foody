@@ -5,12 +5,14 @@
     private $desc;
     private $category;
     private $ingredients;
-    public function __construct($id,$name,$desc,$category,$ingredients) {
+    private $price;
+    public function __construct($id,$name,$desc,$category,$ingredients,$price) {
       $this->id = $id;
       $this->name = $name;
       $this->desc = $desc;
       $this->category = $this->category;
       $this->ingredients = $ingredients;
+      $this->price = $price;
     }
 
     public function getId() {
@@ -34,13 +36,7 @@
     }
 
     public function getPrice() {
-      $prezzo = 0;
-      foreach($this->ingredients as $ingredient) {
-        if(!$ingredient->aggiunta()) {
-          $prezzo += $ingredient->getPrice();
-        }
-      }
-      return $prezzo;
+      return $this->price;
     }
   }
 ?>

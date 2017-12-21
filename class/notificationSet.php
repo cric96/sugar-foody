@@ -1,4 +1,5 @@
 <?php
+  //TODO AGGIUNGI STATO COME ARRAY DI stato["nome"], stato["valore"]
   include_once("notification.php");
   include_once("DBSet.php");
   //Quando puoi aggiungi controlli aggiuntivi: verificare che l'username esiste ecc
