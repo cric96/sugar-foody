@@ -102,17 +102,17 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
       }
       $sql .= "INSERT INTO `DETTAGLIO`(`idProdotto`, `numeroOrdine`, `prezzo`, `quantita`)
       VALUES ($idProdotto, $idOrdine, $prezzo, $qnt);";
-      /*if($cn->multi_query($sql) !== TRUE)
+      if($cn->multi_query($sql) !== TRUE)
       {
         //CAMBIA alert
         ?><script>
         alert("dettaglio non aggiunto <?php echo mysqli_error($cn) ?> ");
         </script><?php
-      }*/
+      }
     }
   }
 }
-/*<script type="text/javascript">
-location.href = "../componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
-</script>*/
 ?>
+<script type="text/javascript">
+  location.href = "../componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
+</script>
