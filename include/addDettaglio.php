@@ -52,8 +52,23 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
   <?php
 }
   function insertDetails($cn) {
+  //$idDettaglio
   $idOrdine = $_SESSION["ordine"];
   $idProdotto = $_GET["id"];
+  $queryA = "SELECT max(idDettaglio) as maxId
+  FROM DETTAGLIO
+  WHERE numeroOrdine = $idOrdine
+  AND idProdotto = $idProdotto";
+  //manca controllare se c'è un dettaglio identico..
+  $resultA = $cn->query($queryA);
+  if($resultA !== false){
+    if ($resultA->num_rows > 0) {
+      $rowA = $resultA->fetch_assoc();
+      $idDettaglio = $rowA['maxId'] + 1;
+    }
+  } else {
+    $idDettaglio = 1;
+  }
   $qnt = intval($_POST["quantità"]);
   $sql='';
   $queryA = "SELECT prezzo
@@ -77,8 +92,8 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
             while($row = $result->fetch_assoc()) {
                 if (!in_array($row["nomeIngrediente"], $_POST['ingr'])) {
                   $ingrediente = $row["nomeIngrediente"];
-                  $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, rimozione)
-                        VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
+                  $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                        VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
                 }
             }
           }
@@ -96,8 +111,8 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
           if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                   $ingrediente = $row["nomeIngrediente"];
-                  $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, rimozione)
-                        VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
+                  $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                        VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
                 }
             }
           }
@@ -112,21 +127,22 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
             if ($resultA->num_rows > 0) {
               $rowA = $resultA->fetch_assoc();
               $prezzo += $rowA["prezzo"];
-              $sql .= "INSERT INTO MODIFICA(idProdotto, numeroOrdine, nomeIngrediente, aggiunta)
-                VALUES ($idProdotto, $idOrdine,'$ingrediente',1);";
+              $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, aggiunta)
+                VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
             }
           }
         }
       }
-      $sql = "INSERT INTO DETTAGLIO(idProdotto, numeroOrdine, prezzo, quantita)
-      VALUES ($idProdotto, $idOrdine, $prezzo, $qnt);" . $sql;
-      if($cn->multi_query($sql) !== TRUE)
+      $sql = "INSERT INTO DETTAGLIO(idDettaglio, idProdotto, numeroOrdine, prezzo, quantita)
+      VALUES ($idDettaglio, $idProdotto, $idOrdine, $prezzo, $qnt);" . $sql;
+      ?><script><?php
+      if($cn->multi_query($sql) === TRUE)
       {
-        //CAMBIA alert
-        ?><script>
-        alert("dettaglio non aggiunto <?php echo mysqli_error($cn) ?> ");
-        </script><?php
+        ?>alert("Dettaglio aggiunto correttamente");<?php
+      } else {
+        ?>alert("Dettaglio non aggiunto, contatta il tecnico");<?php
       }
+      ?></script><?php
   }
 }
 ?><script type="text/javascript">

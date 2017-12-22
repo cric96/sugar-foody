@@ -67,7 +67,7 @@ if(isset($_POST['rowid'])) {
       ?>
     </div>
     </fieldset>
-    <input class="submit" type="submit" name="conferma" value="Conferma Modifiche">
+    <input class="submit" type="submit" name="conferma" value="Conferma">
     <input class="reset" type="reset" name="Annulla" value="Annulla">
   </form>
  <?php
