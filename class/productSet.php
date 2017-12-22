@@ -27,6 +27,11 @@
                                                    FROM PRODOTTO as P, DETTAGLIO as D
                                                    WHERE D.numeroOrdine = ?
                                                    AND P.id = D.idProdotto");
+      $this->stmSelectInListino = $this->con->prepare("SELECT L.prezzo,P.id, P.nome,P.descrizione,P.nomeCategoria
+                                                       FROM PRODOTTO as P , LISTINO as L
+                                                       WHERE L.idProdotto = P.id
+                                                       AND L.nomeRistorante=?
+                                                       AND P.id = ?");
     }
     //inserisce un prodotto
     public function insertProduct($name,$desc,$cat) {
@@ -71,7 +76,6 @@
       return parent::executeSelectQuery($this->stmSelectOrder);
     }
     public function deleteProductInListino($id,$nomeRistorante) {
-
       $this->deleteListino->bind_param("is",$id,$nomeRistorante);
       return parent::executeBasicQuery($this->deleteListino);
     }
@@ -80,12 +84,19 @@
       $this->selectAll->bind_param("s",$ristorante);
       return parent::executeSelectQuery($this->selectAll);
     }
-    public function createListino($ids,$ristorante) {
-      foreach($ids as $id) {
-        $price = ($this->getProduct($id)[0])->getPrice();
-        $this->createListino->bind_param("sii",$ristorante,$id,$price);
-        parent::executeBasicQuery($this->createListino);
+    public function createListino($products,$ristorante) {
+      foreach($products as $product) {
+        $this->addInListino($product,$ristorante);
       }
+    }
+
+    public function addInListino($product,$ristorante) {
+      $this->createListino->bind_param("sii",$ristorante,$product->getId(),$product->getPrice());
+      return parent::executeBasicQuery($this->createListino);
+    }
+    public function getProductInListino($ristorante,$id) {
+      $this->stmSelectInListino->bind_param("si",$ristorante,$id);
+      return parent::executeSelectQuery($this->stmSelectInListino);
     }
 
     protected function createElement($row) {

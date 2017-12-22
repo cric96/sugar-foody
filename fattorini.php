@@ -74,7 +74,7 @@ include("./secureLogin/adminPage.php"); ?>
                </tbody>
             </table>
             <div class="adder">
-              <a title="Aggiungi fattorino!" class="fa fa-plus-square" aria-hidden="true" href="modifica_fattorino.php"><span class="hide-acc">+</span></a>
+              <a title="Aggiungi fattorino!" class="fa fa-plus-square" aria-hidden="true" href="inserisci_fattorino.php"><span class="hide-acc">+</span></a>
             </div>
          </section>
       </main>

@@ -25,6 +25,9 @@ function addAction() {
         data: {"reset": true},
         success: function(data){
             console.log(data);
+            $('#notification').load(document.URL +  ' #notification',function() {
+              addAction();
+            });
         },
         error: function(error){
              console.log("Error:");

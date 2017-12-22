@@ -53,7 +53,7 @@
                   <tr scope="row">
                     <td><?php echo $prodotto->getName();?> </td>
                     <td><?php echo $prodotto->getPrice();?> €</td>
-                    <td class="modify"><a class="fa fa-cogs" href=aggiungi_prodotto.php?prodotto="<?php echo $prodotto->getId()?>"> <span class="hide-acc">modifica</span> </a></td>
+                    <td class="modify"><a class="fa fa-cogs" href=aggiungi_prodotto.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc">modifica</span> </a></td>
                     <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=listino_admin.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc"> modifica</span> </a></td>
                   </tr>
                 <?php

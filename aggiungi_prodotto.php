@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <?php include("./secureLogin/adminPage.php");
   include_once("./class/productSet.php");
+  $prodotto = null;
   $nome = "";
-  $ingredienti = "";
+  $ingredienti = array();
   $prezzo = 0;
-  if(isset($_GET["prodotto"])) {
-    
-  } else {
 
+  if(isset($_GET["prodotto"])) {
+    $prodotto = (new ProductSet($cn)) ->getProductInListino($_SESSION["nomeRistorante"],$_GET["prodotto"]);
+    $nome = $prodotto[0]->getName();
+    $ingredienti = $prodotto[0]->getIngredients();
+    $prezzo = $prodotto[0]->getPrice();
   }
 ?>
 <html lang="it">
@@ -45,13 +48,13 @@
         <div class="form-group row">
         <label for="nome-prodotto" class="control-label col-sm-2">Nome prodotto</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" readonly value="Mio prodotto">
+            <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" value="<?php echo $nome;?>">
           </div>
         </div>
         <div class="form-group row">
           <label for="prezzo-prodotto" class="control-label col-sm-2">Prezzo</label>
           <div class="col-sm-10">
-            <input type="number" required class="form-control form-control-sm" name="prezzo-prodotto" id="prezzo-prodotto">
+            <input type="number" required class="form-control form-control-sm" step="0.01" min=0 name="prezzo-prodotto" id="prezzo-prodotto" value="<?php echo $prezzo;?>">
           </div>
         </div>
         <div class="form-group row">
@@ -69,44 +72,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Base piadina</td>
-                    <td>10€</td>
-                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
-                    <td>
-                      <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" >
-                        <span class="slider"></span>
-                        <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" >
-                        <span class="slider"></span>
-                        <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Pomodor</td>
-                    <td>2</td>
-                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
-                    <td>
-                      <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l2-c1" id="l2-c1" >
-                        <span class="slider"></span>
-                        <label for="l2-c1" class="hide-acc">Abilita obbligatorio</label>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l2-c2" id="l2-c2" >
-                        <span class="slider"></span>
-                        <label for="l2-c2" class="hide-acc">Abilita aggiunta</label>
-                      </div>
-                    </td>
-                  </tr>
+                  <?php foreach($ingredienti as $ingrediente) {?>
+                    <tr>
+                      <td><?php echo $ingrediente->getName(); ?></td>
+                      <td><?php echo $ingrediente->getPrice(); ?></td>
+                      <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
+                      <td>
+                        <div class="switch">
+                          <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
+                          <span class="slider"></span>
+                          <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="switch">
+                          <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
+                          <span class="slider"></span>
+                          <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
+                        </div>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+
                 </tbody>
               </table>
 

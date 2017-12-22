@@ -1,6 +1,6 @@
 <?php
   class Product {
-    private const NO_QUANTITY = 0;
+    const NO_QUANTITY = 0;
     private $id;
     private $name;
     private $desc;
@@ -18,7 +18,7 @@
       $this->quantity = $quantity;
     }
     public static function createBaseProduct($id,$name,$desc,$category,$ingredients,$price) {
-      return new static($id,$name,$desc,$category,$ingredients,$price,NO_QUANTITY);
+      return new static($id,$name,$desc,$category,$ingredients,$price,Product::NO_QUANTITY);
     }
     public function getId() {
       return $this->id;
