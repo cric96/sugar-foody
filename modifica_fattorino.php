@@ -30,8 +30,6 @@ if(login_check_admin() != true) {
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
-      <script src="./js/sha512.js"></script>
-      <script src="./js/form.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/form-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
@@ -57,7 +55,7 @@ if(login_check_admin() != true) {
       ?>
       <main class="container content">
          <h2 class="my-4">Dati fattorino</h2>
-         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="modifica_fattorino.php">
+         <form method="post" class="form-horizontal" action="modifica_fattorino.php?F=<?php echo $fattorino ?>">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
@@ -89,11 +87,6 @@ if(login_check_admin() != true) {
    </body>
    <?php
    if(isset($_POST["changeBt"])) {
-     if($_POST["psw"] !== $_POST["psw2"]) {
-       ?><script type="text/javascript">
-        alert("Passoword differenti.");
-       </script><?php
-     } else {
        require_once ('config.php');
        $telefono=$_POST["telefono"];
        $mail=$_POST["mail"];
@@ -126,7 +119,6 @@ if(login_check_admin() != true) {
        </script><?php
      }
      $cn->close();
-   }
    }
    ?>
 </html>
