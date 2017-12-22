@@ -80,9 +80,9 @@ $cn->close();
                     <td><?php echo $row["stato"]; ?></td>
                     <td><?php echo $row["luogo"]; ?></td>
                     <td><?php echo $row["data"]; ?></td>
-                    <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
+                    <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" value="<?php echo $row["numeroOrdine"] ?>" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
-                  <?php include('./include/dettagli_ordine.php?O='.$row["numeroOrdine"]);
+                  <?php include('./include/dettagli_ordine.php');
       					}
       				}
       			 ?>
