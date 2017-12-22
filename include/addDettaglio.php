@@ -20,25 +20,46 @@ $cn->close();
 }
 if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_GET["id"] > 0) {
   if(!isset($_SESSION["ordine"])) {
-    //ordine da creare
+    //ordine da creare, non c'è sessione e non c'è carrello
     //cerca amministratore
-    $ristorante = $_SESSION["nomeRistorante"];
-    $queryA = "SELECT username
-    FROM UTENTE
-    WHERE admin = 1
-    AND nomeRistorante = '$ristorante'";
-    $resultA = $cn->query($queryA);
-    if($resultA !== false){
-      if ($resultA->num_rows > 0) {
-        $rowA = $resultA->fetch_assoc();
-        $admin = $rowA["username"];
-        $user = $_SESSION['username'];
-        $insert="INSERT INTO ORDINE (utente, stato, amministratore)
-        VALUES ('$user', 'carrello', '$admin')";
-        $res = $cn->query($insert);
-        if($res === TRUE) {
-          $_SESSION["ordine"] = $cn->insert_id;
-          insertDetails($cn);
+    $username = $_SESSION["username"];
+    $queryCarrello = "SELECT o.numeroOrdine, u.nomeRistorante
+    from ORDINE o, UTENTE u
+    where o.utente = '$username'
+    and o.stato = 'carrello'
+    and o.amministratore = u.username";
+    $result = $cn->query($queryCarrello);
+    if($result !== false){
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['ordine'] = $row['numeroOrdine'];
+        if($_SESSION['nomeRistorante'] !== $row['nomeRistorante']) {
+          ?><script>
+          alert("il tuo ordine in sospeso è presso il ristorante <?php echo $row['nomeRistorante'] ?>, per cui devi continuare ad ordinare presso di lui.");
+          location.href("./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>");
+        </script><?php
+        }
+        insertDetails($cn);
+      } else {
+        $ristorante = $_SESSION["nomeRistorante"];
+        $queryA = "SELECT username
+        FROM UTENTE
+        WHERE admin = 1
+        AND nomeRistorante = '$ristorante'";
+        $resultA = $cn->query($queryA);
+        if($resultA !== false){
+          if ($resultA->num_rows > 0) {
+            $rowA = $resultA->fetch_assoc();
+            $admin = $rowA["username"];
+            $user = $_SESSION['username'];
+            $insert="INSERT INTO ORDINE (utente, stato, amministratore)
+            VALUES ('$user', 'carrello', '$admin')";
+            $res = $cn->query($insert);
+            if($res === TRUE) {
+              $_SESSION["ordine"] = $cn->insert_id;
+              insertDetails($cn);
+            }
+          }
         }
       }
     }
@@ -52,7 +73,6 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
   <?php
 }
   function insertDetails($cn) {
-  //$idDettaglio
   $idOrdine = $_SESSION["ordine"];
   $idProdotto = $_GET["id"];
   $queryA = "SELECT max(idDettaglio) as maxId
@@ -65,19 +85,34 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
     if ($resultA->num_rows > 0) {
       $rowA = $resultA->fetch_assoc();
       $idDettaglio = $rowA['maxId'] + 1;
+    } else {
+      $idDettaglio = 1;
     }
   } else {
     $idDettaglio = 1;
   }
   $qnt = intval($_POST["quantità"]);
   $sql='';
+  $ristorante = $_SESSION["nomeRistorante"];
   $queryA = "SELECT prezzo
   FROM LISTINO
-  WHERE idProdotto = $idProdotto";
+  WHERE idProdotto = $idProdotto
+  AND nomeRistorante = '$ristorante'";
   $resultA = $cn->query($queryA);
   if($resultA !== false){
     if ($resultA->num_rows > 0) {
       $rowA = $resultA->fetch_assoc();
+      /*update senza aggiunta di riga dettaglio
+      if($idDettaglio > 1) {
+        //controllo se le mie modifiche sono le stesse di quelle di uno degli altri dettagli di quel idProdotto
+        //aggiorno la quantita del dettaglio
+
+        //guarda anche dettagli senza modifiche
+        $queryD = "SELECT idDettaglio, nomeIngrediente, aggiunta, rimozione
+        FROM MODIFICA
+        WHERE numeroOrdine = $idOrdine
+        AND idProdotto = $idProdotto";
+      }*/
       $prezzo=$rowA["prezzo"];
       //se ci sono ingredienti
       if (isset($_POST['ingr'])) {
