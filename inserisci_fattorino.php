@@ -8,12 +8,6 @@ if(login_check_admin() != true) {
  location.href = "index.php";
  </script><?php
  $cn->close();
-} else if (!isset($_GET['F']) || empty($_GET['F'])) {
-  ?><script type="text/javascript">
-  location.href = "home_admin.php";
-  </script><?php
-} else {
-  $fattorino=$_GET['F'];
 }
 ?>
 <!DOCTYPE html>
@@ -38,46 +32,42 @@ if(login_check_admin() != true) {
       <title>Dati utente</title>
    </head>
    <body>
-     <?php include("./include/navbarAdmin.php");
-      if ($stmt = $cn->prepare("SELECT email, telefono FROM utente WHERE username = ? LIMIT 1")) {
-         $stmt->bind_param('s', $fattorino);
-         $stmt->execute();
-         $stmt->store_result();
-         $stmt->bind_result($mail, $telefono);
-         $stmt->fetch();
-         if($stmt->num_rows() <= 0 ) {
-           ?><script type="text/javascript">
-           location.href = "home_admin.php";
-           </script><?php
-           $cn->close();
-           $stmt->close();
-         }
-       }
-       $stmt->close();
-      ?>
+     <?php include("./include/navbarAdmin.php"); ?>
       <main class="container content">
          <h2 class="my-4">Dati fattorino</h2>
-         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="modifica_fattorino.php">
+         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="inserisci_fattorino.php">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
-                  <input type="text" maxlength="30" minlength="5" class="form-control form-control-sm" name="user" id="user" readonly value="<?php echo $fattorino?>">
+                  <input type="text" maxlength="30" minlength="5" class="form-control form-control-sm" name="user" id="user" required>
                </div>
             </div>
             <div class="form-group row">
                <label for="mail" class="control-label col-sm-2">Mail</label>
                <div class="col-sm-10">
-                  <input type="email" maxlength="40" class="form-control form-control-sm" name="mail" id="mail" value = "<?php echo $mail?>" required>
+                  <input type="email" maxlength="40" class="form-control form-control-sm" name="mail" id="mail" required>
                </div>
             </div>
             <div class="form-group row">
                <label for="telefono" class="control-label col-sm-2">Telefono (+39)</label>
                <div class="col-sm-10">
-                  <input type="tel" maxlength="10" minlength="10" class="form-control form-control-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="telefono" id="telefono" value="<?php echo $telefono?>" required>
+                  <input type="tel" maxlength="10" minlength="10" class="form-control form-control-sm" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="telefono" id="telefono" required>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="password" class="control-label col-sm-2">Password</label>
+               <div class="col-sm-10">
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw" id="password" required>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="psw2" class="control-label col-sm-2">Conferma Password</label>
+               <div class="col-sm-10">
+                  <input type="password" maxlength="40" minlength="8" class="form-control form-control-sm" name="psw2" id="psw2" required>
                </div>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right" name="changeBt"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
+               <button type="submit" class="btn btn-submit float-right" name="signinBt" onclick="formhash(this.form, this.form.password);"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Aggiungi</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
@@ -88,45 +78,59 @@ if(login_check_admin() != true) {
       </script>
    </body>
    <?php
-   if(isset($_POST["changeBt"])) {
+   if(isset($_POST["signinBt"])) {
      if($_POST["psw"] !== $_POST["psw2"]) {
        ?><script type="text/javascript">
         alert("Passoword differenti.");
        </script><?php
      } else {
        require_once ('config.php');
-       $telefono=$_POST["telefono"];
-       $mail=$_POST["mail"];
-       $resCheck = $cn->query("SELECT * FROM utente where email = '$mail' and username!= '$fattorino'");
-       if($resCheck !== false) {
-         if ($resCheck->num_rows > 0) {
-           ?> <script type="text/javascript">
-            location.href = "modifica_fattorino.php?F='<?php echo $fattorino; ?>'";
-            alert("Mail già presente");
-           </script>
-           <?php
-         }
-       }
-       $sql="UPDATE UTENTE
-       SET telefono='$telefono',
-       email='$mail'
-       WHERE username = '$fattorino'";
+     $user=$_POST["user"];
 
-     if($cn->query($sql) === TRUE)
-     {
-       ?><script type="text/javascript">
-          alert("Modifica avvenuta correttamente");
-          location.href = "home_admin.php";
-       </script><?php
+     $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+     // Crea una password usando la chiave appena creata.
+     $psw = hash('sha512', $_POST["psw"].$random_salt);
+
+     $telefono=$_POST["telefono"];
+     $mail=$_POST["mail"];
+     $ristorante = $_SESSION['nomeRistorante'];
+     $sql="INSERT INTO `utente` (telefono, password, email, username, salt, nomeRistorante)
+     VALUES ('$telefono', '$psw', '$mail', '$user', '$random_salt', '$ristorante');";
+     $resCheck = $cn->query("SELECT * FROM utente where username = '$user'");
+     if($resCheck !== false) {
+       if ($resCheck->num_rows > 0) {
+         ?> <script type="text/javascript">
+          location.href = "inserisci_fattorino.php";
+          alert("Username già presente");
+         </script>
+         <?php
+       }
      }
-     else
-     {
-       ?><script type="text/javascript">
-        alert("Errore nella modifica dei dati del fattorino");
-       </script><?php
+     $resCheck = $cn->query("SELECT * FROM utente where email = '$mail'");
+     if($resCheck !== false) {
+       if ($resCheck->num_rows > 0) {
+         ?> <script type="text/javascript">
+          location.href = "inserisci_fattorino.php";
+          alert("Mail già presente");
+         </script>
+         <?php
+       }
      }
-     $cn->close();
-   }
+       if($cn->query($sql) === TRUE)
+       {
+         ?><script type="text/javascript">
+          location.href = "fattorini.php";
+          alert("Inserimento dei dati avvenuto correttamente.");
+         </script><?php
+       }
+       else
+       {
+         ?><script type="text/javascript">
+          alert("Errore nell'inserimento");
+         </script><?php
+       }
+       $cn->close();
+     }
    }
    ?>
 </html>
