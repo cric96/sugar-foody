@@ -1,5 +1,4 @@
-<!-- The Modal -->
-
+<script type="text/javascript" src="./js/dettagli-shower.js"></script>
 <div class="modal fade" id="dettagli_ordine">
    <div class="modal-dialog">
       <div class="modal-content">
@@ -19,19 +18,8 @@
                     <th>Prezzo</th>
                  </tr>
               </thead>
-              <tbody>
-                 <tr>
-                    <td>Pizza</td>
-                    <td>Quantità</td>
-                    <td>Categoria</td>
-                    <td>Prezzo</td>
-                 </tr>
-                 <tr>
-                    <td>Piadina</td>
-                    <td>Quantità</td>
-                    <td>Categoria</td>
-                    <td>Prezzo</td>
-                 </tr>
+              <tbody id="addValue">
+                 
               </tbody>
            </table>
          </div>

@@ -13,7 +13,9 @@
       foreach($this->statuses as $status) {
         $res[$status["nome"]] = $status["valore"];
       }
-      return asort($res);
+
+      asort($res);
+      return $res;
     }
     protected function createElement($row) {
       return $row;

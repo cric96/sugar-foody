@@ -9,7 +9,7 @@
     private $status;
     private $place;
     private $date;
-    public function __construct($id,$user,$admin,$status,$place,$date,$products){
+    public function __construct($id,$user,$admin,$status,$place,$date,$fattorino,$products){
       $this->products = $products;
       $this->id = $id;
       $this->user = $user;
@@ -17,6 +17,7 @@
       $this->status = $status;
       $this->place = $place;
       $this->date = $date;
+      $this->fattorino = $fattorino;
     }
 
     public function getProducts() {
