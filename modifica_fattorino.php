@@ -3,11 +3,15 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 require_once("./config.php");
-if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
+if(login_check_admin() != true) {
  ?><script type="text/javascript">
  location.href = "index.php";
  </script><?php
  $cn->close();
+} else if (!isset($_GET['F']) || empty($_GET['F'])) {
+  ?><script type="text/javascript">
+  location.href = "home_admin.php";
+  </script><?php
 } else {
   $fattorino=$_GET['F'];
 }
@@ -26,17 +30,13 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
-      <script src="./js/sha512.js"></script>
-      <script src="./js/form.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/form-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
       <title>Dati utente</title>
    </head>
    <body>
-     <?php include("./include/navbarAdmin.php"); ?>
-
-      <?php
+     <?php include("./include/navbarAdmin.php");
       if ($stmt = $cn->prepare("SELECT email, telefono FROM utente WHERE username = ? LIMIT 1")) {
          $stmt->bind_param('s', $fattorino);
          $stmt->execute();
@@ -55,7 +55,7 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
       ?>
       <main class="container content">
          <h2 class="my-4">Dati fattorino</h2>
-         <form enctype="multipart/form-data" method="post" class="form-horizontal" action="dati_utente.php">
+         <form method="post" class="form-horizontal" action="modifica_fattorino.php?F=<?php echo $fattorino ?>">
             <div class="form-group row">
                <label for="user" class="control-label col-sm-2">Username</label>
                <div class="col-sm-10">
@@ -75,7 +75,7 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
                </div>
             </div>
             <div class="form-check btn-form">
-               <button type="submit" class="btn btn-submit float-right" name="changeBt" onclick="formhash(this.form, this.form.password);"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
+               <button type="submit" class="btn btn-submit float-right" name="changeBt"><em class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></em> Modifica</button>
                <button type="reset" class="btn btn-default float-right">Annulla</button>
             </div>
          </form>
@@ -87,11 +87,6 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
    </body>
    <?php
    if(isset($_POST["changeBt"])) {
-     if($_POST["psw"] !== $_POST["psw2"]) {
-       ?><script type="text/javascript">
-        alert("Passoword differenti.");
-       </script><?php
-     } else {
        require_once ('config.php');
        $telefono=$_POST["telefono"];
        $mail=$_POST["mail"];
@@ -110,9 +105,10 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
        email='$mail'
        WHERE username = '$fattorino'";
 
-     if($cn->multi_query($sql) === TRUE)
+     if($cn->query($sql) === TRUE)
      {
        ?><script type="text/javascript">
+          alert("Modifica avvenuta correttamente");
           location.href = "home_admin.php";
        </script><?php
      }
@@ -123,7 +119,6 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
        </script><?php
      }
      $cn->close();
-   }
    }
    ?>
 </html>

@@ -27,7 +27,7 @@ $cn->close();
   $categoria = $_GET["categoria"];
   $_SESSION['categoria'] = $categoria;
   $username = $_SESSION["username"];
-  $queryCarrello = "SELECT o.idOrdine, u.nomeRistorante
+  $queryCarrello = "SELECT o.numeroOrdine, u.nomeRistorante
   from ORDINE o, UTENTE u
   where o.utente = '$username'
   and o.stato = 'carrello'
