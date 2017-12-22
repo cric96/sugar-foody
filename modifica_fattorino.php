@@ -3,11 +3,15 @@
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 require_once("./config.php");
-if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
+if(login_check_admin() != true) {
  ?><script type="text/javascript">
  location.href = "index.php";
  </script><?php
  $cn->close();
+} else if (!isset($_GET['F']) || empty($_GET['F'])) {
+  ?><script type="text/javascript">
+  location.href = "home_admin.php";
+  </script><?php
 } else {
   $fattorino=$_GET['F'];
 }
@@ -34,9 +38,7 @@ if(login_check_admin() != true || !isset($_GET['F']) || empty($_GET['F'])) {
       <title>Dati utente</title>
    </head>
    <body>
-     <?php include("./include/navbarAdmin.php"); ?>
-
-      <?php
+     <?php include("./include/navbarAdmin.php"); 
       if ($stmt = $cn->prepare("SELECT email, telefono FROM utente WHERE username = ? LIMIT 1")) {
          $stmt->bind_param('s', $fattorino);
          $stmt->execute();
