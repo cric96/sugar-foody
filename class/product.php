@@ -1,20 +1,25 @@
 <?php
   class Product {
+    private const NO_QUANTITY = 0;
     private $id;
     private $name;
     private $desc;
     private $category;
     private $ingredients;
     private $price;
-    public function __construct($id,$name,$desc,$category,$ingredients,$price) {
+    private $quantity;
+    public function __construct($id,$name,$desc,$category,$ingredients,$price,$quantity) {
       $this->id = $id;
       $this->name = $name;
       $this->desc = $desc;
-      $this->category = $this->category;
+      $this->category = $category;
       $this->ingredients = $ingredients;
       $this->price = $price;
+      $this->quantity = $quantity;
     }
-
+    public static function createBaseProduct($id,$name,$desc,$category,$ingredients,$price) {
+      return new static($id,$name,$desc,$category,$ingredients,$price,NO_QUANTITY);
+    }
     public function getId() {
       return $this->id;
     }
@@ -37,6 +42,10 @@
 
     public function getPrice() {
       return $this->price;
+    }
+
+    public function getQuantity() {
+      return $this->quantity;
     }
   }
 ?>

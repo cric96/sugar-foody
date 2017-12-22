@@ -23,9 +23,10 @@
       $this->stmUpdate = $this->con->prepare("UPDATE `PRODOTTO` SET `nome`= ?,`descrizione`=?,`nomeCategoria`=? WHERE id=?");
       $this->createListino = $this->con->prepare("INSERT INTO LISTINO (`nomeRistorante`,`idProdotto`,`prezzo`) VALUES(?,?,?)");
       $this->deleteListino = $this->con->prepare("DELETE FROM LISTINO WHERE idProdotto = ? and nomeRistorante=? ");
-      $this->stmSelectOrder = $this->con->prepare("SELECT P.id,P.nome,P.descrizione,P.nomeCategoria,D.prezzo
+      $this->stmSelectOrder = $this->con->prepare("SELECT P.id,P.nome,P.descrizione,P.nomeCategoria,D.prezzo,D.quantita
                                                    FROM PRODOTTO as P, DETTAGLIO as D
-                                                   WHERE D.numeroOrdine = ?");
+                                                   WHERE D.numeroOrdine = ?
+                                                   AND P.id = D.idProdotto");
     }
     //inserisce un prodotto
     public function insertProduct($name,$desc,$cat) {
@@ -86,14 +87,18 @@
         parent::executeBasicQuery($this->createListino);
       }
     }
-    
+
     protected function createElement($row) {
       $price = 0;
       if(isset($row["prezzo"])) {
         $price= $row["prezzo"] / 100;
       }
       $ingredients = (new IngredientSet($this->con))->getIngredientsOfProduct($row["id"]);
-      return new Product($row["id"],$row["nome"],$row["descrizione"],$row["nomeCategoria"],$ingredients,$price);
+      if(isset($row["quantita"])) {
+        return new Product($row["id"],$row["nome"],$row["descrizione"],$row["nomeCategoria"],$ingredients,$price, $row["quantita"]);
+      } else {
+        return Product::createBaseProduct($row["id"],$row["nome"],$row["descrizione"],$row["nomeCategoria"],$ingredients,$price);
+      }
     }
   }
  ?>

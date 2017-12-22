@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php include("./secureLogin/adminPage.php"); ?>
+<?php
+//TODO PASSARE F id per modificare
+//PER INSERIRE NON PASSARE NIENTE
+include("./secureLogin/adminPage.php"); ?>
 <html lang="it">
    <head>
       <meta charset="UTF-8">
@@ -41,6 +44,7 @@
                      <th>Mail</th>
                      <th>Telefono</th>
                      <th>Elimina</th>
+                     <th>Modifica</th>
                   </tr>
                </thead>
                <tbody id="refreshable">
@@ -60,6 +64,8 @@
                         <td><?php echo $fattorino->getEmail(); ?></td>
                         <td><?php echo $fattorino->getTelefono(); ?></td>
                         <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=?username=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
+                        <td class="delete"><a class="fa fa-gear" aria-hidden="true" href=modifica_fattorino.php?F=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
+
                       </tr>
                     <?php
                     }
@@ -67,6 +73,9 @@
 
                </tbody>
             </table>
+            <div class="adder">
+              <a title="Aggiungi fattorino!" class="fa fa-plus-square" aria-hidden="true" href="modifica_fattorino.php"><span class="hide-acc">+</span></a>
+            </div>
          </section>
       </main>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>

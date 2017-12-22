@@ -3,7 +3,6 @@
 
   include_once("./class/ordineSet.php");
   if(isset($_GET["found-value"])) {
-    echo "enter";
     (new OrdineSet($cn))->confirmOrder($_GET["order"],$_GET["found-value"]);
   }
 ?>
@@ -25,7 +24,7 @@
      <script src="./js/datalist-click.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
-     <link rel="stylesheet" href="./css/tabelle-style.css">
+     
      <link rel="stylesheet" href="./css/fa-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
      <link rel="stylesheet" href="./css/switch-style.css">
@@ -55,23 +54,36 @@
           </thead>
           <tbody id="refreshable">
           <?php
+            $statuses = (new StatusSet($cn))->getStatuses();
             $ordini = (new OrdineSet($cn))->getOrdersAdmin($_SESSION["username"]);
+
           ?>
             <?php
               foreach($ordini as $ordine) {
-                //TODO FINISCI QUA
+                $statusOrder = $statuses[$ordine->getStatus()];
+                if(in_array($statusOrder, AdminPolicy::see)) {
                 ?>
+
                 <tr>
                   <td><?php echo $ordine->getId();?></td>
-
-                  <td> <a value=<?php echo $ordine->getId()?> data-toggle="modal" data-target="#bannerformmodal" class="source fattorino fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a> </td>
+                  <?php
+                    if(in_array($statusOrder,AdminPolicy::modify)) {
+                  ?>
+                    <td> <a value=<?php echo $ordine->getId();?> data-toggle="modal" data-target="#bannerformmodal" class="source fattorino fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a> </td>
+                  <?php
+                    } else {
+                  ?>
+                    <td> <?php echo $ordine->getFattorino();?> </td>
+                  <?php
+                    }
+                  ?>
                   <td><?php echo $ordine->getStatus();?></td>
                   <td><?php echo $ordine->getLocation();?></td>
                   <td><?php echo $ordine->getDate();?></td>
                   <td> <a value=<?php echo $ordine->getId()?> class="dettagli fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" ><span class="hide-acc">Dettagli</span></a></td>
 
                 </tr>
-              <?php
+              <?php }
               }
             ?>
           </tbody>
@@ -107,38 +119,9 @@
                   ?>
               </datalist>
             </div>
-            <p> Un nuovo fattorino? Aggiungilo! </p>
-            <div class="switch">
-              <label><input type="checkbox" name="show" value="showing" class="observable-source" id="showing" >
-              <span class="slider"></span>
-              <label for="showing" class="hide-acc">Mostra il contenuto</label>
-            </div>
-            <form class="form form-horizontal" action="index.html" method="post">
-              <div class="form-group hideble">
-                 <label for="user" class="control-label">Username</label>
-                 <div class="col-sm-10 input-group">
-                    <input type="text" required class="form-control form-control-sm rounded-0" name="user" id="user">
-                 </div>
-              </div>
-
-              <div class="form-group hideble">
-                 <label for="psw" class="control-label">Password</label>
-                 <div class="col-sm-10 input-group">
-                    <input type="password" required class="form-control form-control-sm rounded-0" name="psw" id="psw">
-                 </div>
-              </div>
-              <div class="form-group hideble">
-                 <label for="mail" class="control-label">Mail</label>
-                 <div class="col-sm-10 input-group">
-                    <input type="mail" required class="form-control form-control-sm rounded-0" name="mail" id="mail">
-                 </div>
-              </div>
-              <button type="submit" class="btn btn-submit float-right hideble"><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Aggiungi</button>
-            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
   <script>
       w3.includeHTML();
   </script>

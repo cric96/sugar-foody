@@ -17,7 +17,7 @@
     public function __construct($con) {
       parent::__construct($con);
       $this->stmInsert = $this->con->prepare("INSERT INTO ORDINE (`data`, `utente`, `luogo`, `stato`,`amministratore`) VALUES (?,?,?,'carrello',?)");
-      $this->stmUpdateFattorino = $this->con->prepare("UPDATE ORDINE SET `fattorino`=?, stato=`elaborazione` WHERE  `numeroOrdine`=?");
+      $this->stmUpdateFattorino = $this->con->prepare("UPDATE ORDINE SET `fattorino`=?, stato='elaborazione' WHERE  `numeroOrdine`=?");
       $this->stmUpdate = $con->prepare("UPDATE ORDINE SET  stato=? WHERE `numeroOrdine`=?");
       $this->stmSelectUser = $con->prepare("SELECT * FROM ORDINE WHERE `utente`=?");
       $this->stmSelectAdmin = $con->prepare("SELECT * FROM ORDINE WHERE `amministratore`=?");
@@ -42,17 +42,22 @@
     }
 
     public function confirmOrder($order,$fattorino) {
-        $this->stmUpdateFattorino->bind_param($order,$fattorino);
+        $this->stmUpdateFattorino->bind_param("si",$fattorino,$order);
         if(!parent::executeBasicQuery($this->stmUpdateFattorino)) {
           return false;
         }
-        $this->stmSelect->bind_param("i",$order);
-        $this->produceNotification(parent::execSelectQuery($this->stmSelect)[0]);
+        $this->produceNotification($this->getOrder($order));
     }
-
-    public function nextStatusOn($order) {
+    public function getOrder($order){
       $this->stmSelect->bind_param("i",$order);
-      $query = parent::execSelectQuery($this->stmSelect);
+      $res = parent::executeBasicQuery($this->stmSelect);
+      if(!$res) {
+        return false;
+      }
+      return parent::executeSelectQuery($this->stmSelect)[0];
+    }
+    public function nextStatusOn($order) {
+      $query = $this->getOrder($order);
       if(!$query) {
         return false;
       }
@@ -74,20 +79,20 @@
     }
     private function produceNotification($order) {
       $status_number = $this->statuses[$order->getStatus()];
-      $notificationManager = new NotificationSet($con);
+      $notificationManager = new NotificationSet($this->con);
       if(in_array($status_number,AdminPolicy::notification)){
         $notificationManager->insertNotification($order->getAdmin(),$order->getId(),$order->getStatus());
       }
-      if(in_array($status_number,UserPolicy::notification)){
+      if(in_array($status_number,UtentePolicy::notification)){
         $notificationManager->insertNotification($order->getUser(),$order->getId(),$order->getStatus());
       }
       if(in_array($status_number,FattorinoPolicy::notification)){
-        $notificationManager->insertNotification($order->getUser(),$order->getId(),$order->getStatus());
+        $notificationManager->insertNotification($order->getFattorino(),$order->getId(),$order->getStatus());
       }
     }
     protected function createElement($row) {
       $products = (new ProductSet($this->con))->getProductInOrder($row["numeroOrdine"]);
-      return new Ordine($row["numeroOrdine"],$row["utente"],$row["amministratore"],$row["stato"],$row["luogo"],$row["data"],$products);
+      return new Ordine($row["numeroOrdine"],$row["utente"],$row["amministratore"],$row["stato"],$row["luogo"],$row["data"],$row["fattorino"],$products);
     }
   }
  ?>
