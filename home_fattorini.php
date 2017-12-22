@@ -122,7 +122,7 @@
                     <td><?php echo $row["data"]; ?></td>
                      <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" value="<?php echo $row["numeroOrdine"] ?>" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
-                  <?php include('./include/dettagli_ordine.php);
+                  <?php include('./include/dettagli_ordine.php');
       					}
       				}
       			 ?>
