@@ -20,25 +20,46 @@ $cn->close();
 }
 if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_GET["id"] > 0) {
   if(!isset($_SESSION["ordine"])) {
-    //ordine da creare
+    //ordine da creare, non c'è sessione e non c'è carrello
     //cerca amministratore
-    $ristorante = $_SESSION["nomeRistorante"];
-    $queryA = "SELECT username
-    FROM UTENTE
-    WHERE admin = 1
-    AND nomeRistorante = '$ristorante'";
-    $resultA = $cn->query($queryA);
-    if($resultA !== false){
-      if ($resultA->num_rows > 0) {
-        $rowA = $resultA->fetch_assoc();
-        $admin = $rowA["username"];
-        $user = $_SESSION['username'];
-        $insert="INSERT INTO ORDINE (utente, stato, amministratore)
-        VALUES ('$user', 'carrello', '$admin')";
-        $res = $cn->query($insert);
-        if($res === TRUE) {
-          $_SESSION["ordine"] = $cn->insert_id;
-          insertDetails($cn);
+    $username = $_SESSION["username"];
+    $queryCarrello = "SELECT o.numeroOrdine, u.nomeRistorante
+    from ORDINE o, UTENTE u
+    where o.utente = '$username'
+    and o.stato = 'carrello'
+    and o.amministratore = u.username";
+    $result = $cn->query($queryCarrello);
+    if($result !== false){
+      if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['ordine'] = $row['numeroOrdine'];
+        if($_SESSION['nomeRistorante'] !== $row['nomeRistorante']) {
+          ?><script>
+          alert("il tuo ordine in sospeso è presso il ristorante <?php echo $row['nomeRistorante'] ?>, per cui devi continuare ad ordinare presso di lui.");
+          location.href("./categoriaProdotti.php?nome=<?php echo $row["nomeRistorante"];?>");
+        </script><?php
+        }
+        insertDetails($cn);
+      } else {
+        $ristorante = $_SESSION["nomeRistorante"];
+        $queryA = "SELECT username
+        FROM UTENTE
+        WHERE admin = 1
+        AND nomeRistorante = '$ristorante'";
+        $resultA = $cn->query($queryA);
+        if($resultA !== false){
+          if ($resultA->num_rows > 0) {
+            $rowA = $resultA->fetch_assoc();
+            $admin = $rowA["username"];
+            $user = $_SESSION['username'];
+            $insert="INSERT INTO ORDINE (utente, stato, amministratore)
+            VALUES ('$user', 'carrello', '$admin')";
+            $res = $cn->query($insert);
+            if($res === TRUE) {
+              $_SESSION["ordine"] = $cn->insert_id;
+              insertDetails($cn);
+            }
+          }
         }
       }
     }
@@ -51,100 +72,159 @@ if(isset($_POST["conferma"]) && isset($_GET["id"]) && !empty($_GET["id"]) && $_G
   </script>
   <?php
 }
-  function insertDetails($cn) {
-  //$idDettaglio
-  $idOrdine = $_SESSION["ordine"];
-  $idProdotto = $_GET["id"];
+
+function getIdDettaglio($cn, $idOrdine, $idProdotto) {
   $queryA = "SELECT max(idDettaglio) as maxId
   FROM DETTAGLIO
   WHERE numeroOrdine = $idOrdine
   AND idProdotto = $idProdotto";
-  //manca controllare se c'è un dettaglio identico..
   $resultA = $cn->query($queryA);
   if($resultA !== false){
     if ($resultA->num_rows > 0) {
       $rowA = $resultA->fetch_assoc();
-      $idDettaglio = $rowA['maxId'] + 1;
+      return $rowA['maxId'] + 1;
+    }
+    return 1;
+  }
+  exitFrom();
+  exit(1);
+}
+
+function getPrezzo($cn, $idProdotto, $ristorante) {
+  $queryA = "SELECT prezzo
+            FROM LISTINO
+            WHERE idProdotto = $idProdotto
+            AND nomeRistorante = '$ristorante'";
+  $resultA = $cn->query($queryA);
+  if($resultA !== false){
+    if ($resultA->num_rows > 0) {
+      $rowA = $resultA->fetch_assoc();
+      return $rowA["prezzo"];
+    }
+  }
+  exitFrom();
+  exit(1);
+}
+
+function rimozioni($cn, $idDettaglio, $idProdotto, $idOrdine) {
+  $rm ='';
+  if (isset($_POST['ingr'])) {
+    $query = "SELECT nomeIngrediente
+    FROM composizione
+    where idProdotto=$idProdotto
+    and aggiunta=0
+    and obbligatorio=0";
+    $result = $cn->query($query);
+    if($result !== false){
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            if (!in_array($row["nomeIngrediente"], $_POST['ingr'])) {
+              $ingrediente = $row["nomeIngrediente"];
+              $rm .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                    VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
+            }
+        }
+      }
     }
   } else {
-    $idDettaglio = 1;
+    //non c'è il post di ingredienti equivale a dire che o il prodotto non ha ingredienti
+    //che si possono rimuovere, o si sono rimossi tutti gli ingredienti rimovibili
+    $query = "SELECT nomeIngrediente
+    FROM composizione
+    where idProdotto=$idProdotto
+    and aggiunta=0
+    and obbligatorio=0";
+    $result = $cn->query($query);
+    if($result !== false){
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+              $ingrediente = $row["nomeIngrediente"];
+              $rm .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
+                    VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
+            }
+        }
+      }
   }
+  return $rm;
+}
+
+function aggiunte($cn, $idDettaglio, $idProdotto, $idOrdine, &$prezzo) {
+  $ag = '';
+  if (isset($_POST['agg'])) {
+    foreach ($_POST['agg'] as $ingrediente) {
+      //modificare prezzo
+      $queryA = "SELECT prezzo FROM ingrediente where nome='$ingrediente'";
+      $resultA = $cn->query($queryA);
+      if($resultA !== false){
+        if ($resultA->num_rows > 0) {
+          $rowA = $resultA->fetch_assoc();
+          $prezzo += $rowA["prezzo"];
+          $ag .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, aggiunta)
+            VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
+        }
+      }
+    }
+  }
+  return $ag;
+}
+
+function insertDetails($cn) {
+  $idOrdine = $_SESSION["ordine"];
+  $idProdotto = $_GET["id"];
+  $idDettaglio = getIdDettaglio($cn, $idOrdine, $idProdotto);
   $qnt = intval($_POST["quantità"]);
   $sql='';
-  $queryA = "SELECT prezzo
-  FROM LISTINO
-  WHERE idProdotto = $idProdotto";
-  $resultA = $cn->query($queryA);
-  if($resultA !== false){
-    if ($resultA->num_rows > 0) {
-      $rowA = $resultA->fetch_assoc();
-      $prezzo=$rowA["prezzo"];
-      //se ci sono ingredienti
-      if (isset($_POST['ingr'])) {
-        $query = "SELECT nomeIngrediente
-        FROM composizione
-        where idProdotto=$idProdotto
-        and aggiunta=0
-        and obbligatorio=0";
-        $result = $cn->query($query);
-        if($result !== false){
-          if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                if (!in_array($row["nomeIngrediente"], $_POST['ingr'])) {
-                  $ingrediente = $row["nomeIngrediente"];
-                  $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
-                        VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
-                }
-            }
-          }
-        }
-      } else {
-        //non c'è il post di ingredienti equivale a dire che o il prodotto non ha ingredienti
-        //che si possono rimuovere, o si sono rimossi tutti gli ingredienti rimovibili
-        $query = "SELECT nomeIngrediente
-        FROM composizione
-        where idProdotto=$idProdotto
-        and aggiunta=0
-        and obbligatorio=0";
-        $result = $cn->query($query);
-        if($result !== false){
-          if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                  $ingrediente = $row["nomeIngrediente"];
-                  $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, rimozione)
-                        VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
-                }
-            }
-          }
-      }
-      //se ci sono aggiunte
-      if (isset($_POST['agg'])) {
-        foreach ($_POST['agg'] as $ingrediente) {
-          //modificare prezzo
-          $queryA = "SELECT prezzo FROM ingrediente where nome='$ingrediente'";
-          $resultA = $cn->query($queryA);
-          if($resultA !== false){
-            if ($resultA->num_rows > 0) {
-              $rowA = $resultA->fetch_assoc();
-              $prezzo += $rowA["prezzo"];
-              $sql .= "INSERT INTO MODIFICA(idDettaglio, idProdotto, numeroOrdine, nomeIngrediente, aggiunta)
-                VALUES ($idDettaglio, $idProdotto, $idOrdine,'$ingrediente',1);";
-            }
-          }
-        }
-      }
-      $sql = "INSERT INTO DETTAGLIO(idDettaglio, idProdotto, numeroOrdine, prezzo, quantita)
-      VALUES ($idDettaglio, $idProdotto, $idOrdine, $prezzo, $qnt);" . $sql;
-      ?><script><?php
-      if($cn->multi_query($sql) === TRUE)
-      {
-        ?>alert("Dettaglio aggiunto correttamente");<?php
-      } else {
-        ?>alert("Dettaglio non aggiunto, contatta il tecnico");<?php
-      }
-      ?></script><?php
+  $ristorante = $_SESSION["nomeRistorante"];
+  $prezzo = getPrezzo($cn, $idProdotto, $ristorante);
+  if(!checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt, $prezzo)) {
+    $sql .= rimozioni($cn, $idDettaglio, $idProdotto, $idOrdine);
+    $sql .= aggiunte($cn, $idDettaglio, $idProdotto, $idOrdine, $prezzo);
+    $sql = "INSERT INTO DETTAGLIO(idDettaglio, idProdotto, numeroOrdine, prezzo, quantita)
+    VALUES ($idDettaglio, $idProdotto, $idOrdine, $prezzo, $qnt);" . $sql;
+    ?><script><?php
+    if($cn->multi_query($sql) === TRUE)
+    {
+      ?>alert("Dettaglio aggiunto correttamente");<?php
+    } else {
+      ?>alert("Dettaglio non aggiunto, contatta il tecnico");<?php
+    }
+    ?></script><?php
   }
+  exitFrom();
 }
+
+//return true if there are duplicates, and in this casa update quantity field
+function checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt, $prezzo) {
+  if($idDettaglio > 1) {
+    if(!isset($_POST['agg'])) {
+    //controlla se non ci sono rimozioni
+    $queryNoMod = "SELECT DISTINCT d.idDettaglio
+        FROM DETTAGLIO d LEFT JOIN MODIFICA m
+            ON d.idDettaglio = m.idDettaglio
+            and d.numeroOrdine = m.numeroOrdine
+            AND d.idProdotto = m.idProdotto
+          where d.numeroOrdine = $idOrdine
+          and m.nomeIngrediente is null";
+        }
+    //guarda anche dettagli senza modifiche
+    $queryD = "SELECT idDettaglio, nomeIngrediente, aggiunta, rimozione
+    FROM MODIFICA
+    WHERE numeroOrdine = $idOrdine
+    AND idProdotto = $idProdotto
+    ORDER BY idDettaglio";
+    $resultD = $cn->query($queryD);
+    if($resultD !== false){
+      if($resultD->num_rows > 0) {
+        while($rowD = $resultD->fetch_assoc() > 0) {
+
+        }
+      }
+    }
+  }
+  return 0;
+}
+
+function exitFrom() {
 ?><script type="text/javascript">
   location.href = "../componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
 </script><?php
