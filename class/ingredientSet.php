@@ -10,6 +10,7 @@
     private $stmSelectComp;
     private $stmUpdate;
     private $selectAll;
+    private $deleteAllComp;
     public function __construct($con) {
       parent::__construct($con);
       $this->stmInsert = $this->con->prepare("INSERT INTO INGREDIENTE (`nome`, `prezzo`) VALUES (?,?)");
@@ -20,7 +21,7 @@
                                              FROM `INGREDIENTE` as I , `COMPOSIZIONE` as C
                                              WHERE C.nomeIngrediente = I.nome AND
                                                    C.idProdotto = ?");
-
+      $this->deleteAllComp = $con->prepare("DELETE FROM COMPOSIZIONE WHERE idProdotto=?")
       $this->stmUpdate = $con->prepare("UPDATE COMPOSIZIONE
                                         SET `aggiunta`=?,`obbligatorio`=?
                                         WHERE idProdotto = ? AND nomeIngrediente = ?");
@@ -54,6 +55,18 @@
     public function updateIngredient($idProdotto,$name,$aggiunta,$obbligatorio) {
       $this->stmUpdate->bind_param("iiis",intval($aggiunta),intval($obbligatorio),$idProdotto,$name);
       return parent::executeBasicQuery($this->stmUpdate);
+    }
+
+    public function refreshProductIngredients($idProdotto,$ingredients) {
+      $this->deleteAllComp->bind_param("i",$idProdotto);
+      if(parent::executeBasicQuery($this->deleteAllComp)) {
+        foreach($ingredients as $ingredient) {
+          $this->insertIngredientInProduct($ingredient->getName(),$idProd,$ingredient->aggiunta(),$ingredient->obbligatorio());
+        }
+      } else {
+        return false;
+      }
+
     }
     protected function createElement($row) {
       if(isset($row["aggiunta"])) {

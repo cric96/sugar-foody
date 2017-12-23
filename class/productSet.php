@@ -8,7 +8,6 @@
     private $stmInsert;
     private $stmSelect;
     private $selectAll;
-    private $stmUpdate;
     private $stmSelectOrder;
     private $deleteListino;
     private $createListino;
@@ -21,7 +20,6 @@
                                               FROM `PRODOTTO` AS P, `LISTINO` as L
                                               WHERE L.nomeRistorante = ?
                                               AND L.idProdotto = P.id ");
-      $this->stmUpdate = $this->con->prepare("UPDATE `PRODOTTO` SET `nome`= ?,`descrizione`=?,`nomeCategoria`=? WHERE id=?");
       $this->createListino = $this->con->prepare("INSERT INTO LISTINO (`nomeRistorante`,`idProdotto`,`prezzo`) VALUES(?,?,?)");
       $this->deleteListino = $this->con->prepare("DELETE FROM LISTINO WHERE idProdotto = ? and nomeRistorante=? ");
       $this->stmSelectOrder = $this->con->prepare("SELECT P.id,P.nome,P.descrizione,P.nomeCategoria,D.prezzo,D.quantita
@@ -50,15 +48,6 @@
       $ingredientSet = new IngredientSet($this->con);
       foreach($ingredietns as $ingredient) {
           if(!$ingredientSet->insertIngredientInProduct($ingredient->getName(),$id,$ingredient->aggiunta,$ingredient->obbligatorio)) {
-            return false;
-          }
-      }
-    }
-    //aggiorna gli ingredienti di un prodotto
-    public function updateIngredientInProduct($id,$ingredients) {
-      $ingredientSet = new IngredientSet($this->con);
-      foreach($ingredietns as $ingredient) {
-          if(!$ingredientSet->updateIngredient($id,$ingredient->getName(),$ingredient->aggiunta,$ingredient->obbligatorio)) {
             return false;
           }
       }
