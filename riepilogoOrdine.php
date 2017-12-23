@@ -47,7 +47,7 @@ $cn->close();
 <?php
   require_once("./config.php");
   $utente = $_SESSION["username"];
-  $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita,P.nome
+  $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome
             FROM composizione C, dettaglio De, prodotto P
             WHERE C.idProdotto IN(
                         SELECT D.idProdotto
@@ -104,27 +104,36 @@ $cn->close();
                /*Non vede row come faccio a prendere idProdotto della prima riga senza toglierla??*/
                $first = 1;
                $tot = 0;
+               $nomeIngr = 0;
                while($row = $res->fetch_assoc()) {
+                 $first = 1;
                  if($first) {
                    $idProd = $row["idProdotto"];
-                   $first = 0;
+                   $nomeIngr = $row["nomeIngrediente"];
                  }
             ?>
              <tr scope="row">
                <td><?php echo $row["nome"]; ?></td>
                <td><?php echo "€".$row["prezzo"]/100; ?></td>
                <td><?php echo $row["quantita"]; ?></td>
-               <?php $tot += $row["quantita"] ?>
+               <?php $tot += $row["prezzo"] ?>
                <td>
                  <div>
                    <ul class="prova">
-                     <?php while($row["idProdotto"] === $idProd && $row = $res->fetch_assoc()){?>
-                     <li class="ingredienti"><?php echo $row["nomeIngrediente"]; ?></li>
+                     <?php while(($row = $res->fetch_assoc()) && ($row["idProdotto"] === $idProd)){?>
+                     <li class="ingredienti">
+                       <?php
+                        if($first) {
+                          echo $nomeIngr."<br>";
+                          $first = 0;
+                        }
+                        echo $row["nomeIngrediente"];
+
+                      ?>
+                    </li>
                     <?php
                         }
-                        if($row = $res->fetch_assoc()) {
-                            $idProd = $row["idProdotto"];
-                        }
+                        $idProd = $row["idProdotto"];
                      ?>
                    </ul>
                  </div>
@@ -132,7 +141,9 @@ $cn->close();
               <?php } ?>
              <tr scope="row">
                <td>
-                 <?php echo "Totale:  ".$tot."€"; ?>
+                 <?php
+                  $tot = $tot/100;
+                  echo "Totale:  ".$tot."€"; ?>
                </td>
              </tr>
            <?php } else {
