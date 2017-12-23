@@ -100,13 +100,11 @@ $cn->close();
          <tbody>
            <?php
            if ($res !== false) {
-             //while($row = $res->fetch_assoc()) {
-               //var_dump($row);
-             //}
              if($res->num_rows > 0) {
                $first = 1;
                $tot = 0;
-               while($row = $res->fetch_assoc()) {
+               $row = $res->fetch_assoc();
+               while($row !== false) {
                  if($first) {
                    $idProd = $row["idProdotto"];
                  }
@@ -123,9 +121,6 @@ $cn->close();
                      <li class="ingredienti"><?php echo $row["nomeIngrediente"];?></li>
                      <?php
                         $row = $res->fetch_assoc();
-                        if($idProd !==$row["idProdotto"]) {
-
-                        }
                       }
                       $idProd = $row["idProdotto"];
                      ?>
