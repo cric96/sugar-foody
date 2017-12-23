@@ -1,10 +1,11 @@
-<!DOCTYPE html>
 <?php include("./secureLogin/adminPage.php");
   include_once("./class/productSet.php");
   if(isset($_GET["prodotto"])) {
     (new ProductSet($cn))->deleteProductInListino($_GET["prodotto"],$_SESSION["nomeRistorante"]);
   }
 ?>
+
+<!DOCTYPE html>
 <html lang="it">
    <head>
      <meta charset="UTF-8">
@@ -18,6 +19,7 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
      <script src="https://www.w3schools.com/lib/w3.js"></script>
      <script src="./js/hide-accessibily.js"></script>
+     <script type="text/javascript" src="./js/add-in-listino.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
      <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -64,10 +66,54 @@
           </table>
         </section>
         <div class="adder">
-          <a data-toggle="tooltip" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true" href="aggiungi_prodotto.php"><span class="hide-acc">+</span></a>
+          <a data-toggle="modal" data-target="#bannerformmodal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
         </div>
       </main>
+      <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="bannerformmodal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group showable">
+                <form>
+                  <fieldset>
+                    <legend>Inserisci prodotto</legend>
+                    <div class="form-group">
 
+                      <label for="searching">Ricerca tra quelli già inseriti</label>
+                      <input autocomplete="off" id="searching"  type="search" class="col-sm-12 form-control" list="set" name="found-value" required>
+                      <datalist id="set" >
+                          <?php
+                            include_once("./class/productSet.php");
+                            $products = (new ProductSet($cn))->getAllProducts();
+                            foreach($products as $product) {
+                              ?>
+                              <option data = <?php  echo $product->getId() ?>><?php echo $product->getName(); ?></option> <?php
+                            }
+                          ?>
+                      </datalist>
+
+                      <label for="prezzoProdotto">Inserisci il prezzo </label>
+                      <input id="prezzoProdotto" min=0 step=0.01 class="col-sm-12 form-control"type="number" name="" value="">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" onclick=addInListino()
+                       class="btn btn-submit"> Aggiungi in listino</button>
+                    </div>
+                  </fieldset>
+                </form>
+                <form class="" action="aggiungi_prodotto.php" method="post">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-submit "> Nuovo Prodotto</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
       <script>
          w3.includeHTML();

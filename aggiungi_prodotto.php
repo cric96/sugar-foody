@@ -3,12 +3,16 @@
   include_once("./class/productSet.php");
   $prodotto = null;
   $nome = "";
+  $desc = "";
+  $category = "";
   $ingredienti = array();
   $prezzo = 0;
 
   if(isset($_GET["prodotto"])) {
     $prodotto = (new ProductSet($cn)) ->getProductInListino($_SESSION["nomeRistorante"],$_GET["prodotto"]);
     $nome = $prodotto[0]->getName();
+    $desc = $prodotto[0]->getDescription();
+    $category = $prodotto[0]->getCategory();
     $ingredienti = $prodotto[0]->getIngredients();
     $prezzo = $prodotto[0]->getPrice();
   }
@@ -52,9 +56,15 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="prezzo-prodotto" class="control-label col-sm-2">Prezzo</label>
+        <label for="nome-prodotto" class="control-label col-sm-2">Categoria</label>
           <div class="col-sm-10">
-            <input type="number" required class="form-control form-control-sm" step="0.01" min=0 name="prezzo-prodotto" id="prezzo-prodotto" value="<?php echo $prezzo;?>">
+            <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" value="<?php echo $category;?>">
+          </div>
+        </div>
+        <div class="form-group row">
+        <label for="nome-prodotto" class="control-label col-sm-2">Descrizione</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" value="<?php echo $desc;?>">
           </div>
         </div>
         <div class="form-group row">
@@ -123,7 +133,7 @@
                 <fieldset>
                   <legend>Ricerca ingredienti</legend>
                   <label for="searching"><span class="hide-acc">Cerca</span></label>
-                  <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
+                  <input autocomplete="off" id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
                   <datalist id="set" >
                       <?php
                         include_once("./class/ingredientSet.php");
@@ -154,7 +164,7 @@
               <div class="form-group hideble">
                  <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
                  <div class="col-sm-12 input-group">
-                    <input type="number" required class="form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
+                    <input type="number" onclick=required class="btn-submit form-control form-control-sm rounded-0" name="prezzo" id="prezzo">
                  </div>
               </div>
               <button type="submit" class="btn btn-submit float-right hideble"> Aggiungi</button>

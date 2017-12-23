@@ -12,6 +12,7 @@
     private $stmSelectOrder;
     private $deleteListino;
     private $createListino;
+    private $stmSelectAll;
     public function __construct($con) {
       parent::__construct($con);
       $this->stmInsert = $this->con->prepare("INSERT INTO PRODOTTO (`nome`,`descrizione`,`nomeCategoria`) VALUES (?,?,?)");
@@ -32,6 +33,8 @@
                                                        WHERE L.idProdotto = P.id
                                                        AND L.nomeRistorante=?
                                                        AND P.id = ?");
+      $this->stmSelectAll = $this->con->prepare("SELECT * FROM PRODOTTO");
+
     }
     //inserisce un prodotto
     public function insertProduct($name,$desc,$cat) {
@@ -90,15 +93,18 @@
       }
     }
 
-    public function addInListino($product,$ristorante) {
-      $this->createListino->bind_param("sii",$ristorante,$product->getId(),$product->getPrice());
+    public function addInListino($product,$price,$ristorante) {
+      $this->createListino->bind_param("sii",$ristorante,$product,$price);
       return parent::executeBasicQuery($this->createListino);
+
     }
     public function getProductInListino($ristorante,$id) {
       $this->stmSelectInListino->bind_param("si",$ristorante,$id);
       return parent::executeSelectQuery($this->stmSelectInListino);
     }
-
+    public function getAllProducts() {
+      return parent::executeSelectQuery($this->stmSelectAll);
+    }
     protected function createElement($row) {
       $price = 0;
       if(isset($row["prezzo"])) {
