@@ -100,16 +100,15 @@ $cn->close();
          <tbody>
            <?php
            if ($res !== false) {
+             //while($row = $res->fetch_assoc()) {
+               //var_dump($row);
+             //}
              if($res->num_rows > 0) {
-               /*Non vede row come faccio a prendere idProdotto della prima riga senza toglierla??*/
                $first = 1;
                $tot = 0;
-               $nomeIngr = 0;
                while($row = $res->fetch_assoc()) {
-                 $first = 1;
                  if($first) {
                    $idProd = $row["idProdotto"];
-                   $nomeIngr = $row["nomeIngrediente"];
                  }
             ?>
              <tr scope="row">
@@ -120,20 +119,15 @@ $cn->close();
                <td>
                  <div>
                    <ul class="prova">
-                     <?php while(($row = $res->fetch_assoc()) && ($row["idProdotto"] === $idProd)){?>
-                     <li class="ingredienti">
-                       <?php
-                        if($first) {
-                          echo $nomeIngr."<br>";
-                          $first = 0;
-                        }
-                        echo $row["nomeIngrediente"];
+                     <?php while(($row!==false) && ($row["idProdotto"] === $idProd)){?>
+                     <li class="ingredienti"><?php echo $row["nomeIngrediente"];?></li>
+                     <?php
+                        $row = $res->fetch_assoc();
+                        if($idProd !==$row["idProdotto"]) {
 
-                      ?>
-                    </li>
-                    <?php
                         }
-                        $idProd = $row["idProdotto"];
+                      }
+                      $idProd = $row["idProdotto"];
                      ?>
                    </ul>
                  </div>
