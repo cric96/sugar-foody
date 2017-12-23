@@ -24,7 +24,7 @@
      <script src="./js/datalist-click.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
-     
+
      <link rel="stylesheet" href="./css/fa-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
      <link rel="stylesheet" href="./css/switch-style.css">
@@ -103,7 +103,7 @@
           <div class="modal-body">
             <div class="form-group showable">
               <label for="my_select" class="control-label">Scegli il fattorino..</label>
-              <input id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
+              <input autocomplete="off" id="searching" oninput="search()" type="search" class="col-sm-12 form-control" list="set" name="found-value">
               <datalist id="set" >
                 <?php
                 include_once("./class/userSet.php");

@@ -1,8 +1,6 @@
 <?php include("./secureLogin/adminPage.php");
   include_once("./class/productSet.php");
-  if(isset($_GET["prodotto"])) {
-    (new ProductSet($cn))->deleteProductInListino($_GET["prodotto"],$_SESSION["nomeRistorante"]);
-  }
+  $listino = (new ProductSet($cn))->getListino($_SESSION["nomeRistorante"]);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +36,7 @@
      </header>
       <main class="container">
         <section>
-          <table class="table table-striped">
+          <table id="refreshable" class="table table-striped">
             <thead thead-inverse>
               <tr>
                 <th>Nome prodotto</th>
@@ -47,16 +45,15 @@
                 <th>Elimina</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               <?php
-                $prodotti = (new ProductSet($cn))->getListino($_SESSION["nomeRistorante"]);
-                foreach($prodotti as $prodotto) {
+                foreach($listino as $prodotto) {
                   ?>
                   <tr scope="row">
                     <td><?php echo $prodotto->getName();?> </td>
                     <td><?php echo $prodotto->getPrice();?> €</td>
                     <td class="modify"><a class="fa fa-cogs" href=aggiungi_prodotto.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc">modifica</span> </a></td>
-                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=listino_admin.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc"> modifica</span> </a></td>
+                    <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=deleteProductInListino.php?prodotto=<?php echo $prodotto->getId()?>> <span class="hide-acc"> modifica</span> </a></td>
                   </tr>
                 <?php
                 }
@@ -73,11 +70,11 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="closemodal">&times;</button>
             </div>
             <div class="modal-body">
               <div class="form-group showable">
-                <form>
+                <form onsubmit="return false">
                   <fieldset>
                     <legend>Inserisci prodotto</legend>
                     <div class="form-group">
@@ -89,8 +86,18 @@
                             include_once("./class/productSet.php");
                             $products = (new ProductSet($cn))->getAllProducts();
                             foreach($products as $product) {
-                              ?>
-                              <option data = <?php  echo $product->getId() ?>><?php echo $product->getName(); ?></option> <?php
+                              $print = true;
+                              foreach ($listino as $presente) {
+                                if($presente->getId() === $product->getId()) {
+                                  $print = false;
+                                }
+                              }
+                              if($print) {
+                                ?>
+
+                                <option data = <?php  echo $product->getId() ?>><?php echo $product->getName(); ?></option> <?php
+                              }
+                              $print = true;
                             }
                           ?>
                       </datalist>
