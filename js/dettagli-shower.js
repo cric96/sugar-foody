@@ -9,6 +9,7 @@ $(document).ready(function() {
       dataType: "json",
       data: {"order": idOrder},
       success: function(data){
+        console.log(data)
         for(row in data) {
           text+="<tr>"+
                   "<td>"+data[row]["nome"]+"</td>"+

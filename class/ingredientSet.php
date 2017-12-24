@@ -21,7 +21,7 @@
                                              FROM `INGREDIENTE` as I , `COMPOSIZIONE` as C
                                              WHERE C.nomeIngrediente = I.nome AND
                                                    C.idProdotto = ?");
-      $this->deleteAllComp = $con->prepare("DELETE FROM COMPOSIZIONE WHERE idProdotto=?")
+      $this->deleteAllComp = $con->prepare("DELETE FROM COMPOSIZIONE WHERE idProdotto=?");
       $this->stmUpdate = $con->prepare("UPDATE COMPOSIZIONE
                                         SET `aggiunta`=?,`obbligatorio`=?
                                         WHERE idProdotto = ? AND nomeIngrediente = ?");

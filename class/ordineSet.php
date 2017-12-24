@@ -50,22 +50,22 @@
     }
     public function getOrder($order){
       $this->stmSelect->bind_param("i",$order);
-      $res = parent::executeBasicQuery($this->stmSelect);
+      $res = parent::executeSelectQuery($this->stmSelect);
       if(!$res) {
         return false;
       }
-      return parent::executeSelectQuery($this->stmSelect)[0];
+      return $res[0];
     }
     public function nextStatusOn($order) {
       $query = $this->getOrder($order);
       if(!$query) {
         return false;
       }
-      $current = $query[0];
+      $current = $query;
       $iterableStatuses = $this->statuses;
       $correctStatus = null;
       while($value = current($iterableStatuses)) {
-        if(key($iterableStatuses) === $order->getStatus()) {
+        if(key($iterableStatuses) === $current->getStatus()) {
           next($iterableStatuses);
           $correctStatus = key($iterableStatuses);
         }
@@ -75,7 +75,9 @@
       if(!parent::executeBasicQuery($this->stmUpdate)){
         return false;
       }
-      $this->produceNotification(new Order($current->getId(),$current->getUser(),$current->getAdmin(),$current->getStatus(),$current->getProducts()));
+      $this->produceNotification(new Ordine($current->getId(),$current->getUser(),$current->getAdmin(),
+                                            $correctStatus,$current->getProducts(),$current->getDate(),
+                                            $current->getFattorino(),$current->getProducts()));
     }
     private function produceNotification($order) {
       $status_number = $this->statuses[$order->getStatus()];

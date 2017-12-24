@@ -6,8 +6,8 @@ function addInProdotto() {
       found = true
       $("#lista-ingredienti").append("<tr>" +
         "<td class='name-insert'>"+selected+"</td>"+
-        "<td>"+$(this).attr("data")+"</td>"+
-        "<td class='delete'><a class='fa fa-trash' aria-hidden='true' href=#><span class='hide-acc'> modifica</span></a></td>"+
+        "<td class='price'>"+$(this).attr("data")+"</td>"+
+        "<td class='delete'><a class='remover fa fa-trash' aria-hidden='true'><span class='hide-acc'> elimina</span></a></td>"+
         "<td>"+
           "<div class='switch'>"+
             "<label><input type='checkbox' name='switch' value='l1-c1' id='l1-c1'>"+
@@ -30,6 +30,7 @@ function addInProdotto() {
     alert("Ingrediente sbagliato! scegli tra quelli presenti oppure aggiungine uno nuovo!")
   } else {
     hideAfterLoad()
+    reloadAction()
     $('#closemodal').click()
   }
 }

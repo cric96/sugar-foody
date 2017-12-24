@@ -4,6 +4,7 @@
   include_once("./class/ordineSet.php");
   if(isset($_GET["found-value"])) {
     (new OrdineSet($cn))->confirmOrder($_GET["order"],$_GET["found-value"]);
+
   }
 ?>
 <html lang="it">
@@ -22,6 +23,7 @@
      <script src="./js/modal-hide.js"></script>
      <script type="text/javascript" src="./js/url-getter.js"> </script>
      <script src="./js/datalist-click.js"></script>
+     <script src="./js/remove-ingredient.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
      <link rel="stylesheet" href="./css/fattori_admin.css">
 

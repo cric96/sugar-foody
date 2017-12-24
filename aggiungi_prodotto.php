@@ -33,6 +33,7 @@
       <script src="./js/hide-accessibily.js"></script>
       <script src="./js/modal-hide.js"></script>
       <script src="./js/add-in-prodotto.js"></script>
+      <script src="./js/remove-ingredient.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -91,11 +92,12 @@
                   </tr>
                 </thead>
                 <tbody id="lista-ingredienti">
-                  <?php foreach($ingredienti as $ingrediente) {?>
-                    <tr>
+                  <?php
+                    foreach($ingredienti as $ingrediente) {?>
+                    <tr id="tabella<?php echo $ingrediente->getName(); ?>">
                       <td class="name-insert"><?php echo $ingrediente->getName(); ?></td>
-                      <td><?php echo $ingrediente->getPrice(); ?></td>
-                      <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=#><span class="hide-acc"> modifica</span></a></td>
+                      <td class="price"><?php echo $ingrediente->getPrice(); ?></td>
+                      <td class="delete"><a class="remover fa fa-trash" aria-hidden="true"><span class="hide-acc"> rimuovi</span></a></td>
                       <td>
                         <div class="switch">
                           <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
@@ -167,7 +169,7 @@
                             }
                             if($print) {
                                 ?>
-                                <option id=<?php echo $ingredient->getName();?> data="<?php echo $ingredient->getPrice();?>"><?php echo $ingredient->getName(); ?></option> <?php
+                                <option data="<?php echo $ingredient->getPrice();?>"><?php echo $ingredient->getName(); ?></option> <?php
                             }
                             $print = true;
                           }
