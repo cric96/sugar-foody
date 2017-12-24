@@ -19,10 +19,22 @@ if(login_check_user() != true) {
 }
 $cn->close();
 }
+$query  = "SELECT * FROM ordine WHERE stato='carrello'";
+$res = $cn->query($query);
+if ($res!== false) {
+  //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
+  if($res->num_rows != 1){?>
+    <script>
+      alert("Non ci sono ordini in sospeso da pagare!");
+      location.href = "./sceltaRistorante.php";
+    </script>
+    <?php
+  }
+} else {
+  echo "errore nella query";
+}
 ?>
 <!DOCTYPE html>
-<!--Faccio inserire direttamente l'indirizzo, il metodo di pagamento e i dati della carta
-perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
 <html lang="it">
   <head>
     <meta charset="UTF-8">
@@ -38,6 +50,7 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
     <script src="./js/hide-accessibily.js"></script>
     <script src="./js/hidinPayments.js"></script>
     <script src="./js/hide-accessibily.js"></script>
+    <script src="./js/notifyAdmin.js"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/form-style.css">
     <link rel="stylesheet" href="./css/overlay-style.css">
@@ -50,7 +63,7 @@ perché i dati dell'utente li ho essendo quelli dell'utente loggato(??)-->
     <?php include("./include/navbarUtente.php"); ?>
     <main class="container content">
        <h2 class="my-4">Pagamento ordine</h2>
-       <form method="post" class="form-horizontal" action="index.php">
+       <form method="post" class="form-horizontal" action="./ordineEffettuato.php">
          <fieldset>
            <legend>Come intendi effettuare il pagamento?</legend>
            <div class="checkbox-wrap d-flex justify-content-start p-2 mb-2">

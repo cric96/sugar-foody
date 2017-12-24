@@ -1,5 +1,3 @@
-<!--TODO passare in qualche modo il totale dell'ordine a conferma pagamento, anche se
-  //il pagamento avverrà per finta-->
 <?php
 // Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
 include("./secureLogin/secureLogin.php");
@@ -21,6 +19,22 @@ if(login_check_user() != true) {
 }
 $cn->close();
 }
+require_once("./config.php");
+//devo controllare che ci sia almeno un ordine con stato carrello, altrimenti non saprei cosa mostrare
+$query  = "SELECT * FROM ordine WHERE stato='carrello'";
+$res = $cn->query($query);
+if ($res!== false) {
+  //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
+  if($res->num_rows != 1){?>
+    <script>
+      alert("Non ci sono ordini da confermare!");
+      location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
+    </script>
+    <?php
+  }
+} else {
+  echo "errore nella query";
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -37,6 +51,7 @@ $cn->close();
   <script src="https://www.w3schools.com/lib/w3.js"></script>
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
+  <script src="./js/checkTime.js"></script>
   <link rel="stylesheet" href="./css/catProdotti.css">
   <link rel="stylesheet" href="./css/tabelle-style.css">
   <link rel="stylesheet" href="./css/popup-basic-style.css">
@@ -45,9 +60,8 @@ $cn->close();
   <title>Riepilogo ordine</title>
 </head>
 <?php
-  require_once("./config.php");
   $utente = $_SESSION["username"];
-  $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome
+  $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome, De.idDettaglio
             FROM composizione C, dettaglio De, prodotto P
             WHERE C.idProdotto IN(
                         SELECT D.idProdotto
@@ -61,6 +75,7 @@ $cn->close();
                         SELECT M.nomeIngrediente
                         FROM modifica M
                         WHERE M.idProdotto = C.idProdotto
+                        AND De.idDettaglio = M.idDettaglio
                         AND M.numeroOrdine IN(
                               SELECT numeroOrdine
                               FROM ordine O
@@ -75,9 +90,11 @@ $cn->close();
                         AND Co.nomeIngrediente NOT IN(
                               SELECT nomeIngrediente
                               FROM modifica M
-                              WHERE M.idProdotto = Co.idProdotto))
-            ORDER BY C.idProdotto";
+                              WHERE M.idProdotto = Co.idProdotto
+                              AND De.idDettaglio = M.idDettaglio))
+            ORDER BY C.idProdotto, De.idDettaglio";
   $res = $cn->query($query);
+  $tot = 0;
  ?>
 <body>
   <?php include("./include/navbarUtente.php"); ?>
@@ -102,27 +119,25 @@ $cn->close();
            if ($res !== false) {
              if($res->num_rows > 0) {
                $first = 1;
-               $tot = 0;
                $row = $res->fetch_assoc();
-               while($row !== false) {
-                 if($first) {
-                   $idProd = $row["idProdotto"];
-                 }
+               while($row !== NULL) {
+                 $idProd = $row["idProdotto"];
+                 $idDett = $row["idDettaglio"];
             ?>
              <tr scope="row">
                <td><?php echo $row["nome"]; ?></td>
                <td><?php echo "€".$row["prezzo"]/100; ?></td>
                <td><?php echo $row["quantita"]; ?></td>
-               <?php $tot += $row["prezzo"] ?>
+               <?php $tot += $row["prezzo"]; ?>
                <td>
                  <div>
                    <ul class="prova">
-                     <?php while(($row!==false) && ($row["idProdotto"] === $idProd)){?>
+                     <?php while(($row!==NULL) && ($row["idProdotto"] === $idProd) && ($row["idDettaglio"] === $idDett)){?>
                      <li class="ingredienti"><?php echo $row["nomeIngrediente"];?></li>
                      <?php
                         $row = $res->fetch_assoc();
                       }
-                      $idProd = $row["idProdotto"];
+
                      ?>
                    </ul>
                  </div>
@@ -143,7 +158,7 @@ $cn->close();
          </tbody>
        </table>
      </section>
-     <form action="confermaPagamento.php" method="post">
+     <form class="pay" action="confermaPagamento.php" method="get">
        <section>
          <div class="google">
            <input id="pac-input" class="controls" type="text" placeholder="Ricerca" required>
@@ -154,11 +169,11 @@ $cn->close();
          </div>
 
          <label class="orario">Scegli l'orario di consegna:
-            <input type="time" name="" value="" required>
+            <input id="time" type="time" name="Orario" min="" max="" required>
         </label>
        </section>
 
-      <input class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga">
+      <input class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga: €<?php echo $tot;?>">
      </form>
    </main>
   <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
