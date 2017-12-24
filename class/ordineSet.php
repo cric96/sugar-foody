@@ -78,6 +78,7 @@
       $this->produceNotification(new Ordine($current->getId(),$current->getUser(),$current->getAdmin(),
                                             $correctStatus,$current->getProducts(),$current->getDate(),
                                             $current->getFattorino(),$current->getProducts()));
+      return true;
     }
     private function produceNotification($order) {
       $status_number = $this->statuses[$order->getStatus()];

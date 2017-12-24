@@ -34,6 +34,7 @@
       <script src="./js/modal-hide.js"></script>
       <script src="./js/add-in-prodotto.js"></script>
       <script src="./js/remove-ingredient.js"></script>
+      <script src="./js/create-ingredient.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -191,15 +192,15 @@
                 <label for="showing" class="hide-acc">Mostra il contenuto</label>
               </div>
             </div>
-            <form class="form form-horizontal">
+            <form id="adderIngredient" class="form form-horizontal" >
               <div class="form-group hideble">
                  <label for="name" class="control-label col-sm-2">Nome</label>
-                 <input type="text" required class="col-sm-12 form-control" name="name" id="name">
+                 <input autocomplete="off" type="text" required class="col-sm-12 form-control" name="name" id="nameIngrediente">
 
               </div>
               <div class="form-group hideble">
                  <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
-                 <input type="number" min = 0 step = 0.01 onclick=required class="col-sm-12 form-control" name="prezzo" id="prezzo">
+                 <input type="number" min=0 step=0.01 onclick=required class="col-sm-12 form-control" name="prezzo" id="prezzoIngrediente">
               </div>
               <button class="btn btn-submit hideble"> Crea</button>
             </form>

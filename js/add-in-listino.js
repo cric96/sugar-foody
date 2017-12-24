@@ -9,10 +9,9 @@ function addInListino() {
         find = true
         var prodotto = $(this).attr("data");
         $.ajax({
-          url: "/" + window.location.pathname.split('/')[1] + "./ajax/aggiungiListino.php",
+          url: "/" + window.location.pathname.split('/')[1] + "/ajax/aggiungiListino.php",
           type: "POST",
           async: false ,
-          dataType: "application/json",
           data: {"prodotto": prodotto, "prezzo":price},
         })
       }
