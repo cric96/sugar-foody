@@ -64,7 +64,7 @@ if ($res!== false) {
   $utente = $_SESSION["username"];
   $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome, De.idDettaglio
             FROM composizione C, dettaglio De, prodotto P
-            WHERE C.idProdotto IN(
+            WHERE De.idProdotto IN(
                         SELECT D.idProdotto
                         FROM ordine O,dettaglio D
                         WHERE O.utente ='$utente'

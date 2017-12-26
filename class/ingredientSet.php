@@ -33,7 +33,6 @@
     }
     //associa un prodotto ad un ingrediente
     public function insertIngredientInProduct($name,$idProdotto,$aggiunta,$obbligatorio) {
-
       $this->stmInsertComp->bind_param("siii",$name,$idProdotto,intval($aggiunta),intval($obbligatorio));
       return parent::executeBasicQuery($this->stmInsertComp);
     }
@@ -59,14 +58,14 @@
 
     public function refreshProductIngredients($idProdotto,$ingredients) {
       $this->deleteAllComp->bind_param("i",$idProdotto);
-      if(parent::executeBasicQuery($this->deleteAllComp)) {
+      if(parent::executeBasicQuery($this->deleteAllComp) !== false) {
         foreach($ingredients as $ingredient) {
-          $this->insertIngredientInProduct($ingredient->getName(),$idProd,$ingredient->aggiunta(),$ingredient->obbligatorio());
+          $this->insertIngredientInProduct($ingredient->getName(),$idProdotto,$ingredient->aggiunta(),$ingredient->obbligatorio());
         }
       } else {
         return false;
       }
-
+      return true;
     }
     protected function createElement($row) {
       if(isset($row["aggiunta"])) {

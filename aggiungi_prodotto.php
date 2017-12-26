@@ -6,10 +6,12 @@
   $nome = "";
   $desc = "";
   $category = "";
+  $id = -1;
   $ingredienti = array();
   $prezzo = 0;
   $categories = (new CategorySet($cn))->getCategories();
   if(isset($_GET["prodotto"])) {
+    $id = $_GET["prodotto"];
     $prodotto = (new ProductSet($cn)) ->getProductInListino($_SESSION["nomeRistorante"],$_GET["prodotto"]);
     $nome = $prodotto[0]->getName();
     $desc = $prodotto[0]->getDescription();
@@ -52,7 +54,9 @@
 
      <main class="container-fluid content">
       <form id="createProduct" action="index.html" class="form-horizontal">
+        <input id="idProdotto" type="hidden" name="idProdotto" value="<?php echo $id;?>">
         <div class="form-group row">
+
         <label for="nome-prodotto" class="control-label col-sm-2">Nome prodotto</label>
           <div class="col-sm-10">
             <input type="text" class="form-control form-control-sm" required name="nome-prodotto" id="nome-prodotto" value="<?php echo $nome;?>">
@@ -101,14 +105,14 @@
                     <td class="delete"><a class="remover fa fa-trash" aria-hidden="true"><span class="hide-acc"> rimuovi</span></a></td>
                     <td class="aggiunta">
                       <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
+                        <label><input type="checkbox" name="switch" value="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
                         <span class="slider"></span>
                         <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
                       </div>
                     </td>
                     <td class="obbligatorio">
                       <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
+                        <label><input type="checkbox" name="switch" value="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
                         <span class="slider"></span>
                         <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
                       </div>

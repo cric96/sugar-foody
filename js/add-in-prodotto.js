@@ -10,14 +10,14 @@ function addInProdotto() {
         "<td class='delete'><a class='remover fa fa-trash' aria-hidden='true'><span class='hide-acc'> elimina</span></a></td>"+
         "<td class='aggiunta'>"+
           "<div class='switch'>"+
-            "<label><input type='checkbox' name='switch' value='l1-c1' id='l1-c1'>"+
+            "<label><input type='checkbox' name='switch' value='l1-c1' >"+
             "<span class='slider'></span>"+
             "<label for='l1-c1' class='hide-acc'>Abilita obbligatorio</label>"+
           "</div>"+
         "</td>"+
         "<td class='obbligatorio'>"+
           "<div class='switch'>"+
-            "<label><input type='checkbox' name='switch' value='l1-c2' id='l1-c2'>"+
+            "<label><input type='checkbox' name='switch' value='l1-c2' >"+
             "<span class='slider'></span>"+
             "<label for='l1-c2' class='hide-acc'>Abilita aggiunta</label>"+
           "</div>"+

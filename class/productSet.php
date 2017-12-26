@@ -8,6 +8,7 @@
     private $stmInsert;
     private $stmSelect;
     private $selectAll;
+    private $stmUpdate;
     private $stmSelectOrder;
     private $deleteListino;
     private $createListino;
@@ -32,6 +33,7 @@
                                                        AND L.nomeRistorante=?
                                                        AND P.id = ?");
       $this->stmSelectAll = $this->con->prepare("SELECT * FROM PRODOTTO");
+      $this->stmUpdate = $this->con->prepare("UPDATE `prodotto` SET `nome`=?,`descrizione`=?,`nomeCategoria`=? WHERE id = ?");
 
     }
     //inserisce un prodotto
@@ -44,13 +46,9 @@
       if(!$this->insertProduct($name,$desc,$cat)) {
         return false;
       }
-      $id = $this->stmInsert->lastInsertId();
+      $id = $this->stmInsert->insert_id;
       $ingredientSet = new IngredientSet($this->con);
-      foreach($ingredietns as $ingredient) {
-          if(!$ingredientSet->insertIngredientInProduct($ingredient->getName(),$id,$ingredient->aggiunta,$ingredient->obbligatorio)) {
-            return false;
-          }
-      }
+      return $ingredientSet->refreshProductIngredients($id,$ingredients);
     }
     //aggiorna le informazioni di un prodotto
     public function updateProduct($id,$name,$descrizione,$category) {
