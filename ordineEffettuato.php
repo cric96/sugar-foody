@@ -22,7 +22,6 @@ $cn->close();
 $query  = "SELECT * FROM ordine WHERE stato='assegnamento'";
 $res = $cn->query($query);
 if ($res!== false) {
-  //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
   if($res->num_rows <= 0){?>
     <script>
       location.href = "./sceltaRistorante.php";
@@ -32,6 +31,7 @@ if ($res!== false) {
 } else {
   echo "errore nella query";
 }
+unset($_SESSION["ordine"]);
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -48,7 +48,6 @@ if ($res!== false) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/ordineEffettuato.css">
-    <link rel="stylesheet" href="/css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <title>Ordine completato!</title>
   </head>

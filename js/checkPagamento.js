@@ -1,10 +1,10 @@
 $(document).ready(function() {
+  var pagato = 0;
   $('.btn-submit').click(function() {
-    var pagato = 0;
-    if ($('#onDelivery').is(":checked")) {
-      pagato = 0;
-    } else {
+    if ($('#check-hide').is(":checked")) {
       pagato = 1;
+    } else {
+      pagato = 0;
     }
    $.ajax({
        url: "/" + window.location.pathname.split('/')[1] + "/chartToAssignment.php",
