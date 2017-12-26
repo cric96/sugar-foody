@@ -8,7 +8,7 @@ $data = $_POST["data"]." ".$_POST["ora"];
 $luogo = $_POST["luogo"];
 $query = "UPDATE ordine
           SET data='$data', luogo='$luogo'
-          WHERE numeroOrdine='$idOrdine'";
+          WHERE numeroOrdine=$idOrdine";
 $res = $cn->query($query);
 if ( $res === false) {
   echo "Query sbagliata";

@@ -52,7 +52,7 @@ if ($res!== false) {
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
   <script src="./js/checkTime.js"></script>
-  <!--<script src="./js/updateOrdine.js"></script>-->
+  <script src="./js/updateOrdine.js"></script>
   <link rel="stylesheet" href="./css/catProdotti.css">
   <link rel="stylesheet" href="./css/tabelle-style.css">
   <link rel="stylesheet" href="./css/popup-basic-style.css">
@@ -62,10 +62,11 @@ if ($res!== false) {
 </head>
 <?php
   $utente = $_SESSION["username"];
+  $ordine = $_SESSION["ordine"];
   $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome, De.idDettaglio
             FROM composizione C, dettaglio De, prodotto P
-            WHERE C.idProdotto IN(
-                        SELECT D.idProdotto
+            WHERE De.numeroOrdine IN(
+                        SELECT D.numeroOrdine
                         FROM ordine O,dettaglio D
                         WHERE O.utente ='$utente'
                         AND O.stato ='carrello'
@@ -92,9 +93,15 @@ if ($res!== false) {
                               SELECT nomeIngrediente
                               FROM modifica M
                               WHERE M.idProdotto = Co.idProdotto
+                              AND M.numeroOrdine IN(
+                                    SELECT numeroOrdine
+                                    FROM ordine O
+                                    WHERE O.utente ='$utente'
+                                    AND O.stato = 'carrello')
                               AND De.idDettaglio = M.idDettaglio))
             ORDER BY C.idProdotto, De.idDettaglio";
   $res = $cn->query($query);
+  var_dump($res);
   $tot = 0;
  ?>
 <body>
