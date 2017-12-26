@@ -59,7 +59,7 @@
             <h3 class="hide-acc">Storico ordini</h3>
             <?php
             $username = $_SESSION['username'];
-            $query_sql="SELECT numeroOrdine, data, o.stato, valore, luogo
+            $query_sql="SELECT numeroOrdine, data, o.stato, valore, luogo, pagato
             FROM ordine o, stato s
             WHERE s.nome = o.stato
             AND fattorino = '$username'
@@ -75,6 +75,7 @@
                      <th>Stato</th>
                      <th>Luogo</th>
                      <th>Data / Ora</th>
+                     <th>Pagamento</th>
                      <th>Dettagli</th>
                   </tr>
                </thead>
@@ -120,6 +121,11 @@
                     </td>
                     <td><?php echo $row["luogo"]; ?></td>
                     <td><?php echo $row["data"]; ?></td>
+                    <td><?php if($row["pagato"] == 1){
+                      echo "EFFETTUATO";
+                    }else {
+                      ?><a class="link" href="pay.php?id=<?php echo $row['numeroOrdine'] ?>">Effettuato</a><?php
+                    }?></td>
                      <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" value="<?php echo $row["numeroOrdine"] ?>" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                   <?php include('./include/dettagli_ordine.php');

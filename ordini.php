@@ -56,7 +56,7 @@ $cn->close();
             <h3 class="hide-acc">Storico ordini</h3>
             <?php
             $username = $_SESSION['username'];
-            $query_sql="SELECT numeroOrdine, data, stato, luogo FROM ordine WHERE stato != 'carrello' and utente = '$username' ";
+            $query_sql="SELECT numeroOrdine, data, stato, luogo, pagato FROM ordine WHERE stato != 'carrello' and utente = '$username' ";
       			$result = $cn->query($query_sql);
       			if($result !== false){
               if ($result->num_rows > 0) {
@@ -68,6 +68,7 @@ $cn->close();
                      <th>Stato</th>
                      <th>Luogo</th>
                      <th>Data / Ora</th>
+                     <th>Pagamento</th>
                      <th>Dettagli</th>
                   </tr>
                </thead>
@@ -80,6 +81,12 @@ $cn->close();
                     <td><?php echo $row["stato"]; ?></td>
                     <td><?php echo $row["luogo"]; ?></td>
                     <td><?php echo $row["data"]; ?></td>
+                    <td><?php if($row["pagato"] == 1) {
+                      echo "EFFETTUATO";
+                    } else {
+                      echo "DA EFFETTUARE";
+                    }
+                    ?></td>
                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" value="<?php echo $row["numeroOrdine"] ?>" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                   <?php include('./include/dettagli_ordine.php');
