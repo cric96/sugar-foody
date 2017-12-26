@@ -36,6 +36,8 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
       <script src="./js/scriptHide.js"></script>
       <script src="./js/hide-accessibily.js"></script>
+      <script type="text/javascript" src="./js/url-getter.js"> </script>
+      <script src="./js/datalist-click.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/fa-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -126,10 +128,10 @@
                     }else {
                       ?><a class="link" href="pay.php?id=<?php echo $row['numeroOrdine'] ?>">Effettuato</a><?php
                     }?></td>
-                     <td class="info"><a class="fa fa-info fa-2x" aria-hidden="true" value="<?php echo $row["numeroOrdine"] ?>" data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
+                     <td class="info"><a class="dettagli fa fa-info fa-2x" aria-hidden="true" value=<?php echo $row["numeroOrdine"] ?> data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
-                  <?php include('./include/dettagli_ordine.php');
-      					}
+                <?php
+                }
       				}
       			 ?>
                </tbody>
@@ -146,7 +148,8 @@
          </section>
       </main>
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
-      <?php include('./include/notification_modal.php') ?>
+      <?php include('./include/dettagli_ordine.php');
+      include('./include/notification_modal.php'); ?>
       <script>
          w3.includeHTML();
       </script>
