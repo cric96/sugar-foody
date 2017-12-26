@@ -176,7 +176,7 @@ function insertDetails($cn) {
   $sql='';
   $ristorante = $_SESSION["nomeRistorante"];
   $prezzo = getPrezzo($cn, $idProdotto, $ristorante);
-  if(!checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt, $prezzo)) {
+  if(checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt) === 0) {
     $sql .= rimozioni($cn, $idDettaglio, $idProdotto, $idOrdine);
     $sql .= aggiunte($cn, $idDettaglio, $idProdotto, $idOrdine, $prezzo);
     $sql = "INSERT INTO DETTAGLIO(idDettaglio, idProdotto, numeroOrdine, prezzo, quantita)
@@ -194,31 +194,105 @@ function insertDetails($cn) {
 }
 
 //return true if there are duplicates, and in this casa update quantity field
-function checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt, $prezzo) {
+function checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt) {
   if($idDettaglio > 1) {
-    if(!isset($_POST['agg'])) {
-    //controlla se non ci sono rimozioni
-    $queryNoMod = "SELECT DISTINCT d.idDettaglio
+    $agg = [];
+    if(isset($_POST['agg'])) {
+      foreach($_POST['agg'] as $item) {
+        $agg[] = $item;
+      }
+    }
+    $ingr = [];
+    $query = "SELECT nomeIngrediente
+    FROM composizione
+    where idProdotto=$idProdotto
+    and obbligatorio = 0
+    and aggiunta = 0";
+    $res=$cn->query($query);
+    if($res !== false) {
+      if($res->num_rows > 0) {
+        while($row = $res->fetch_assoc()) {
+          $ingr[] = $row['nomeIngrediente'];
+        }
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+    if(isset($_POST['ingr'])) {
+      foreach($_POST['ingr'] as $item)
+      {
+        if (($key = array_search($item, $ingr)) !== false) {
+            unset($ingr[$key]);
+        }
+      }
+    }
+    //ho due array: agg e ingr con le aggiunte e rimozioni del prodotto
+    //per ogni dettaglio di quell'ordine mi salvo, array di modifiche e rimozioni
+    //e confronto con quelli del mio prodotto
+    $queryNoMod = "SELECT d.idDettaglio, m.aggiunta, m.rimozione, m.nomeIngrediente, d.quantita
         FROM DETTAGLIO d LEFT JOIN MODIFICA m
             ON d.idDettaglio = m.idDettaglio
             and d.numeroOrdine = m.numeroOrdine
             AND d.idProdotto = m.idProdotto
           where d.numeroOrdine = $idOrdine
-          and m.nomeIngrediente is null";
+          order by d.idDettaglio";
+    $rowDet = 1;
+    $q = 0;
+    $detAgg = [];
+    $detRim = [];
+    $res=$cn->query($queryNoMod);
+    if($res !== false) {
+      if($res->num_rows > 0) {
+        while($row = $res->fetch_assoc()) {
+          if($rowDet != intval($row["idDettaglio"])) {
+            if($agg == $detAgg && $ingr == $detRim) {
+              $q += $qnt;
+              $update="UPDATE Dettaglio
+              SET quantita = $q
+              WHERE idDettaglio = $rowDet
+              AND numeroOrdine = $idOrdine
+              AND idProdotto = $idProdotto";
+              if($cn->query($update) === true)
+              {
+                ?><script>alert("Dettaglio aggiunto correttamente");</script><?php
+                return 1;
+              } else {
+                return 0;
+              }
+            }
+            $detAgg = [];
+            $detRim = [];
+            $rowDet = intval($row["idDettaglio"]);
+          }
+          if($row["aggiunta"] == 1) {
+              $detAgg[] = $row['nomeIngrediente'];
+          } else if($row["rimozione"] == 1) {
+              $detRim[] = $row['nomeIngrediente'];
+          }
+          $q = intval($row['quantita']);
         }
-    //guarda anche dettagli senza modifiche
-    $queryD = "SELECT idDettaglio, nomeIngrediente, aggiunta, rimozione
-    FROM MODIFICA
-    WHERE numeroOrdine = $idOrdine
-    AND idProdotto = $idProdotto
-    ORDER BY idDettaglio";
-    $resultD = $cn->query($queryD);
-    if($resultD !== false){
-      if($resultD->num_rows > 0) {
-        while($rowD = $resultD->fetch_assoc() > 0) {
-
+        if($agg == $detAgg && $ingr == $detRim) {
+          $q += $qnt;
+          $update="UPDATE Dettaglio
+          SET quantita = $q
+          WHERE idDettaglio = $rowDet
+          AND numeroOrdine = $idOrdine
+          AND idProdotto = $idProdotto";
+          if($cn->query($update) === true)
+          {
+            ?><script>alert("Dettaglio aggiunto correttamente");</script><?php
+            return 1;
+          } else {
+            return 0;
+          }
         }
+      } else {
+        return 0;
       }
+    } else {
+      return 0;
     }
   }
   return 0;
