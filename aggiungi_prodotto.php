@@ -35,6 +35,7 @@
       <script src="./js/add-in-prodotto.js"></script>
       <script src="./js/remove-ingredient.js"></script>
       <script src="./js/create-ingredient.js"></script>
+      <script src="./js/create-product.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -50,7 +51,7 @@
      </div>
 
      <main class="container-fluid content">
-      <form method="post" class="form-horizontal">
+      <form id="createProduct" action="index.html" class="form-horizontal">
         <div class="form-group row">
         <label for="nome-prodotto" class="control-label col-sm-2">Nome prodotto</label>
           <div class="col-sm-10">
@@ -79,63 +80,61 @@
           </div>
         </div>
         <div class="form-group row">
-          <form class="" action="index.html" method="post">
-            <label for="mail" class="control-label col-sm-2">Ingredienti</label>
-            <div class="col-sm-10">
-              <table class="table table-striped">
-                <thead>
+          <label for="mail" class="control-label col-sm-2">Ingredienti</label>
+          <div class="col-sm-10">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nome ingrediente</th>
+                  <th>Costo unitario</th>
+                  <th> Elimina </th>
+                  <th> Aggiunta </th>
+                  <th> Obbligatorio </th>
+                </tr>
+              </thead>
+              <tbody id="lista-ingredienti">
+                <?php
+                  foreach($ingredienti as $ingrediente) {?>
                   <tr>
-                    <th>Nome ingrediente</th>
-                    <th>Costo unitario</th>
-                    <th> Elimina </th>
-                    <th> Aggiunta </th>
-                    <th> Obbligatorio </th>
+                    <td class="name-insert"><?php echo $ingrediente->getName(); ?></td>
+                    <td class="price"><?php echo $ingrediente->getPrice(); ?></td>
+                    <td class="delete"><a class="remover fa fa-trash" aria-hidden="true"><span class="hide-acc"> rimuovi</span></a></td>
+                    <td class="aggiunta">
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
+                        <span class="slider"></span>
+                        <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
+                      </div>
+                    </td>
+                    <td class="obbligatorio">
+                      <div class="switch">
+                        <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
+                        <span class="slider"></span>
+                        <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody id="lista-ingredienti">
-                  <?php
-                    foreach($ingredienti as $ingrediente) {?>
-                    <tr id="tabella<?php echo $ingrediente->getName(); ?>">
-                      <td class="name-insert"><?php echo $ingrediente->getName(); ?></td>
-                      <td class="price"><?php echo $ingrediente->getPrice(); ?></td>
-                      <td class="delete"><a class="remover fa fa-trash" aria-hidden="true"><span class="hide-acc"> rimuovi</span></a></td>
-                      <td>
-                        <div class="switch">
-                          <label><input type="checkbox" name="switch" value="l1-c1" id="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
-                          <span class="slider"></span>
-                          <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="switch">
-                          <label><input type="checkbox" name="switch" value="l1-c2" id="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
-                          <span class="slider"></span>
-                          <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
-                        </div>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
+                <?php
+                }
+                ?>
 
-                </tbody>
-              </table>
+              </tbody>
+            </table>
 
-              <div class="adder">
-                <a data-toggle="modal" data-target="#modal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
-              </div>
-              <?php
-              if(!isset($_GET["prodotto"])) {?>
-                <input type="submit" class="btn btn-submit float-right" name="submit" value="Conferma">
-              <?php
-            } else {
-              ?>
-                <input type="submit" class="btn btn-submit float-right" name="update" value="Aggiorna">
-              <?php
-            }
-              ?>
+            <div class="adder">
+              <a data-toggle="modal" data-target="#modal" title="Aggiungi prodotto!" class="fa fa-plus-square" aria-hidden="true"><span class="hide-acc">+</span></a>
             </div>
-          </form>
+            <?php
+            if(!isset($_GET["prodotto"])) {?>
+              <button id="buttonSubmit" type="submit" class="btn btn-submit float-right" name="submit"> Conferma </button>
+            <?php
+          } else {
+            ?>
+              <button id="buttonSubmit" type="submit" class="btn btn-submit float-right" name="update"> Aggiorna</button>
+            <?php
+          }
+            ?>
+          </div>
 
         </div>
       </form>

@@ -1,4 +1,5 @@
 //finisci i vari controlli!
+
 function addInListino() {
   var selected = $("#searching").val()
   var price = $("#prezzoProdotto").val()
@@ -18,7 +19,7 @@ function addInListino() {
     })
   }
   console.log("exit..")
-  if(!find && $.isNumeric(price)) {
+  if(!find || !$.isNumeric(price)) {
     alert("Prodotto sbagliato! scegli tra quelli presenti oppure aggiungine uno nuovo!")
   } else {
     $('#refreshable').load(document.URL +  ' #refreshable',function() {
