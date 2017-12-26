@@ -50,11 +50,11 @@ if ($res!== false) {
     <script src="./js/hide-accessibily.js"></script>
     <script src="./js/hidinPayments.js"></script>
     <script src="./js/hide-accessibily.js"></script>
+    <script src="./js/checkPagamento.js"></script>
     <script src="./js/notifyAdmin.js"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/form-style.css">
     <link rel="stylesheet" href="./css/overlay-style.css">
-    <link rel="stylesheet" href="/css/tabelle-style.css">
     <link rel="stylesheet" href="./css/popup-basic-style.css">
     <title>Pagamento</title>
   </head>
