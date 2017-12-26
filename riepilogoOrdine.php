@@ -52,6 +52,7 @@ if ($res!== false) {
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
   <script src="./js/checkTime.js"></script>
+  <!--<script src="./js/updateOrdine.js"></script>-->
   <link rel="stylesheet" href="./css/catProdotti.css">
   <link rel="stylesheet" href="./css/tabelle-style.css">
   <link rel="stylesheet" href="./css/popup-basic-style.css">
