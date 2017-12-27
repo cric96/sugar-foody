@@ -82,7 +82,11 @@ $cn->close();
                     <td><?php echo $row["numeroOrdine"]; ?></td>
                     <td><?php echo $row["stato"]; ?></td>
                     <td><?php echo $row["luogo"]; ?></td>
-                    <td><?php echo $row["data"]; ?></td>
+                    <td><?php $date = date_create($row["data"]);
+                    echo date_format($date, 'd/m/Y');
+                    ?><br/><?php
+                    echo date_format($date, 'H:i');
+                    ?></td>
                     <td><?php if($row["pagato"] == 1) {
                       echo "EFFETTUATO";
                     } else {

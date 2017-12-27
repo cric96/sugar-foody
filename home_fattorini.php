@@ -36,11 +36,12 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
       <script src="./js/scriptHide.js"></script>
       <script src="./js/hide-accessibily.js"></script>
+      <script type="text/javascript" src="./js/show_notes.js"></script>
       <script type="text/javascript" src="./js/url-getter.js"> </script>
       <script src="./js/datalist-click.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/fa-style.css">
-      <link rel="stylesheet" href="./css/tabelle-style.css">
+
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/orders-style.css">
       <link rel="stylesheet" href="./css/td-button-style.css">
@@ -61,7 +62,7 @@
             <h3 class="hide-acc">Storico ordini</h3>
             <?php
             $username = $_SESSION['username'];
-            $query_sql="SELECT numeroOrdine, data, o.stato, valore, luogo, pagato
+            $query_sql="SELECT numeroOrdine, data, o.stato, valore, luogo, pagato, note
             FROM ordine o, stato s
             WHERE s.nome = o.stato
             AND fattorino = '$username'
@@ -78,6 +79,7 @@
                      <th>Luogo</th>
                      <th>Data / Ora</th>
                      <th>Pagamento</th>
+                     <th>Note</th>
                      <th>Dettagli</th>
                   </tr>
                </thead>
@@ -122,13 +124,20 @@
                       <?php } ?>
                     </td>
                     <td><?php echo $row["luogo"]; ?></td>
-                    <td><?php echo $row["data"]; ?></td>
+                    <td>
+                      <?php $date = date_create($row["data"]);
+                      echo date_format($date, 'd/m/Y');
+                      ?><br/><?php
+                      echo date_format($date, 'H:i');
+                      ?>
+                    </td>
                     <td><?php if($row["pagato"] == 1){
                       echo "EFFETTUATO";
                     }else {
                       ?><a class="link" href="pay.php?id=<?php echo $row['numeroOrdine'] ?>">Effettuato</a><?php
                     }?></td>
-                     <td class="info"><a class="dettagli fa fa-info fa-2x" aria-hidden="true" value=<?php echo $row["numeroOrdine"] ?> data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
+                    <td class="info"><a class="fa fa-sticky-note fa-2x noteModal" aria-hidden="true" data-value="<?php echo $row["note"] ?>" data-id=<?php echo $row["numeroOrdine"] ?> data-toggle="modal" data-target="#noteModal"><span class="hide-acc">Note</span></a></td>
+                    <td class="info"><a class="dettagli fa fa-info fa-2x" aria-hidden="true" value=<?php echo $row["numeroOrdine"] ?> data-toggle="modal" data-target="#dettagli_ordine"><span class="hide-acc">Dettagli</span></a></td>
                   </tr>
                 <?php
                 }
@@ -147,6 +156,22 @@
                  ?>
          </section>
       </main>
+      <div class="modal fade" id="noteModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title" id="title">Note ordine </h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                 <div class="notes"></div>
+              </div>
+            </div>
+         </div>
+      </div>
+
       <footer class="panel-footer" w3-include-html="./include/footer.html"></footer>
       <?php include('./include/dettagli_ordine.php');
       include('./include/notification_modal.php'); ?>
