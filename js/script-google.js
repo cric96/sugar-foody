@@ -56,6 +56,21 @@
           alert("Posto in area di non competenza ");
           return;
         }
+
+        address = 0;
+        for(i = 0; i < place.address_components.length; i++) {
+          for(j = 0; j < place.address_components[i].types.length; j++) {
+            if(place.address_components[i].types[j] == "street_number") {
+              address = 1;
+            }
+          }
+        }
+        if(address == 0) {
+          document.getElementById("pac-input").value = '';
+          alert("Indirizzo incompleto, inserisci anche il numero civico.");
+          return;
+        }
+
         var icon = {
           url: place.icon,
           size: new google.maps.Size(71, 71),
