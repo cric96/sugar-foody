@@ -4,7 +4,7 @@ $(document).ready(function() {
     idOrder = link.attr("value");
     text=""
     $.ajax({
-      url: "/" + window.location.pathname.split('/')[1] + "/ajax/ordine.php",
+      url: "/" + window.location.pathname.split('/')[1] + "/ajax/orders.php",
       type: "POST",
       dataType: "json",
       data: {"order": idOrder},
