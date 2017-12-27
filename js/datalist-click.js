@@ -1,5 +1,5 @@
 //carimento script
-$.getScript("/sugar-foody/js/url-getter.js",function(){});
+//$.getScript("/sugar-foody/js/url-getter.js",function(){});
 
 var get_name = 'found-value';
 var getOrder = 'order';
