@@ -33,11 +33,14 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
       <script src="https://www.w3schools.com/lib/w3.js"></script>
       <script src="./js/hide-accessibily.js"></script>
+
+      <script src="./js/switch-checkbox.js"></script>
       <script src="./js/modal-hide.js"></script>
       <script src="./js/add-in-prodotto.js"></script>
       <script src="./js/remove-ingredient.js"></script>
       <script src="./js/create-ingredient.js"></script>
       <script src="./js/create-product.js"></script>
+
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/prodotti-style.css">
       <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -105,16 +108,16 @@
                     <td class="delete"><a class="remover fa fa-trash" aria-hidden="true"><span class="hide-acc"> rimuovi</span></a></td>
                     <td class="aggiunta">
                       <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
+                        <label><input class="aggiuntaSwitch" type="checkbox" name="switch" value="l1-c1" <?php if($ingrediente->aggiunta()) { echo "checked";}?>>
                         <span class="slider"></span>
-                        <label for="l1-c1" class="hide-acc">Abilita obbligatorio</label>
+                        <label for="l1-c1" class="hide-acc">Abilita aggiunta</label>
                       </div>
                     </td>
                     <td class="obbligatorio">
                       <div class="switch">
-                        <label><input type="checkbox" name="switch" value="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
+                        <label><input class="obbligatorioSwitch" type="checkbox" name="switch" value="l1-c2" <?php if($ingrediente->obbligatorio()) { echo "checked";}?>>
                         <span class="slider"></span>
-                        <label for="l1-c2" class="hide-acc">Abilita aggiunta</label>
+                        <label for="l1-c2" class="hide-acc">Abilita obbligatorio</label>
                       </div>
                     </td>
                   </tr>
