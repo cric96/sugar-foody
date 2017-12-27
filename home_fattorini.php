@@ -37,8 +37,7 @@
       <script src="./js/scriptHide.js"></script>
       <script src="./js/hide-accessibily.js"></script>
       <script type="text/javascript" src="./js/show_notes.js"></script>
-      <script type="text/javascript" src="./js/url-getter.js"> </script>
-      <script src="./js/datalist-click.js"></script>
+      <script src="./js/dettagli-shower.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/fa-style.css">
 
