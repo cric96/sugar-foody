@@ -19,7 +19,6 @@ if(login_check_user() != true) {
 }
 $cn->close();
 }
-require_once("./config.php");
 //devo controllare che ci sia almeno un ordine con stato carrello, altrimenti non saprei cosa mostrare
 //devo controllare anche che sia settata almeno una categoria
   $query  = "SELECT * FROM ordine WHERE stato='carrello'";
@@ -138,7 +137,7 @@ require_once("./config.php");
                <td><?php echo $row["nome"]; ?></td>
                <td><?php echo "€".$row["prezzo"]/100; ?></td>
                <td><?php echo $row["quantita"]; ?></td>
-               <?php $tot += $row["prezzo"]; ?>
+               <?php $tot += $row["prezzo"]*$row["quantita"]; ?>
                <td>
                  <div>
                    <ul class="prova">
@@ -175,9 +174,11 @@ require_once("./config.php");
                 async defer></script>
          </div>
          <div class="dettagli">
-           <label class="note">Note aggiuntive:
-             <input id="note" type="text" name="Note" value="citofono,.." onclick="javascript:svuota()" maxlength="100">
-           </label>
+           <div class="dett">
+             <label class="note">Note aggiuntive:
+               <textarea id="note" name="Note" rows="2" cols="15" onclick="javascript:svuota()" >citofono,..</textarea>
+             </label>
+           </div>
            <label class="orario">Scegli l'orario di consegna:
               <input id="time" type="time" name="Orario" min="" max="" required>
           </label>

@@ -214,9 +214,7 @@ function checkDuplicati($cn, $idDettaglio, $idProdotto, $idOrdine, $qnt) {
         while($row = $res->fetch_assoc()) {
           $ingr[] = $row['nomeIngrediente'];
         }
-      } else {
-        return 0;
-      }
+      } 
     } else {
       return 0;
     }
