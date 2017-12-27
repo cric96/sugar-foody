@@ -31,7 +31,6 @@ $(document).ready(function() {
        type: "POST",
        data: {"luogo": luogo, "data": data, "ora": ora, "note": note, "totale": totale},
        success: function(data){
-            console.log(data);
             window.location =  "/" + window.location.pathname.split('/')[1] + "/confermaPagamento.php";
        },
        error: function(error){
