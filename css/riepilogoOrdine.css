@@ -35,11 +35,7 @@ ul.prova {
 div.dettagli {
   display:grid;
 }
-#note {
-  font-style:italic;
-  color: grey;
-  font-size: 80%;
-}
+
 #note, label.note {
   display:inline-block;
   vertical-align:middle;

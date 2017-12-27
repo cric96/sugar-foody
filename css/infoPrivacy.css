@@ -1,0 +1,7 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(kraftstoff/Kraftstoff-Regular.otf);
+}
+body {
+  font-family: myFirstFont;
+}
