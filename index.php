@@ -93,11 +93,6 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="custom-control custom-checkbox" for="rememeber">
-                        <input type="checkbox" class="custom-control-input" id = "rememeber">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description small">Ricordami</span>
-                        </label>
                         <button type="submit" class="btn btn-submit  float-right" onclick="formhash(this.form, this.form.password);" ><em class="fa fa-sign-in fa-lg" aria-hidden="true"></em> Accedi</button>
                         <button type="reset" class="btn mb-2 mr-sm-2 mb-sm-0 float-right">Annulla</button>
                      </div>
