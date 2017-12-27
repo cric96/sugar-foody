@@ -1,5 +1,5 @@
 <?php
-// Inserisci in questo punto il codice per la connessione al DB e l'utilizzo delle varie funzioni.
+// TODO Devo prendere il totale da pagare anche se, essendo finto il pagamento, non ci faccio nulla
 include("./secureLogin/secureLogin.php");
 sec_session_start();
 require_once("./config.php");
@@ -63,7 +63,7 @@ if ($res!== false) {
     <?php include("./include/navbarUtente.php"); ?>
     <main class="container content">
        <h2 class="my-4">Pagamento ordine</h2>
-       <form method="post" class="form-horizontal" action="./ordineEffettuato.php">
+       <form method="post" class="form-horizontal">
          <fieldset>
            <legend>Come intendi effettuare il pagamento?</legend>
            <div class="checkbox-wrap d-flex justify-content-start p-2 mb-2">

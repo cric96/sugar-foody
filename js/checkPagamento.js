@@ -9,10 +9,14 @@ $(document).ready(function() {
    $.ajax({
        url: "/" + window.location.pathname.split('/')[1] + "/chartToAssignment.php",
        type: "POST",
-       dataType: "json",
        data: {"pagato" : pagato},
-       success: function(){
+       success: function(data){
+            console.log(data);
             window.location =  "/" + window.location.pathname.split('/')[1] + "/ordineEffettuato.php";
+       },
+       error: function(error){
+            console.log("Error:");
+            console.log(error);
        }
    });
    return false;

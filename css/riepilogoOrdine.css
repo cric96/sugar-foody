@@ -32,3 +32,11 @@ ul.prova {
   padding-left: 0;       /* padding nullo */
   margin-left: 0;        /* margine nullo */
 }
+div.dettagli {
+  display:grid;
+}
+#note {
+  font-style:italic;
+  color: grey;
+  font-size: 80%;
+}

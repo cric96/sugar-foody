@@ -21,20 +21,21 @@ $cn->close();
 }
 require_once("./config.php");
 //devo controllare che ci sia almeno un ordine con stato carrello, altrimenti non saprei cosa mostrare
-$query  = "SELECT * FROM ordine WHERE stato='carrello'";
-$res = $cn->query($query);
-if ($res!== false) {
-  //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
-  if($res->num_rows != 1){?>
-    <script>
-      alert("Non ci sono ordini da confermare!");
-      location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
-    </script>
-    <?php
+//devo controllare anche che sia settata almeno una categoria
+  $query  = "SELECT * FROM ordine WHERE stato='carrello'";
+  $res = $cn->query($query);
+  if ($res!== false) {
+    //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
+    if($res->num_rows != 1){?>
+      <script>
+        alert("Non ci sono ordini da confermare!");
+        location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
+      </script>
+      <?php
+    }
+  } else {
+    echo "errore nella query";
   }
-} else {
-  echo "errore nella query";
-}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -51,8 +52,9 @@ if ($res!== false) {
   <script src="https://www.w3schools.com/lib/w3.js"></script>
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
+  <script type="text/javascript" src="./js/resetText.js"></script>
   <script src="./js/checkTime.js"></script>
-  <script src="./js/updateOrdine.js"></script>
+  <script type="text/javascript" src="./js/updateOrdine.js"></script>
   <link rel="stylesheet" href="./css/catProdotti.css">
   <link rel="stylesheet" href="./css/tabelle-style.css">
   <link rel="stylesheet" href="./css/popup-basic-style.css">
@@ -152,11 +154,8 @@ if ($res!== false) {
              </td>
               <?php } ?>
              <tr scope="row">
-               <td>
-                 <?php
-                  $tot = $tot/100;
-                  echo "Totale:  ".$tot."€"; ?>
-               </td>
+               <?php $tot = $tot/100; ?>
+               <td id="costoTot">Totale: €<?php echo $tot;?></td>
              </tr>
            <?php } else {
              echo "non ci sono elementi";
@@ -166,7 +165,7 @@ if ($res!== false) {
          </tbody>
        </table>
      </section>
-     <form class="pay" action="confermaPagamento.php" method="get">
+     <form class="pay" method="post">
        <section>
          <div class="google">
            <input id="pac-input" class="controls" type="text" placeholder="Ricerca" required>
@@ -175,13 +174,17 @@ if ($res!== false) {
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
                 async defer></script>
          </div>
-
-         <label class="orario">Scegli l'orario di consegna:
-            <input id="time" type="time" name="Orario" min="" max="" required>
-        </label>
+         <div class="dettagli">
+           <label class="note">Note aggiuntive:
+             <input id="note" type="text" name="Note" value="citofono,.." onclick="javascript:svuota()" maxlength="100">
+           </label>
+           <label class="orario">Scegli l'orario di consegna:
+              <input id="time" type="time" name="Orario" min="" max="" required>
+          </label>
+         </div>
        </section>
 
-      <input class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga: €<?php echo $tot;?>">
+      <input id="submitButton" class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga">
      </form>
    </main>
   <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>
