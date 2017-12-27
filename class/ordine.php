@@ -51,6 +51,13 @@
     public function getDate() {
       return $this->date;
     }
+    public function getTotalPrice() {
+      $tot = 0;
+      foreach($this->products as $product) {
+        $tot += $product->getPrice() * $product->getQuantity();
+      }
+      return $tot;
+    }
   }
 
   class AdminPolicy {

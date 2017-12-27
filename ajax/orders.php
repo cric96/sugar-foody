@@ -29,5 +29,8 @@
     );
     $index += 1;
   }
+  if($index > 0) {
+    $res[$index+1] = array("prezzoTotale" => $query->getTotalPrice());
+  }
   echo json_encode($res, JSON_PRETTY_PRINT);
 ?>
