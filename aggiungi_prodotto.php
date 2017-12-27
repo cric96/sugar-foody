@@ -206,7 +206,7 @@
               </div>
               <div class="form-group hideble">
                  <label for="prezzo" class="col-sm-2 control-label">Prezzo</label>
-                 <input type="number" min=0 step=0.01 onclick=required class="col-sm-12 form-control" name="prezzo" id="prezzoIngrediente">
+                 <input type="number" min=0 step=0.01 required class="col-sm-12 form-control" name="prezzo" id="prezzoIngrediente">
               </div>
               <button class="btn btn-submit hideble"> Crea</button>
             </form>
