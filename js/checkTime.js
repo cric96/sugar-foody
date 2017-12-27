@@ -21,5 +21,5 @@ $(document).ready(function() {
   } else {
     alert("Tempo per le consegne scaduto, ritenta domani!");
   }
-  
+
 })
