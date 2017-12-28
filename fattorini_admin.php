@@ -90,7 +90,7 @@
                   ?></td>
                   <td><?php echo $ordine->getLocation();?></td>
                   <td><?php echo $ordine->getDate();?></td>
-                  <td> <a value=<?php echo $ordine->getId()?> class="dettagli fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" ><span class="hide-acc">Dettagli</span></a></td>
+                  <td> <a href="dettagli_admin.php?o=<?php echo $ordine->getId()?>" class="dettagli fa fa-info" aria-hidden="true"><span class="hide-acc">Dettagli</span></a></td>
 
                 </tr>
               <?php }
