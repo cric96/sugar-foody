@@ -51,7 +51,6 @@ $cn->close();
   <script src="https://www.w3schools.com/lib/w3.js"></script>
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
-  <script type="text/javascript" src="./js/resetText.js"></script>
   <script src="./js/checkTime.js"></script>
   <script type="text/javascript" src="./js/updateOrdine.js"></script>
   <link rel="stylesheet" href="./css/catProdotti.css">
@@ -176,7 +175,7 @@ $cn->close();
          <div class="dettagli">
            <div class="dett">
              <label class="note">Note aggiuntive:
-               <textarea id="note" name="Note" rows="2" cols="15" onclick="javascript:svuota()" >citofono,..</textarea>
+               <textarea id="note" name="Note" rows="2" cols="15" placeholder="citofono,..." ></textarea>
              </label>
            </div>
            <label class="orario">Scegli l'orario di consegna:

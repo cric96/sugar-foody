@@ -12,14 +12,14 @@ $(document).ready(function() {
     if(time.getMonth() >=1 && time.getMonth() <= 9) {
       data = data+"0";
     }
-    data = data+time.getMonth()+"/";
+    data = data+(time.getMonth()+1)+"/";
     if(time.getDate() >= 1 && time.getMonth() <= 9) {
       data = data+"0";
     }
     data = data+time.getDate();
     luogo = $("#pac-input").val();
     ora = $("#time").val();
-    if($("#note").val() === "" || $("#note").val() === "citofono,..") {
+    if($("#note").val() === "" || $("#note").val() === "citofono,...") {
       note = "";
     } else {
         note = $("#note").val();
