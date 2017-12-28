@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php include("./secureLogin/adminPage.php");
-
   include_once("./class/ordineSet.php");
   if(isset($_GET["found-value"])) {
     (new OrdineSet($cn))->confirmOrder($_GET["order"],$_GET["found-value"]);
@@ -41,7 +40,7 @@
           <h2 class="my-4">Ordini</h2>
         </div>
       </header>
-      <section class="container">
+      <section class="container-fluid">
         <h2 class="hide-acc"> Gestione ordini</h2>
         <table class="table table-striped">
           <thead class="thead-inverse">
@@ -79,7 +78,16 @@
                   <?php
                     }
                   ?>
-                  <td><?php echo $ordine->getStatus();?></td>
+                  <td><?php
+                    $status = $ordine->getStatus();
+                    if($ordine->isPagato()) {
+                      $status = $status ." <b>[PAGATO]</b>";
+                    } else {
+                      $status = $status ." <b>[DA PAGARE]</b>";
+                    }
+                    echo $status;
+
+                  ?></td>
                   <td><?php echo $ordine->getLocation();?></td>
                   <td><?php echo $ordine->getDate();?></td>
                   <td> <a value=<?php echo $ordine->getId()?> class="dettagli fa fa-info" aria-hidden="true" data-toggle="modal" data-target="#dettagli_ordine" ><span class="hide-acc">Dettagli</span></a></td>

@@ -49,11 +49,9 @@ include("./secureLogin/adminPage.php"); ?>
                </thead>
                <tbody id="refreshable">
                  <?php
-                  include_once("./class/userSet.php");
-                  $db = new UserSet($cn);
-                  if(isset($_GET["username"])) {
-                    $db->removeUser($_GET["username"]);
-                  }
+                 include_once("./class/userSet.php");
+                 $db = new UserSet($cn);
+
                   $fattorini = $db->getFattorini($_SESSION["nomeRistorante"]);
                  ?>
                  <?php
@@ -63,7 +61,7 @@ include("./secureLogin/adminPage.php"); ?>
                         <td><?php echo $fattorino->getUsername(); ?></td>
                         <td><?php echo $fattorino->getEmail(); ?></td>
                         <td><?php echo $fattorino->getTelefono(); ?></td>
-                        <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=?username=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
+                        <td class="delete"><a class="fa fa-trash" aria-hidden="true" href=deleteFattorino.php?username=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
                         <td class="delete"><a class="fa fa-gear" aria-hidden="true" href=modifica_fattorino.php?F=<?php echo $fattorino->getUsername();?>> <span class="hide-acc"> elimina</span> </a></td>
 
                       </tr>

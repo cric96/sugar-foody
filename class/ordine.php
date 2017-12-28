@@ -9,7 +9,8 @@
     private $status;
     private $place;
     private $date;
-    public function __construct($id,$user,$admin,$status,$place,$date,$fattorino,$products){
+    private $pagato;
+    public function __construct($id,$user,$admin,$status,$place,$date,$fattorino,$products,$pagato){
       $this->products = $products;
       $this->id = $id;
       $this->user = $user;
@@ -18,6 +19,7 @@
       $this->place = $place;
       $this->date = $date;
       $this->fattorino = $fattorino;
+      $this->pagato = $pagato;
     }
 
     public function getProducts() {
@@ -50,6 +52,10 @@
 
     public function getDate() {
       return $this->date;
+    }
+
+    public function isPagato() {
+      return $this->pagato;
     }
     public function getTotalPrice() {
       $tot = 0;

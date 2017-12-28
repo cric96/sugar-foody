@@ -95,7 +95,7 @@
     }
     protected function createElement($row) {
       $products = (new ProductSet($this->con))->getProductInOrder($row["numeroOrdine"]);
-      return new Ordine($row["numeroOrdine"],$row["utente"],$row["amministratore"],$row["stato"],$row["luogo"],$row["data"],$row["fattorino"],$products);
+      return new Ordine($row["numeroOrdine"],$row["utente"],$row["amministratore"],$row["stato"],$row["luogo"],$row["data"],$row["fattorino"],$products,$row["pagato"]);
     }
   }
  ?>

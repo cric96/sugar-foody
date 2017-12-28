@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/contattiModal.css">
-<div class="modal " id="contatti">
+<div class="modal fade " id="contatti">
   <div class="modal-dialog">
     <div class="modal-content">
        <!-- Modal Header -->
