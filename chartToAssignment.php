@@ -13,4 +13,6 @@
   if ( $res === false) {
     echo "Query sbagliata";
   }
+  unset($_SESSION["categoria"]);
+  unset($_SESSION["ordine"]);
  ?>

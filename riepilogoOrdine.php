@@ -39,6 +39,7 @@ $cn->close();
   <script src="./js/hide-accessibily.js"></script>
   <script src="./js/modal-hide.js"></script>
   <script src="./js/checkTime.js"></script>
+  <script src="./js/svuotaCarrello.js"></script>
   <script type="text/javascript" src="./js/updateOrdine.js"></script>
   <link rel="stylesheet" href="./css/catProdotti.css">
   <link rel="stylesheet" href="./css/tabelle-style.css">
@@ -91,7 +92,7 @@ $cn->close();
  ?>
 <body>
   <?php include("./include/navbarUtente.php");
-  $querySql  = "SELECT * FROM ordine WHERE stato='carrello'";
+  $querySql  = "SELECT luogo, note FROM ordine WHERE stato='carrello'";
   $res = $cn->query($querySql);
   if ($res!== false) {
     //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
@@ -102,7 +103,7 @@ $cn->close();
           location.href = "./sceltaRistorante.php";
         </script>
       <?php
-          }
+      }
       ?>
       <script>
         alert("Non ci sono ordini da confermare!");
@@ -113,6 +114,9 @@ $cn->close();
   } else {
     echo "errore nella query";
   }
+  $riga = $res->fetch_assoc();
+  $luogo = $riga["luogo"];
+  $note = $riga["note"];
   ?>
   <header>
     <div class="overlay">
@@ -175,7 +179,7 @@ $cn->close();
      <form class="pay" method="post">
        <section>
          <div class="google">
-           <input id="pac-input" class="controls" type="text" placeholder="Ricerca" required>
+           <input id="pac-input" class="controls" type="text" placeholder="Ricerca" value="<?php echo $luogo; ?>" required>
            <div id="map"></div>
            <script src="./js/script-google.js"></script>
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
@@ -184,7 +188,7 @@ $cn->close();
          <div class="dettagli">
            <div class="dett">
              <label class="note">Note aggiuntive:
-               <textarea id="note" name="Note" rows="2" cols="15" placeholder="citofono,..." ></textarea>
+               <textarea id="note" name="Note" rows="2" cols="15" placeholder="citofono,..."><?php echo $note; ?></textarea>
              </label>
            </div>
            <label class="orario">Scegli l'orario di consegna:
@@ -192,8 +196,8 @@ $cn->close();
           </label>
          </div>
        </section>
-
       <input id="submitButton" class="pagamento btn btn-submit float-right" type="submit" name="Paga" value="Paga">
+      <input id="svuotaButton" class="pagamento btn float-right" type="reset" name="Cancella" value="Svuota carrello">
      </form>
    </main>
   <footer w3-include-html="./include/footer.html" class="panel-footer"></footer>

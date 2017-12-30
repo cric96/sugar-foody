@@ -17,7 +17,7 @@
     private $statuses;
     public function __construct($con) {
       parent::__construct($con);
-      $this->stmDelete = $this->con->prepare("DELETE FROM ORDINE WHERE stato = 'carello' AND utente = ?");
+      $this->stmDelete = $this->con->prepare("DELETE FROM ORDINE WHERE stato = 'carrello' AND utente = ?");
       $this->stmInsert = $this->con->prepare("INSERT INTO ORDINE (`data`, `utente`, `luogo`, `stato`,`amministratore`) VALUES (?,?,?,'carrello',?)");
       $this->stmUpdateFattorino = $this->con->prepare("UPDATE ORDINE SET `fattorino`=?, stato='elaborazione' WHERE  `numeroOrdine`=?");
       $this->stmUpdate = $con->prepare("UPDATE ORDINE SET  stato=? WHERE `numeroOrdine`=?");
