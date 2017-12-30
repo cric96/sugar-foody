@@ -21,20 +21,7 @@ $cn->close();
 }
 //devo controllare che ci sia almeno un ordine con stato carrello, altrimenti non saprei cosa mostrare
 //devo controllare anche che sia settata almeno una categoria
-  $query  = "SELECT * FROM ordine WHERE stato='carrello'";
-  $res = $cn->query($query);
-  if ($res!== false) {
-    //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
-    if($res->num_rows != 1){?>
-      <script>
-        alert("Non ci sono ordini da confermare!");
-        location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria']?>";
-      </script>
-      <?php
-    }
-  } else {
-    echo "errore nella query";
-  }
+
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -101,11 +88,26 @@ $cn->close();
                               AND De.idDettaglio = M.idDettaglio))
             ORDER BY C.idProdotto, De.idDettaglio";
   $res = $cn->query($query);
-  var_dump($res);
   $tot = 0;
  ?>
 <body>
-  <?php include("./include/navbarUtente.php"); ?>
+  <?php include("./include/navbarUtente.php");
+  $query  = "SELECT * FROM ordine WHERE stato='carrello'";
+  $res = $cn->query($query);
+  echo $res->num_rows;
+  if ($res!== false) {
+    //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
+    if($res->num_rows != 1){?>
+      <script>
+        alert("Non ci sono ordini da confermare!");
+        location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria'];?>";
+      </script>
+      <?php
+    }
+  } else {
+    echo "errore nella query";
+  }
+  ?>
   <header>
     <div class="overlay">
       <h2 class="my-4">Riepilogo ordine</h2>
