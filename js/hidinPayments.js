@@ -6,6 +6,7 @@ function valueChanged()
      $('#nomeTitolare').attr('required', true);
      $('#cognomeTitolare').attr('required', true);
      $('#psw').attr('required', true);
+     $('#numeroCarta').attr('required', true);
      $('#date').attr('required', true);
    } else {
      $(".buttons-hides").show();
@@ -13,6 +14,7 @@ function valueChanged()
      $('#nomeTitolare').removeAttr('required');
      $('#cognomeTitolare').removeAttr('required');
      $('#psw').removeAttr('required');
+     $('#numeroCarta').removeAttr('required');
      $('#date').removeAttr('required');
    }
 }

@@ -51,7 +51,6 @@ if ($res!== false) {
     <script src="./js/hidinPayments.js"></script>
     <script src="./js/hide-accessibily.js"></script>
     <script src="./js/checkPagamento.js"></script>
-    <script src="./js/notifyAdmin.js"></script>
     <script src="./js/checkFormPagamento.js"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/form-style.css">
@@ -100,13 +99,13 @@ if ($res!== false) {
                <div class="form-group row">
                   <label for="nomeTitolare" class="control-label col-sm-2">Numero carta</label>
                   <div class="col-sm-10">
-                     <input type="number" class="form-control form-control-sm" name="numeroCarta" id="numeroCarta">
+                     <input type="number" class="form-control form-control-sm" onblur="checkCarta()" name="numeroCarta" id="numeroCarta">
                   </div>
                </div>
                <div class="form-group row">
                   <label for="psw" class="control-label col-sm-2">Codice di sicurezza</label>
                   <div class="col-sm-10">
-                     <input type="number" max="999" min="100" class="form-control form-control-sm form-control-file" name="psw" id="psw">
+                     <input type="number" class="form-control form-control-sm form-control-file" onblur="checkCodice()" name="psw" id="psw">
                   </div>
                </div>
                <div class="form-group row">

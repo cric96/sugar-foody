@@ -50,7 +50,6 @@ $cn->close();
 </head>
 <?php
   $utente = $_SESSION["username"];
-  $ordine = $_SESSION["ordine"];
   $query = "SELECT C.nomeIngrediente, C.idProdotto, De.prezzo, De.quantita, P.nome, De.idDettaglio
             FROM composizione C, dettaglio De, prodotto P
             WHERE De.numeroOrdine IN(
@@ -92,7 +91,7 @@ $cn->close();
  ?>
 <body>
   <?php include("./include/navbarUtente.php");
-  $querySql  = "SELECT luogo, note FROM ordine WHERE stato='carrello'";
+  $querySql  = "SELECT luogo, note, numeroOrdine FROM ordine WHERE stato='carrello'";
   $res = $cn->query($querySql);
   if ($res!== false) {
     //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
@@ -103,7 +102,8 @@ $cn->close();
           location.href = "./sceltaRistorante.php";
         </script>
       <?php
-      }
+    }
+
       ?>
       <script>
         alert("Non ci sono ordini da confermare!");
@@ -115,6 +115,7 @@ $cn->close();
     echo "errore nella query";
   }
   $riga = $res->fetch_assoc();
+  $_SESSION["ordine"] = $riga["numeroOrdine"];
   $luogo = $riga["luogo"];
   $note = $riga["note"];
   ?>
