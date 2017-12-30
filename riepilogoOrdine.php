@@ -87,7 +87,6 @@ $cn->close();
                                     AND O.stato = 'carrello')
                               AND De.idDettaglio = M.idDettaglio))
             ORDER BY C.idProdotto, De.idDettaglio";
-  $res = $cn->query($query);
   $tot = 0;
  ?>
 <body>
@@ -133,6 +132,7 @@ $cn->close();
          </thead>
          <tbody>
            <?php
+           $res = $cn->query($query);
            if ($res !== false) {
              if($res->num_rows > 0) {
                $first = 1;

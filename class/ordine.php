@@ -75,7 +75,7 @@
   class UtentePolicy {
     const see = array(1,2,3,4,5);
     const modify = array(1);
-    const notification = array(2,4,5);
+    const notification = array(4,5);
   }
 
   class FattorinoPolicy {

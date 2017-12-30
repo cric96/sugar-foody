@@ -82,7 +82,7 @@
       }
       $this->produceNotification(new Ordine($current->getId(),$current->getUser(),$current->getAdmin(),
                                             $correctStatus,$current->getProducts(),$current->getDate(),
-                                            $current->getFattorino(),$current->getProducts()));
+                                            $current->getFattorino(),$current->getProducts(),$current->isPagato()));
       return true;
     }
     private function produceNotification($order) {
