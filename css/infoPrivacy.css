@@ -4,4 +4,38 @@
 }
 body {
   font-family: myFirstFont;
+  padding-left: 10%;
+  padding-top: 2%;
+  padding-right: 10%;
+  padding-bottom: 10%;
+}
+
+h3 {
+  font-size: 140%;
+  text-decoration:underline;
+}
+h2 {
+  font-weight: bolder;
+  color: rgba(112, 59, 28,1);
+}
+li, h3 {
+  color: rgba(224,118,56,1);
+}
+p {
+  text-align: justify;
+  font-size: 100%;
+  color:black;
+}
+
+img {
+  display: block;
+  margin:auto;
+  width:10%;
+  height:10%;
+}
+@media only screen and (max-width:800px) {
+  img {
+    width: 20%;
+    height: 20%;
+  }
 }
