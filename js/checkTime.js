@@ -5,11 +5,11 @@ $(document).ready(function() {
   time.setMinutes(time.getMinutes()+30);
   var tempo = "";
   if (time < orarioMax) {
-    if(time.getHours() >= 1 && time.getHours() <= 9){
+    if(time.getHours() >= 0 && time.getHours() <= 9){
       tempo = "0";
     }
     tempo = tempo +time.getHours()+":";
-    if(time.getMinutes() >= 1 && time.getMinutes() <= 9) {
+    if(time.getMinutes() >= 0 && time.getMinutes() <= 9) {
       tempo = tempo+"0";
     }
     tempo=tempo+time.getMinutes();

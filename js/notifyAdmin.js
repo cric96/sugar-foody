@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.btn-submit').click(function() {
+  $('#okpay').submit(function() {
    $.ajax({
        url: "/" + window.location.pathname.split('/')[1] + "/chartToAssignment.php",
        success: function(){

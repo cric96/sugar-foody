@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var pagato = 0;
-  $('.btn-submit').click(function() {
+  $('#okpay').submit(function() {
     if ($('#check-hide').is(":checked")) {
       pagato = 1;
     } else {

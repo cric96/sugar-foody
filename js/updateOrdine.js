@@ -7,7 +7,7 @@ $(document).ready(function() {
   var ora = 0;
   var note = "";
   var totale = 0;
-  $('#submitButton').click(function(event) {
+  $('#pay').submit(function(event) {
     event.preventDefault();
     var data = time.getFullYear()+"/";
     if(time.getMonth() >=1 && time.getMonth() <= 9) {

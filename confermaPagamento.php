@@ -52,6 +52,7 @@ if ($res!== false) {
     <script src="./js/hide-accessibily.js"></script>
     <script src="./js/checkPagamento.js"></script>
     <script src="./js/notifyAdmin.js"></script>
+    <script src="./js/checkFormPagamento.js"></script>
     <link rel="stylesheet" href="./css/catProdotti.css">
     <link rel="stylesheet" href="./css/form-style.css">
     <link rel="stylesheet" href="./css/overlay-style.css">
@@ -63,7 +64,7 @@ if ($res!== false) {
     <?php include("./include/navbarUtente.php"); ?>
     <main class="container content">
        <h2 class="my-4">Pagamento ordine</h2>
-       <form method="post" class="form-horizontal">
+       <form method="post" id="okpay" class="form-horizontal">
          <fieldset>
            <legend>Come intendi effettuare il pagamento?</legend>
            <div class="checkbox-wrap d-flex justify-content-start p-2 mb-2">
@@ -111,7 +112,7 @@ if ($res!== false) {
                <div class="form-group row">
                  <label for="data" class=" control-label col-sm-2">Scadenza</label>
                  <div class="col-sm-10">
-                   <input type="date" name="date" class="form-control form-control-sm form-control-file" id="date">
+                   <input type="month" name="date" onblur="checkScadenzaFunction()" class="form-control form-control-sm form-control-file" id="date">
                  </div>
                </div>
                <button type="submit" class="btn btn-submit float-right" name="signinBt"><em class="fa fa-credit-card fa-lg" aria-hidden="true"></em>Paga</button>

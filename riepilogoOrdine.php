@@ -176,10 +176,10 @@ $cn->close();
          </tbody>
        </table>
      </section>
-     <form class="pay" method="post">
+     <form class="pay" id="pay" method="post">
        <section>
          <div class="google">
-           <input id="pac-input" class="controls" type="text" placeholder="Ricerca" value="<?php echo $luogo; ?>" required>
+           <input id="pac-input" required class="controls" type="text" placeholder="Ricerca" value="<?php echo $luogo; ?>" >
            <div id="map"></div>
            <script src="./js/script-google.js"></script>
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzSBGbvTC78VHiHMLfKfCsjiW81zRByYk&libraries=places&callback=initAutocomplete"
