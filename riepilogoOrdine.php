@@ -97,7 +97,13 @@ $cn->close();
   echo $res->num_rows;
   if ($res!== false) {
     //presumo ci sarà sempre un solo ordine con stato carrello alla volta, se c'è
-    if($res->num_rows != 1){?>
+    if($res->num_rows != 1){
+      if(!isset($_SESSION["categoria"])) {?>
+        <script>
+          alert("Non ci sono ordini da confermare!");
+          location.href = "./sceltaRistorante.php";
+        </script>
+      <?php } else {?>
       <script>
         alert("Non ci sono ordini da confermare!");
         location.href = "./componiOrdine.php?categoria=<?php echo $_SESSION['categoria'];?>";
