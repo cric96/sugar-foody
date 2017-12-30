@@ -13,9 +13,11 @@
     private $stmUpdate;
     private $stmSelectUser;
     private $stmSelectAdmin;
+    private $stmDelete;
     private $statuses;
     public function __construct($con) {
       parent::__construct($con);
+      $this->stmDelete = $this->con->prepare("DELETE FROM ORDINE WHERE stato = 'carello' AND utente = ?");
       $this->stmInsert = $this->con->prepare("INSERT INTO ORDINE (`data`, `utente`, `luogo`, `stato`,`amministratore`) VALUES (?,?,?,'carrello',?)");
       $this->stmUpdateFattorino = $this->con->prepare("UPDATE ORDINE SET `fattorino`=?, stato='elaborazione' WHERE  `numeroOrdine`=?");
       $this->stmUpdate = $con->prepare("UPDATE ORDINE SET  stato=? WHERE `numeroOrdine`=?");
@@ -25,7 +27,10 @@
       $this->statuses = (new statusSet($con))->getStatuses();
     }
 
-
+    public function clearChart($user) {
+      $this->stmDelete->bind_param("s",$user);
+      return parent::executeBasicQuery($this->stmDelete);
+    }
     public function getOrdersUsers($user) {
       $this->stmSelectUser->bind_param("s",$user);
       return parent::executeSelectQuery($this->stmSelectUser);
