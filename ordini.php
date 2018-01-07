@@ -38,10 +38,10 @@ $cn->close();
       <script src="./js/hide-accessibily.js"></script>
       <link rel="stylesheet" href="./css/catProdotti.css">
       <link rel="stylesheet" href="./css/fa-style.css">
-      <link rel="stylesheet" href="./css/tabelle-style.css">
       <link rel="stylesheet" href="./css/popup-basic-style.css">
       <link rel="stylesheet" href="./css/orders-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
+      <link rel="stylesheet" href="./css/fattori_admin.css">
       <title>Ordini</title>
    </head>
    <body>
@@ -79,7 +79,8 @@ $cn->close();
                   <tr>
                     <td><?php echo $row["numeroOrdine"]; ?></td>
                     <td><?php echo $row["stato"]; ?></td>
-                    <td><?php echo $row["luogo"]; ?></td>
+                    <?php $addr= explode(",",$row["luogo"]); ?>
+                    <td><?php echo $addr[0].", ".$addr[1]?></td>
                     <td><?php $date = date_create($row["data"]);
                     echo date_format($date, 'd/m/Y');
                     ?><br/><?php
