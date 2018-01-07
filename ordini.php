@@ -42,7 +42,6 @@ $cn->close();
       <link rel="stylesheet" href="./css/orders-style.css">
       <link rel="stylesheet" href="./css/overlay-style.css">
       <link rel="stylesheet" href="./css/fattori_admin.css">
-      <link rel="stylesheet" href="./css/home-fattorini-style.css">
       <title>Ordini</title>
    </head>
    <body>
