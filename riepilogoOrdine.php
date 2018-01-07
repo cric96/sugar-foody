@@ -46,6 +46,7 @@ $cn->close();
   <link rel="stylesheet" href="./css/popup-basic-style.css">
   <link rel="stylesheet" href="./css/riepilogoOrdine.css">
   <link rel="stylesheet" href="./css/google-map.css">
+  <link rel="stylesheet" href="./css/fa-style.css">
   <title>Riepilogo ordine</title>
 </head>
 <?php
@@ -133,6 +134,7 @@ $cn->close();
              <th>Prezzo</th>
              <th>Quantità</th>
              <th>Ingredienti</th>
+             <th>Elimina</th>
            </tr>
          </thead>
          <tbody>
@@ -164,13 +166,20 @@ $cn->close();
                    </ul>
                  </div>
              </td>
-              <?php } ?>
+             <td class="delete"><a class="fa fa-trash" aria-hidden="true" href="deleteDettaglio.php?D=<?php echo $idDett?>&P=<?php echo $idProd?>"> <span class="hide-acc"> elimina</span> </a></td>
+
+             <?php } ?>
              <tr scope="row">
                <?php $tot = $tot/100; ?>
                <td id="costoTot">Totale: €<?php echo $tot;?></td>
              </tr>
            <?php } else {
-             echo "non ci sono elementi";
+             $ordine = $_SESSION["ordine"];
+             $cn->query("DELETE FROM ORDINE WHERE numeroOrdine=$ordine");
+             unset($_SESSION["categoria"]);
+             unset($_SESSION["ordine"]);
+             ?><script>location.href="sceltaRistorante.php"</script><?php
+            //echo "non ci sono elementi";
            } } else {
              echo "errore nella query";
            }?>
