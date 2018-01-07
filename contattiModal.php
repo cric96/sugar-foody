@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="./css/contattiModal.css">
+<link rel="stylesheet" href="./css/popup-basic-style.css">
 <div class="modal fade " id="contatti">
   <div class="modal-dialog">
     <div class="modal-content">
