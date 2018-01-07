@@ -79,7 +79,8 @@ $cn->close();
                   <tr>
                     <td><?php echo $row["numeroOrdine"]; ?></td>
                     <td><?php echo $row["stato"]; ?></td>
-                    <td><?php echo $row["luogo"]; ?></td>
+                    <?php $addr= explode(",",$row["luogo"]); ?>
+                    <td><?php echo $addr[0].", ".$addr[1]?></td>
                     <td><?php $date = date_create($row["data"]);
                     echo date_format($date, 'd/m/Y');
                     ?><br/><?php

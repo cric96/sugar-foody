@@ -121,7 +121,9 @@
                       <a class="link" href="changeStato.php?id=<?php echo $row['numeroOrdine'] ?>&stato=<?php echo $stato; ?>"><?php echo $stato; ?></a>
                       <?php } ?>
                     </td>
-                    <td><?php echo $row["luogo"]; ?></td>
+
+                    <?php $addr= explode(",",$row["luogo"]); ?>
+                    <td><?php echo $addr[0].", ".$addr[1]?></td>
                     <td>
                       <?php $date = date_create($row["data"]);
                       echo date_format($date, 'd/m/Y');
