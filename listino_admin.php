@@ -19,8 +19,8 @@
      <script src="./js/hide-accessibily.js"></script>
      <script type="text/javascript" src="./js/add-in-listino.js"></script>
      <link rel="stylesheet" href="./css/catProdotti.css">
-     <link rel="stylesheet" href="./css/fattori_admin.css">
      <link rel="stylesheet" href="./css/tabelle-style.css">
+     <link rel="stylesheet" href="./css/listino.css">
      <link rel="stylesheet" href="./css/fa-style.css">
      <link rel="stylesheet" href="./css/overlay-style.css">
      <link rel="stylesheet" href="./css/switch-style.css">

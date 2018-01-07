@@ -88,7 +88,11 @@
                     echo $status;
 
                   ?></td>
-                  <td><?php echo $ordine->getLocation();?></td>
+                  <td><?php
+                  $addr = explode(",",$ordine->getLocation());
+                  echo $addr[0]." , ".$addr[1];
+
+                  ?></td>
                   <td><?php echo $ordine->getDate();?></td>
                   <td> <a href="dettagli_admin.php?o=<?php echo $ordine->getId()?>" class="dettagli fa fa-info" aria-hidden="true"><span class="hide-acc">Dettagli</span></a></td>
 
