@@ -6,7 +6,7 @@ $(document).on("click", ".noteModal", function () {
        url: "/" + window.location.pathname.split('/')[1] + "/ajax/show_notes.php",
        type: "POST",
        dataType: "html",
-       data: {"value": note},
+       data: {"value": note, "id": id},
        success: function(data){
             console.log(note);
            $('.notes').html(data);//Show fetched data from database
